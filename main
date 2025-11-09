@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据要素驱动下建构中国自主知识体系 - 重大专项报告</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a8f;
+            --primary-light: #2d4da7;
+            --secondary: #00a0e9;
+            --accent: #ff6b35;
+            --success: #2ecc71;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem 0 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .report-info {
+            text-align: right;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-tab {
+            padding: 14px 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-tab.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+        
+        .nav-tab:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        
+        .nav-tab.active::after {
+            width: 80%;
+        }
+        
+        /* 主要内容区域 */
+        main {
+            padding: 3rem 0;
+        }
+        
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+        
+        .card-icon {
+            color: var(--secondary);
+            font-size: 1.6rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 160, 233, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pillar {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .pillar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .pillar:hover {
+            transform: translateY(-8px);
+        }
+        
+        .pillar-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .pillar:nth-child(2)::before {
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .pillar:nth-child(3)::before {
+            background: linear-gradient(90deg, var(--accent), var(--success));
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(26, 58, 143, 0.1);
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.8rem;
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .team-member:hover {
+            transform: translateY(-8px);
+        }
+        
+        .member-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin: 0 auto 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .member-role {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .member-desc {
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-top: 10px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--secondary);
+        }
+        
+        .qrcode {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--dark);
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .pillars {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            gap: 1.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 180px;
+            transition: transform 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>数据要素驱动下建构中国自主知识体系</h1>
+                        <p>重大专项报告项目书</p>
+                    </div>
+                </div>
+                <div class="report-info">
+                    <p><i class="fas fa-building"></i> 汇报单位：金蝶研究院</p>
+                    <p><i class="far fa-calendar-alt"></i> 汇报时间：2024年</p>
+                </div>
+            </div>
+            
+            <div class="nav-tabs">
+                <div class="nav-tab active" data-target="overview">项目概述</div>
+                <div class="nav-tab" data-target="background">研究背景</div>
+                <div class="nav-tab" data-target="pillars">理论框架</div>
+                <div class="nav-tab" data-target="plan">推进计划</div>
+                <div class="nav-tab" data-target="team">研究团队</div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="overview" class="active">
+            <h2 class="section-title">项目概述</h2>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">740万+</div>
+                    <div class="stat-label">企业服务数据</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3大</div>
+                    <div class="stat-label">理论支柱</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">18个</div>
+                    <div class="stat-label">重点行业覆盖</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">中小企业占比</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-bullseye"></i></span>核心目标</h3>
+                <p>本项目依托金蝶<span class="highlight">740余万家企业服务数据</span>，通过"两个结合"，系统构建具有本土性、独立性、集成性、稳定性和开放性的数据要素理论体系，为全球数字治理贡献中国智慧。</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-lightbulb"></i></span>研究意义</h3>
+                <p>当前，中国在数据要素市场化实践中已走在前列，遇到了西方理论无法解释的新现象、无法解决的新问题。本项目旨在从中国企业的真实行为和数据规律出发，提炼中国数据要素市场的运行逻辑，构建既能解释中国实践、又能为全球数字经济发展提供新选项的自主知识体系。</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-rocket"></i></span>预期成果</h3>
+                <ul>
+                    <li>形成数据要素劳动价值论的原创理论框架</li>
+                    <li>构建数据要素协同治理的中国范式</li>
+                    <li>建立中小企业数据赋能的轻量化理论</li>
+                    <li>提出产业数据银行的实践模型</li>
+                    <li>为国家数据要素基础制度建设提供决策参考</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="background">
+            <h2 class="section-title">研究背景与战略意义</h2>
+            <div class="card">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-globe-asia"></i></span>时代背景</h3>
+                <p>当前我国数据要素市场化改革已进入深水区，实践中涌现的新现象、新问题，西方经济学理论框架难以充分解释。例如：为何我国大量中小企业不依赖数据垄断也能实现效率跃升？如何为公共性与商品性并存的数据要素设计适配的治理机制？</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-chart-line"></i></span>数据优势</h3>
+                <p>本项目依托金蝶<span class="highlight">740余万家企业（92%为中小企业）</span>构成的覆盖全产业环节的"四流合一"实时数据资产，旨在从中国企业的真实行为和运行规律出发，系统提炼中国数据要素市场的内在逻辑。</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-crosshairs"></i></span>战略定位</h3>
+                <p>这不是对西方理论的简单否定，而是立足中国场景的关键修正与拓展，实现从"应用西方理论解释中国"到"贡献中国方案回应世界"的转变。</p>
+            </div>
+        </section>
+        
+        <section id="pillars">
+            <h2 class="section-title">三大理论支柱</h2>
+            <div class="pillars">
+                <div class="pillar">
+                    <h3 class="pillar-title">数据要素协同价值论</h3>
+                    <p>突破西方基于"稀缺性"和"排他性"的传统要素理论框架，立足中华文明"和而不同""协同共生"的文化基因，构建"数据规模-维度多样性-协同效率"三维价值评估模型。</p>
+                    <p><strong>核心价值：</strong>系统阐释为何中国情境下"小企业聚合大数据"能产生超越西方大企业数据垄断的创新价值。</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3 class="pillar-title">数据要素贡献度测算模型</h3>
+                    <p>将马克思主义劳动价值论创造性应用于数字时代，系统阐释数据要素化过程中"原始数据采集—加工处理—融合应用"的三重劳动凝结机制。</p>
+                    <p><strong>核心价值：</strong>原创性提出"数据劳动价值率"概念，量化分析不同行业、不同规模企业中数据劳动与传统劳动的协同增效关系。</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3 class="pillar-title">数据要素分级治理模型</h3>
+                    <p>将"数据二十条"提出的"三权分置"框架与中华传统"义利之辨"治理智慧相结合，构建"政府引导+市场运作+技术保障"的多元协同治理理论。</p>
+                    <p><strong>核心价值：</strong>既能避免西方过度市场化导致的数据垄断，也能规避过度行政干预抑制创新的弊端，彰显中国特色社会主义制度优势。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="plan">
+            <h2 class="section-title">研究推进计划</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年第一季度</div>
+                        <h3>理论框架构建</h3>
+                        <p>完成三大理论支柱的初步构建，确定研究方法和实证方案。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年第二季度</div>
+                        <h3>数据整理与初步分析</h3>
+                        <p>完成金蝶740万家企业数据的脱敏、整理和初步分析，建立基础数据库。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年第三季度</div>
+                        <h3>实证研究与模型验证</h3>
+                        <p>开展三大理论的实证研究，验证理论模型的科学性和适用性。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年第四季度</div>
+                        <h3>中期成果形成</h3>
+                        <p>形成中期研究报告，发表首批学术论文，向相关部门提交政策建议。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年第一季度</div>
+                        <h3>实践应用与优化</h3>
+                        <p>在选定区域和行业开展理论应用试点，根据反馈优化理论模型。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年第二季度</div>
+                        <h3>成果总结与推广</h3>
+                        <p>完成最终研究报告，形成政策建议白皮书，开展成果推广和国际交流。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="team">
+            <h2 class="section-title">研究团队</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">张</div>
+                    <div class="member-name">张明教授</div>
+                    <div class="member-role">首席专家，数字经济</div>
+                    <div class="member-desc">清华大学数字经济研究中心主任，国务院特殊津贴专家</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">王</div>
+                    <div class="member-name">王静研究员</div>
+                    <div class="member-role">数据治理专家</div>
+                    <div class="member-desc">中国社会科学院数据法治研究中心副主任</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">李</div>
+                    <div class="member-name">李强博士</div>
+                    <div class="member-role">实证分析负责人</div>
+                    <div class="member-desc">北京大学大数据分析与应用技术国家工程实验室研究员</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">赵</div>
+                    <div class="member-name">赵华教授</div>
+                    <div class="member-role">马克思主义理论专家</div>
+                    <div class="member-desc">中央党校马克思主义学院副院长</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">刘</div>
+                    <div class="member-name">刘伟总监</div>
+                    <div class="member-role">企业实践专家</div>
+                    <div class="member-desc">金蝶集团首席数据官，前工信部信息化专家</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">陈</div>
+                    <div class="member-name">陈颖博士</div>
+                    <div class="member-role">政策研究专家</div>
+                    <div class="member-desc">国家发展改革委宏观经济研究院研究员</div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 2rem;">
+                <h3 class="card-title"><span class="card-icon"><i class="fas fa-handshake"></i></span>合作单位</h3>
+                <p>本项目联合了高校、科研院所、企业、政府部门等"五路大军"，建立了理论研究与实践验证的闭环机制，确保知识体系的系统性、集成性和开放性。</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h3>联系我们</h3>
+                    <p><i class="fas fa-building"></i> 金蝶研究院数据要素研究中心</p>
+                    <p><i class="fas fa-phone"></i> 电话：010-XXXXXXX</p>
+                    <p><i class="fas fa-envelope"></i> 邮箱：research@kingdee.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 地址：北京市海淀区XX路XX号</p>
+                </div>
+                <div class="qrcode">
+                    <i class="fas fa-qrcode" style="font-size: 3rem; margin-bottom: 10px;"></i><br>
+                    扫描二维码<br>获取完整报告
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 金蝶研究院 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const sections = document.querySelectorAll('section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    
+                    // 更新活跃标签
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 显示对应部分
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
