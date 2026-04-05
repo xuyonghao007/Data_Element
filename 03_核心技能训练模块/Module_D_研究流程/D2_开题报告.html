@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2-开题报告准备指南 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(102,126,234,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #667eea; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #667eea; }
+        .checklist { list-style: none; counter-reset: cl; }
+        .cl-item { counter-increment: cl; position: relative; padding: 1.25rem 1.25rem 1.25rem 3.5rem; margin-bottom: 1rem; background: var(--light-bg); border-radius: 10px; border-left: 4px solid #667eea; transition: all 0.3s; }
+        .cl-item::before { content: counter(cl); position: absolute; left: 1rem; top: 1.25rem; width: 28px; height: 28px; background: #667eea; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+        .cl-item h4 { color: var(--primary); margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .cl-item p { color: #64748b; font-size: 0.92rem; line-height: 1.7; }
+        .ppt-guide { background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .ppt-slide { background: white; padding: 1.25rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid #667eea; }
+        .ppt-slide h5 { color: #3730a3; margin-bottom: 0.5rem; }
+        .ppt-slide p { color: #4338ca; font-size: 0.9rem; line-height: 1.7; }
+        .qa-section { background: linear-gradient(135deg, #fff7ed, #ffedd5); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .qa-item { background: white; padding: 1.25rem; border-radius: 10px; margin-bottom: 1rem; }
+        .qa-item strong { color: #92400e; }
+        .qa-item p { color: #78350f; margin-top: 0.5rem; font-size: 0.92rem; line-height: 1.75; }
+        .timeline-bar { display: flex; justify-content: space-between; position: relative; padding: 2rem 0; margin: 1.5rem 0; }
+        .timeline-bar::before { content: ''; position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px; transform: translateY(-50%); }
+        .tl-point { text-align: center; position: relative; z-index: 1; }
+        .tl-point .dot { width: 20px; height: 20px; background: #667eea; border: 4px solid white; border-radius: 50%; margin: 0 auto 0.5rem; box-shadow: 0 2px 8px rgba(102,126,234,0.3); }
+        .tl-point h5 { color: var(--primary); font-size: 0.9rem; }
+        .tl-point p { color: #64748b; font-size: 0.8rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🎤 D2: 开题报告准备与答辩指南</h1>
+        <p>从书面材料到口头汇报 — 全面备战你的第一次正式学术答辩</p>
+    </div>
+
+    <!-- 准备清单 -->
+    <div class="section">
+        <h2><i class="fas fa-clipboard-check"></i> 开题前必须完成的清单</h2>
+        <ul class="checklist">
+            <li class="cl-item">
+                <h4>完成研究计划(Proposal)初稿</h4>
+                <p>参考C1模块的标准六段式模板，至少完成前四部分（背景、文献、假说、设计）。不需要完美，但逻辑要完整。</p>
+            </li>
+            <li class="cl-item">
+                <h4>完成初步的数据收集和清洗</h4>
+                <p>至少拿到数据并完成了描述性统计。如果能跑出初步回归结果更好——有结果的开题比纯概念性的更有说服力。</p>
+            </li>
+            <li class="cl-item">
+                <h4>整理完整的参考文献列表</h4>
+                <p>30-50篇核心文献，按主题分类。确保引用格式规范（APA/GBT7714）。</p>
+            </li>
+            <li class="cl-item">
+                <h4>制作开题PPT（15-20页为宜）</h4>
+                <p>PPT是答辩的核心载体。详见下方PPT结构指南。</p>
+            </li>
+            <li class="cl-item">
+                <h4>预演至少2遍</h4>
+                <p>自己计时练习，找同学听一遍并给反馈。控制时长在15分钟以内（预留5分钟Q&A）。</p>
+            </li>
+            <li class="cl-item">
+                <h4>准备可能的提问及回答</h4>
+                <p>提前想好老师可能会问什么。详见下方常见问题部分。</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- PPT结构 -->
+    <div class="section">
+        <h2><i class="fas fa-presentation-screen"></i> 开题PPT标准结构（15-20页）</h2>
+        <div class="ppt-guide">
+            <div class="ppt-slide">
+                <h5><span style="background:#667eea;color:white;padding:0.15rem 0.5rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">P1-2</span> 封面 + 目录</h5>
+                <p>封面包含：题目、姓名、导师、日期。目录让听众知道你要讲什么。</p>
+            </div>
+            <div class="ppt-slide">
+                <h5><span style="background:#667eea;color:white;padding:0.15rem 0.5rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">P3-5</span> 研究背景与意义</h5>
+                <p>① 为什么这个问题重要？（数据/新闻/政策支撑）② 现实意义 + 理论意义各一句话</p>
+            </div>
+            <div class="ppt-slide">
+                <h5><span style="background:#667eea;color:white;padding:0.15rem 0.5rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">P6-9</span> 文献综述与研究定位</h5>
+                <p>① 用表格梳理现有研究（作者-方法-结论-不足）② 明确指出本文的Gap ③ 定位图示</p>
+            </div>
+            <div class="ppt-slide">
+                <h5><span style="background:#667eea;color:white;padding:0.15rem 0.5rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">P10-12</span> 研究设计（核心！）</h5>
+                <p>① 数据来源与样本 ② 变量定义（表格形式）③ 模型设定方程 ④ 识别策略说明</p>
+            </div>
+            <div class="ppt-slide">
+                <h5><span style="background:#667eea;color:white;padding:0.15rem 0.5rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">P13-14</span> 预期贡献与创新点</h5>
+                <p>三点式贡献陈述 + 可能的政策含义。简洁有力。</p>
+            </div>
+            <div class="ppt-slide">
+                <h5><span style="background:#667eea;color:white;padding:0.15rem 0.5rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">P15-16</span> 时间安排 + 参考文献</h5>
+                <p>Gantt图或月度计划表 + 主要参考文献列表（精选15-20篇最重要的）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见问题 -->
+    <div class="section">
+        <h2><i class="fas fa-question-circle"></i> 开题常见问题 & 回答策略</h2>
+        <div class="qa-section">
+            <div class="qa-item">
+                <strong>Q1: 你的研究与XXX(2023)有什么区别？</strong>
+                <p>策略：诚实承认相似性，然后强调差异。<br>
+                "您提到的这篇确实与我们在主题上相近。但有三点关键差异：①他们关注的是A市场，我们聚焦于B市场；②他们的方法是C，我们采用了D；③我们额外考察了E机制。这些差异使得我们的研究能够补充而非重复他们的工作。"</p>
+            </div>
+            <div class="qa-item">
+                <strong>Q2: 你的内生性问题怎么解决？</strong>
+                <p>策略：展示你已经认真思考过这个问题。<br>
+                "这是一个非常重要的问题。我们计划采用[具体方法]来应对：首先...；其次...；此外我们还准备了[替代方案]作为稳健性检验。当然我们也承认完全消除内生性是不可能的，这也是我们未来改进的方向。"</p>
+            </div>
+            <div class="qa-item">
+                <strong>Q3: 如果结果不显著怎么办？</strong>
+                <p>策略：展现科研的成熟心态。<br>
+                "如果主效应不显著，我们不会强行解释。我们会：(1) 检查数据和代码是否有误；(2) 考虑是否存在调节变量影响了效果；(3) 分析不显著本身是否有信息含量——'无效果'本身也是一个有价值的发现。当然，基于我们的预研，目前的结果是支持我们的预期的。"</p>
+            </div>
+            <div class="qa-item">
+                <strong>Q4: 你的样本量够吗？</strong>
+                <p>策略：用数字说话。<br>
+                "我们的最终样本包含XX家企业在YY-ZZ年期间的ZZZZ个观测值。这一规模与同类研究（如AAA 2022: N=XXXX; BBB 2023: N=XXXX）相当。此外，我们使用了聚类标准误来修正潜在的序列相关问题。"</p>
+            </div>
+            <div class="qa-item">
+                <strong>Q5: 你觉得最大的困难是什么？</strong>
+                <p>策略：诚实但不自我否定。<br>
+                "我认为最大的挑战在于[具体困难，如数据匹配/机制识别]。为此我们已经[采取了什么措施]。如果开题后遇到无法解决的问题，我会及时向导师请教并调整研究设计。"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 答辩技巧 -->
+    <div class="section" style="background: linear-gradient(135deg, #eef2ff, #e0e7ff);">
+        <h2><i class="fas fa-star"></i> 答辩当天的技巧</h2>
+        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #667eea;">
+                <h4 style="color: #3730a3; margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Do's ✅</h4>
+                <ul style="padding-left: 1.25rem; color: #4338ca; line-height: 2; font-size: 0.93rem;">
+                    <li>着装得体，态度自信谦逊</li>
+                    <li>控制语速，不要念稿子</li>
+                    <li>不懂的问题诚实说"我会深入研究"</li>
+                    <li>记录老师们的意见（带笔记本！）</li>
+                    <li>感谢每位老师的点评</li>
+                </ul>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #f59e0b;">
+                <h4 style="color: #92400e; margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Don'ts ❌</h4>
+                <ul style="padding-left: 1.25rem; color: #92400e; line-height: 2; font-size: 0.93rem;">
+                    <li>超时！超时是大忌</li>
+                    <li>与老师争辩（可以讨论但要有礼貌）</li>
+                    <li>说"我觉得"、"可能是"等不确定表述</li>
+                    <li>暴露自己没读过某篇重要文献</li>
+                    <li>表现出防御性或不耐烦</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="D1_Idea生成.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：Idea生成</a>
+        <a href="D3_组会汇报.html" class="nav-btn next">下一节：组会汇报 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

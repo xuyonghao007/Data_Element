@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4-个人知识库构建(RAG) | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1;
+            --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(161, 140, 209, 0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #a18cd1; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #a18cd1; }
+        .concept-intro { background: linear-gradient(135deg, #ede9fe, #ddd6fe); padding: 1.75rem; border-radius: 12px; margin: 1.5rem 0; }
+        .concept-intro h4 { color: #6d28d9; margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .tool-card { background: var(--light-bg); padding: 1.75rem; border-radius: 14px; border-top: 4px solid #a18cd1; transition: all 0.3s; }
+        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .tool-card h4 { color: var(--primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
+        .tool-card p { color: #64748b; font-size: 0.93rem; line-height: 1.7; }
+        .tool-card .tag { display: inline-block; background: #ede9fe; color: #6d28d9; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.78rem; font-weight: 600; margin-top: 0.75rem; }
+        .workflow { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+        .wf-step { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem; background: var(--light-bg); border-radius: 12px; }
+        .wf-num { width: 36px; height: 36px; min-width: 36px; background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .wf-content h5 { color: var(--primary); margin-bottom: 0.35rem; }
+        .wf-content p { color: #64748b; font-size: 0.92rem; }
+        .benefit-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .benefit-item { background: #f0fdf4; padding: 1.25rem; border-radius: 10px; border-left: 4px solid var(--success); }
+        .benefit-item strong { color: #166534; display: block; margin-bottom: 0.35rem; }
+        .benefit-item p { color: #15803d; font-size: 0.9rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); }
+        .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🗄️ A4: 个人RAG知识库构建</h1>
+        <p>打造属于你的智能文献管理系统，让AI成为你的专属研究助手</p>
+    </div>
+
+    <!-- RAG概念介绍 -->
+    <div class="section">
+        <h2><i class="fas fa-brain"></i> 什么是RAG知识库？</h2>
+        <div class="concept-intro">
+            <h4><i class="fas fa-info-circle"></i> RAG = Retrieval-Augmented Generation（检索增强生成）</h4>
+            <p style="line-height: 1.9; color: #5b21b6;">
+                简单来说，就是<strong>把你读过的所有论文、笔记、想法整理成一个结构化的知识库</strong>，
+                当你需要查询或创作时，AI可以从你的个人知识库中<strong>精准检索</strong>相关信息并<strong>生成</strong>回答。
+                这比让AI凭空回答准确得多，因为答案来源于你自己积累的真实材料！
+            </p>
+            <p style="margin-top: 1rem; line-height: 1.8; color: #6d28d9;">
+                <strong>类比理解：</strong>传统ChatGPT像一个博学的陌生人（知道很多但不知道你的需求）；
+                而RAG知识库就像给这位博学者提供了<strong>你的私人图书馆索引</strong>，它能精准地基于你的资料回答问题。
+            </p>
+        </div>
+    </div>
+
+    <!-- 工具推荐 -->
+    <div class="section">
+        <h2><i class="fas fa-tools"></i> 推荐工具栈</h2>
+        <div class="tool-grid">
+            <div class="tool-card">
+                <h4><i class="fab fa-python"></i> Obsidian + 插件生态</h4>
+                <p>本地化的知识管理工具，支持Markdown双向链接、图谱可视化。配合Smart Connections等AI插件可实现本地RAG功能。完全免费，数据自主可控。</p>
+                <span class="tag">免费 · 本地 · 推荐</span>
+            </div>
+            <div class="tool-card">
+                <h4><i class="fas fa-book-open"></i> Notion + AI</h4>
+                <p>强大的在线协作知识库，内置AI问答功能。支持数据库视图、模板系统。适合喜欢云端同步和团队协作的用户。</p>
+                <span class="tag">免费额度 · 云端 · 协作友好</span>
+            </div>
+            <div class="tool-card">
+                <h4><i class="fas fa-database"></i> ChromaDB + LLM API</h4>
+                <p>技术向方案：自建向量数据库存储文献嵌入向量，通过API调用GPT/Claude实现真正的RAG。灵活性最高但需要一定编程基础。</p>
+                <span class="tag">技术进阶 · 完全自定义</span>
+            </div>
+            <div class="tool-card">
+                <h4><i class="fas fa-file-alt"></i> Zotero + ChatPDF</h4>
+                <p>Zotero负责文献管理和笔记存储，ChatPDF类工具用于单篇论文的问答。轻量级方案，上手最快。</p>
+                <span class="tag">入门友好 · 快速启动</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 构建流程 -->
+    <div class="section">
+        <h2><i class="fas fa-project-diagram"></i> 知识库构建五步法</h2>
+        <div class="workflow">
+            <div class="wf-step">
+                <div class="wf-num">1</div>
+                <div class="wf-content">
+                    <h5>标准化输入格式</h5>
+                    <p>每篇文献都按固定模板录入：标题、作者、年份、期刊、10要素摘要、核心贡献、个人批注。保持格式一致是后续检索的基础。</p>
+                </div>
+            </div>
+            <div class="wf-step">
+                <div class="wf-num">2</div>
+                <div class="wf-content">
+                    <h5>建立标签体系</h5>
+                    <p>多维标签分类：按领域（公司金融/资产定价）、按方法（DID/IV/文本分析）、按状态（待读/已读/已引用）、按重要性（⭐1-5）。标签越多越细，检索越精准。</p>
+                </div>
+            </div>
+            <div class="wf-step">
+                <div class="wf-num">3</div>
+                <div class="wf-content">
+                    <h5>建立关联网络</h5>
+                    <p>用双向链接连接相关文献：A文的方法借鉴了B文、C文是对D文的拓展、E文和F文观点对立。形成知识图谱而非孤立文档。</p>
+                </div>
+            </div>
+            <div class="wf-step">
+                <div class="wf-num">4</div>
+                <div class="wf-content">
+                    <h5>定期维护更新</h5>
+                    <p>每周花30分钟整理新读文献、修正旧笔记、清理过期内容。知识库的价值在于持续维护，不是一次性工程。</p>
+                </div>
+            </div>
+            <div class="wf-step">
+                <div class="wf-num">5</div>
+                <div class="wf-content">
+                    <h5>接入AI问答</h5>
+                    <p>将知识库导入RAG系统，实现："帮我找出所有用DID方法研究ESG的论文"、"这篇新论文和我之前读过的哪篇最相关？"等智能查询。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用场景 -->
+    <div class="section">
+        <h2><i class="fas fa-magic"></i> 知识库的典型应用场景</h2>
+        <div class="benefit-list">
+            <div class="benefit-item">
+                <strong>🔍 文献去重查重</strong>
+                <p>"我之前有没有读过类似主题的论文？" → 秒速检索已有知识库</p>
+            </div>
+            <div class="benefit-item">
+                <strong>💡 Idea碰撞激发</strong>
+                <p>"把A文的X方法和B文的Y数据结合会怎样？" → 发现交叉创新机会</p>
+            </div>
+            <div class="benefit-item">
+                <strong>📝 综述写作加速</strong>
+                <p>"列出所有讨论Z机制的论文及各自的观点" → 自动聚合相关论述</p>
+            </div>
+            <div class="benefit-item">
+                <strong>🎯 方法选择参考</strong>
+                <p>"处理类似内生性问题的人用了什么方法？" → 快速找到方法论参考</p>
+            </div>
+            <div class="benefit-item">
+                <strong>🤝 合作知识共享</strong>
+                <p>与同门共享知识库，互相补全盲区，提升课题组整体效率</p>
+            </div>
+            <div class="benefit-item">
+                <strong>🚀 投稿前自查</strong>
+                <p>"我的引用是否遗漏了该领域的关键文献？" → 全面性检查</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 入门建议 -->
+    <div class="section" style="background: linear-gradient(135deg, #ede9fe, #ddd6fe);">
+        <h2><i class="fas fa-rocket"></i> 新手起步建议</h2>
+        <div style="margin-top: 1.5rem; color: #5b21b6; line-height: 2;">
+            <p><strong>如果你是完全的新手</strong>，建议从最简单的方案开始：</p>
+            <ol style="padding-left: 1.5rem; margin-top: 0.75rem;">
+                <li><strong>第1周</strong>：安装Obsidian，创建第一个Vault，导入已有的5-10篇精读笔记</li>
+                <li><strong>第2周</strong>：建立统一的笔记模板（参考A2节的精读笔记模板），养成每读完一篇就录入的习惯</li>
+                <li><strong>第3-4周</strong>：开始打标签、建链接，体验知识网络的魅力</li>
+                <li><strong>第2个月起</strong>：考虑接入AI插件或升级到更高级的RAG方案</li>
+            </ol>
+            <p style="margin-top: 1rem;"><strong>记住</strong>：完美的知识库不是一天建成的，而是日积月累的结果。关键是<strong>现在就开始</strong>，哪怕只是用一个简单的文件夹+Markdown文件也比没有强！</p>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="A3_综述撰写.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：综述撰写</a>
+        <a href="../Module_B_方法训练/B1_计量基础.html" class="nav-btn next">下一模块：方法训练 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

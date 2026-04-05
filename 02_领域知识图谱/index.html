@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融学研究全景图 | 领域知识图谱</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a5f;
+            --secondary: #2c5aa0;
+            --accent: #4299e1;
+            --light-bg: #f8f9fa;
+            --border: #e2e8f0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaf6 100%);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        
+        .header-container {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 20px 50px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+        
+        h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -0.5px; }
+        .subtitle { font-size: 1.25rem; opacity: 0.95; max-width: 800px; margin: 0 auto 25px; font-weight: 300; }
+        
+        .intro-box {
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 900px;
+            margin: 30px auto 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: left;
+        }
+        
+        .intro-box p { margin-bottom: 10px; }
+        .intro-box strong { color: #ffd700; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 60px; }
+        
+        .section-title {
+            text-align: center;
+            margin: 50px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #1abc9c);
+            border-radius: 2px;
+        }
+        
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .field-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.35s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+        
+        .field-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+            border-color: transparent;
+        }
+        
+        .field-icon {
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.75rem;
+            color: white;
+            transition: transform 0.3s;
+        }
+        
+        .field-card:hover .field-icon { transform: scale(1.1); }
+        
+        .field-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .field-title {
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .field-description {
+            color: #64748b;
+            margin-bottom: 18px;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+        
+        .field-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        
+        .tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .field-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 11px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .field-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 18px rgba(66, 153, 225, 0.35);
+        }
+        
+        .framework-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 45px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin: 60px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .framework-title {
+            font-size: 1.7rem;
+            color: var(--primary);
+            margin-bottom: 28px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .framework-item {
+            padding: 22px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .framework-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+        
+        .framework-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .framework-item h4 i { color: var(--accent); }
+        
+        .framework-item ul { 
+            padding-left: 20px; 
+            color: #64748b; 
+            font-size: 0.92rem;
+        }
+        
+        .framework-item li { margin-bottom: 6px; }
+        
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .back-nav:hover {
+            background: rgba(44, 90, 160, 0.1);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .fields-grid { grid-template-columns: 1fr; }
+            .framework-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <h1>🔬 金融学研究全景图</h1>
+    <p class="subtitle">探索金融学十大核心研究领域，找到你的研究兴趣与方向</p>
+    
+    <div class="intro-box">
+        <p><strong>🎯 如何使用本页：</strong></p>
+        <p>1️⃣ 浏览下方各领域卡片，了解每个方向的核心问题与研究方法</p>
+        <p>2️⃣ 点击感兴趣领域的"深入了解"按钮，查看详细的知识体系介绍</p>
+        <p>3️⃣ 结合自身背景和兴趣，初步确定1-2个可能的研究方向</p>
+        <p>4️⃣ 前往<strong>03-核心技能训练模块</strong>开始系统学习该方向所需的方法论</p>
+    </div>
+</div>
+
+<div class="container">
+    <a href="../index.html" class="back-nav">
+        <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+
+    <div class="section-title">
+        <h2>📊 金融学核心研究领域</h2>
+    </div>
+
+    <div class="fields-grid">
+        <!-- 资产定价 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">资产定价 (Asset Pricing)</h3>
+                <p class="field-description">研究金融资产价格决定因素、风险与收益关系、市场有效性等核心问题。包括传统CAPM模型扩展、异象解释、因子投资等前沿话题。</p>
+                <div class="field-tags">
+                    <span class="tag">因子模型</span>
+                    <span class="tag">市场微观结构</span>
+                    <span class="tag">行为金融</span>
+                </div>
+                <a href="资产定价/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 公司金融 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">公司金融 (Corporate Finance)</h3>
+                <p class="field-description">探讨企业投融资决策、资本结构、股利政策、公司治理等问题。关注企业价值创造机制、信息不对称下的契约设计等。</p>
+                <div class="field-tags">
+                    <span class="tag">资本结构</span>
+                    <span class="tag">投资决策</span>
+                    <span class="tag">公司治理</span>
+                </div>
+                <a href="公司金融/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 行为金融 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">行为金融 (Behavioral Finance)</h3>
+                <p class="field-description">结合心理学与金融学，研究投资者非理性行为对市场价格的影响。包括认知偏差、有限注意力、情绪交易等主题。</p>
+                <div class="field-tags">
+                    <span class="tag">认知偏差</span>
+                    <span class="tag">有限理性</span>
+                    <span class="tag">市场异象</span>
+                </div>
+                <a href="行为金融/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 金融科技 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">金融科技 (FinTech)</h3>
+                <p class="field-description">研究技术创新对金融服务的影响，包括区块链、数字货币、智能投顾、P2P借贷、大数据风控等新兴领域。</p>
+                <div class="field-tags">
+                    <span class="tag">数字货币</span>
+                    <span class="tag">机器学习</span>
+                    <span class="tag">区块链</span>
+                </div>
+                <a href="金融科技/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 机构投资者 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                <i class="fas fa-users-cog"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">机构投资者 (Institutional Investors)</h3>
+                <p class="field-description">分析基金、保险、养老金等机构投资者的行为特征、投资策略及其对市场的影响。关注共同基金、对冲基金等领域。</p>
+                <div class="field-tags">
+                    <span class="tag">共同基金</span>
+                    <span class="tag">对冲基金</span>
+                    <span class="tag">投资者行为</span>
+                </div>
+                <a href="机构投资者/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 微观市场结构 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">微观市场结构 (Market Microstructure)</h3>
+                <p class="field-description">研究金融市场交易机制、价格形成过程、流动性供给等问题。包括限价订单簿、高频交易、市场设计等。</p>
+                <div class="field-tags">
+                    <span class="tag">订单簿</span>
+                    <span class="tag">高频交易</span>
+                    <span class="tag">流动性</span>
+                </div>
+                <a href="微观市场结构/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 家庭金融 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">家庭金融 (Household Finance)</h3>
+                <p class="field-description">从家庭/个人视角研究金融决策，包括储蓄、消费信贷、退休规划、金融素养等。强调实证研究与政策含义。</p>
+                <div class="field-tags">
+                    <span class="tag">消费信贷</span>
+                    <span class="tag">储蓄决策</span>
+                    <span class="tag">金融素养</span>
+                </div>
+                <a href="家庭金融/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 宏观金融 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #89f7fe, #66a6ff);">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">宏观金融 (Macro Finance)</h3>
+                <p class="field-description">连接宏观经济学与金融学，研究货币政策、系统性风险、金融危机、国际金融等问题。关注宏观经济变量与金融市场互动。</p>
+                <div class="field-tags">
+                    <span class="tag">货币政策</span>
+                    <span class="tag">系统性风险</span>
+                    <span class="tag">金融危机</span>
+                </div>
+                <a href="宏观金融/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 法律与监管 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #d299c2, #fef9d7);">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">法律与监管 (Law & Regulation)</h3>
+                <p class="field-description">研究金融监管制度、法律法规对金融市场的影响。包括证券法、银行监管、公司治理法律环境等交叉领域。</p>
+                <div class="field-tags">
+                    <span class="tag">证券监管</span>
+                    <span class="tag">银行监管</span>
+                    <span class="tag">合规成本</span>
+                </div>
+                <a href="法律与监管/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 金融中介 -->
+        <div class="field-card">
+            <div class="field-icon" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);">
+                <i class="fas fa-university"></i>
+            </div>
+            <div class="field-content">
+                <h3 class="field-title">金融中介 (Financial Intermediation)</h3>
+                <p class="field-description">研究银行、影子银行等金融机构的角色与功能。关注金融中介存在的理论基础、风险管理、影子银行体系等。</p>
+                <div class="field-tags">
+                    <span class="tag">商业银行</span>
+                    <span class="tag">影子银行</span>
+                    <span class="tag">信贷周期</span>
+                </div>
+                <a href="金融中介/index.html" class="field-link">
+                    深入了解 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 研究框架指引 -->
+    <div class="framework-section">
+        <h3 class="framework-title"><i class="fas fa-sitemap"></i> 金融学研究方法框架</h3>
+        <div class="framework-grid">
+            <div class="framework-item">
+                <h4><i class="fas fa-flask"></i> 理论驱动型</h4>
+                <ul>
+                    <li>基于经典理论模型提出假设</li>
+                    <li>利用独特数据检验理论预测</li>
+                    <li>典型：资产定价测试、公司金融理论验证</li>
+                </ul>
+            </div>
+            
+            <div class="framework-item">
+                <h4><i class="fas fa-database"></i> 数据驱动型</h4>
+                <ul>
+                    <li>利用新数据源发现规律</li>
+                    <li>文本分析、图像识别等新技术</li>
+                    <li>典型：金融科技、家庭金融大数据研究</li>
+                </ul>
+            </div>
+            
+            <div class="framework-item">
+                <h4><i class="fas fa-gavel"></i> 政策评估型</h4>
+                <ul>
+                    <li>围绕政策变化构建自然实验</li>
+                    <li>DID/RD/IV等因果推断方法</li>
+                    <li>典型：监管改革效果、货币政策传导</li>
+                </ul>
+            </div>
+            
+            <div class="framework-item">
+                <h4><i class="fas fa-project-diagram"></i> 交叉学科型</h4>
+                <ul>
+                    <li>引入心理学、计算机等方法</li>
+                    <li>跨领域视角产生新洞见</li>
+                    <li>典型：行为金融+认知科学、FinTech+ML</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

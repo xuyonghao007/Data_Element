@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B4-高级方法入门 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(161,140,209,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #a18cd1; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #a18cd1; }
+        .method-item { background: var(--light-bg); border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem; border-left: 5px solid #a18cd1; transition: all 0.3s; }
+        .method-item:hover { transform: translateX(8px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .method-item h3 { color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; font-size: 1.2rem; }
+        .method-item .level { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.78rem; font-weight: 600; margin-left: auto; }
+        .method-item p, .method-item ul { color: #475569; line-height: 1.85; }
+        .method-item ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+        .method-item li { margin-bottom: 0.4rem; }
+        .roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+        .rm-phase { background: linear-gradient(135deg, #fdf4ff, #fae8ff); padding: 1.5rem; border-radius: 12px; border-top: 4px solid #a18cd1; text-align: center; }
+        .rm-phase .phase-num { width: 45px; height: 45px; background: #a18cd1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; margin: 0 auto 0.75rem; }
+        .rm-phase h4 { color: var(--primary); margin-bottom: 0.5rem; }
+        .rm-phase p { color: #86198f; font-size: 0.88rem; line-height: 1.6; }
+        .resource-box { background: linear-gradient(135deg, #ede9fe, #ddd6fe); padding: 1.75rem; border-radius: 12px; margin-top: 1.5rem; }
+        .resource-box h4 { color: #6d28d9; margin-bottom: 0.75rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🔬 B4: 高级研究方法入门</h1>
+        <p>文本分析、机器学习、合成控制法 — 拓展你的方法论武器库</p>
+    </div>
+
+    <!-- 文本分析 -->
+    <div class="section">
+        <h2><i class="fas fa-font"></i> 文本分析方法</h2>
+        
+        <div class="method-item">
+            <h3>文本分析 (Text Analysis) <span class="level">🔥 近年最热方向</span></h3>
+            <p><strong>为什么重要？</strong>传统金融研究依赖结构化数值数据，而文本分析打开了非结构化数据的宝箱——年报、新闻、分析师报告、社交媒体等都成为可用数据源。</p>
+            
+            <p><strong>核心技术路线：</strong></p>
+            <ul>
+                <li><strong>字典法 (Dictionary Approach)</strong>：基于预定义的情感词列表计算文本情感得分。简单易行但可能遗漏语境。
+                    <br>• 常用字典：Loughran & McDonald(2011) LM字典、NIH情感词典、中文情感词典（如大连理工、清华THUOCL）
+                    <br>• Python库：jieba(分词)、snownlp(情感分析)</li>
+                <li><strong>机器学习方法</strong>：
+                    <br>• 有监督：SVM、朴素贝叶斯、BERT微调（需人工标注训练集）
+                    <br>• 无监督：LDA主题模型（提取隐含话题）、Word2Vec词向量</li>
+                <li><strong>大语言模型(LLM)</strong>：
+                    <br>• ChatGPT/Claude API直接进行文本分类、摘要、情感分析
+                    <br>• 成本较低，效果往往优于传统方法，但需注意可重复性</li>
+            </ul>
+            
+            <p><strong>典型应用场景：</strong></p>
+            <ul>
+                <li>管理层讨论与分析(MD&A)语调与未来业绩的关系</li>
+                <li>分析师研报语气对市场反应的影响</li>
+                <li>新闻情绪与资产价格波动</li>
+                <li>ESG披露文本的信息含量分析</li>
+                <li>招股说明书的风险提示文本分析</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 机器学习 -->
+    <div class="section">
+        <h2><i class="fas fa-brain"></i> 机器学习在金融研究中的应用</h2>
+        
+        <div class="method-item">
+            <h3>机器学习 (Machine Learning) <span class="level">进阶 · 前景广阔</span></h3>
+            <p><strong>ML在金融实证研究中的两大用途：</strong></p>
+            
+            <p><strong>① 作为预测工具（辅助变量构造）</strong></p>
+            <ul>
+                <li>用ML模型预测难以度量的潜变量（如违约概率、财务困境风险）</li>
+                <li>常见算法：Logistic Regression、Random Forest、XGBoost、神经网络</li>
+                <li>示例：用ML预测企业的"创新质量"，再将其作为解释变量放入主回归</li>
+            </ul>
+            
+            <p><strong>② 作为估计方法（替代传统回归）</strong></p>
+            <ul>
+                <li>高维固定效应（当控制变量维度超过样本量时）</li>
+                <li>因果森林 (Causal Forest)：处理异质性处理效应</li>
+                <li>Double Machine Learning (DML)：结合ML的高预测能力和因果推断框架</li>
+            </ul>
+            
+            <p><strong>入门建议：</strong></p>
+            <ul>
+                <li>Python生态：scikit-learn（最易上手）、PyTorch/TensorFlow（深度学习）、causalml（因果ML专用包）</li>
+                <li>Stata也可：通过python调用或使用社区开发的ML命令</li>
+                <li>推荐从简单的预测任务开始（如用财务指标预测盈余管理），逐步过渡到复杂应用</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 其他高级方法 -->
+    <div class="section">
+        <h2><i class="fas fa-flask"></i> 其他值得了解的方法</h2>
+        
+        <div class="method-item">
+            <h3>合成控制法 (Synthetic Control Method) <span class="level">政策评估利器</span></h3>
+            <p>当处理组只有一个个体（如某个城市/国家实施了某项政策）时，传统的DID难以找到合适的对照组。SCM通过加权组合多个潜在对照单元，构建一个"合成的"反事实对照组。</p>
+            <ul>
+                <li><strong>经典案例</strong>：Abadie et al.(2010) 研究加州烟草控制法案的效果</li>
+                <li><strong>适用场景</strong>：单个或少数处理单元的政策评估</li>
+                <li><strong>Stata实现</strong>：synth命令 / R包Synth</li>
+                <li><strong>近期扩展</strong>：广义合成控制(GSC)、矩阵填充法</li>
+            </ul>
+        </div>
+
+        <div class="method-item">
+            <h3>事件研究法 (Event Study) <span class="module">经典但不老</span></h3>
+            <p>金融市场研究的传统方法，用于衡量特定事件对资产价格的影响。在DID中常用于平行趋势检验的可视化展示。</p>
+            <ul>
+                <li><strong>核心步骤</strong>：定义事件窗口 → 估计正常收益 → 计算异常收益(Aggregate CAR) → 统计检验</li>
+                <li><strong>Stata实现</strong>：eventstudy2命令（非常完善）</li>
+                <li><strong>与DID的结合</strong>：事件研究图(Event Study Plot)是平行趋势检验的标准呈现方式</li>
+            </ul>
+        </div>
+
+        <div class="method-item">
+            <h3>空间计量 (Spatial Econometrics) <span class="level">小众但有潜力</span></h3>
+            <p>当研究对象存在地理空间关联时（如同省市的政策溢出效应），传统OLS会因空间自相关产生偏误。</p>
+            <ul>
+                <li><strong>核心模型</strong>：空间滞后模型(SAR)、空间误差模型(SEM)、空间杜宾模型(SDM)</li>
+                <li><strong>权重矩阵</strong>：地理相邻、经济距离、贸易流量等</li>
+                <li><strong>适用场景</strong>：区域金融发展、地方债务、房地产价格溢出效应等</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 学习路径 -->
+    <div class="section" style="background: linear-gradient(135deg, #fdf4ff, #fae8ff);">
+        <h2><i class="fas fa-route"></i> 高级方法学习路线图</h2>
+        <div class="roadmap">
+            <div class="rm-phase">
+                <div class="phase-num">1</div>
+                <h4>打好基础</h4>
+                <p>精通OLS/DID/IV/RDD<br>熟练Stata和Python基础语法</p>
+            </div>
+            <div class="rm-phase">
+                <div class="phase-num">2</div>
+                <h4>文本分析入门</h4>
+                <p>学会jieba分词<br>掌握LM字典法<br>尝试LLM API调用</p>
+            </div>
+            <div class="rm-phase">
+                <div class="phase-num">3</div>
+                <h4>ML基础</h4>
+                <p>scikit-learn入门<br>完成一个预测项目<br>了解DML框架</p>
+            </div>
+            <div class="rm-phase">
+                <div class="phase-num">4</div>
+                <h4>综合应用</h4>
+                <p>将新方法融入自己的研究<br>阅读Top期刊的最新方法论文<br>尝试复现并改进</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 资源推荐 -->
+    <div class="resource-box">
+        <h4><i class="fas fa-book-open"></i> 推荐学习资源</h4>
+        <ul style="padding-left: 1.25rem; line-height: 2; color: #6d28d9;">
+            <li><strong>文本分析</strong>：《Text as Data》(Gentzkow et al., JEL 2024) — 最权威的综述文章</li>
+            <li><strong>机器学习</strong>：Coursera上的"Machine Learning"(Andrew Ng) + "Causal ML"专项课程</li>
+            <li><strong>综合</strong>：Athey & Imbens(2019) "Econometrics for Causal Effects" — 将ML与因果推断结合的经典</li>
+            <li><strong>实践</strong>：GitHub搜索"finance text analysis python" 可找到大量开源代码参考</li>
+        </ul>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="B3_数据清洗.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：数据清洗</a>
+        <a href="../Module_C_写作能力/C1_研究计划.html" class="nav-btn next">下一模块：写作能力 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

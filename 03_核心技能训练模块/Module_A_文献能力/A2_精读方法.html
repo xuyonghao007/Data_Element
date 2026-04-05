@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2-顶刊论文精读方法 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1;
+            --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #764ba2; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #764ba2; }
+        .reading-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .flow-step { background: var(--light-bg); padding: 1.5rem; border-radius: 12px; border-top: 4px solid #667eea; position: relative; }
+        .flow-step .step-num { position: absolute; top: -15px; left: 20px; background: #667eea; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; }
+        .flow-step h4 { color: var(--primary); margin: 0.75rem 0 0.5rem; font-size: 1.05rem; }
+        .flow-step p { color: #64748b; font-size: 0.9rem; line-height: 1.6; }
+        .flow-step .time-est { display: inline-block; background: #ede9fe; color: #6d28d9; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; margin-top: 0.75rem; }
+        .checklist { list-style: none; margin-top: 1rem; }
+        .checklist li { padding: 0.75rem 0; padding-left: 2rem; position: relative; border-bottom: 1px dashed var(--border); }
+        .checklist li::before { content: '✅'; position: absolute; left: 0; }
+        .note-template { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-family: 'Consolas', monospace; font-size: 0.88rem; line-height: 1.7; margin: 1rem 0; }
+        .highlight-box { background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-left: 5px solid var(--accent); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0; }
+        .highlight-box h4 { color: var(--primary); margin-bottom: 0.75rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); }
+        .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🔍 A2: 顶刊论文深度精读方法</h1>
+        <p>掌握高效精读策略，从每篇论文中最大化获取知识</p>
+    </div>
+
+    <!-- 精读流程 -->
+    <div class="section">
+        <h2><i class="fas fa-route"></i> 五轮精读法</h2>
+        <div class="reading-flow">
+            <div class="flow-step">
+                <span class="step-num">1</span>
+                <h4>浏览型阅读</h4>
+                <p>快速扫描全文结构，判断是否值得深入阅读。关注标题、摘要、图表目录。</p>
+                <span class="time-est">⏱️ 5-10分钟</span>
+            </div>
+            <div class="flow-step">
+                <span class="step-num">2</span>
+                <h4>理解型阅读</h4>
+                <p>仔细阅读Introduction，理解研究动机、问题和主要贡献。</p>
+                <span class="time-est">⏱️ 20-30分钟</span>
+            </div>
+            <div class="flow-step">
+                <span class="step-num">3</span>
+                <h4>批判型阅读</h4>
+                <p>重点审视Methodology和Identification Strategy，评估因果识别的可信度。</p>
+                <span class="time-est">⏱️ 40-60分钟</span>
+            </div>
+            <div class="flow-step">
+                <span class="step-num">4</span>
+                <h4>细节型阅读</h4>
+                <p>逐表解读Results，理解每个回归的经济含义和统计显著性。</p>
+                <span class="time-est">⏱️ 30-45分钟</span>
+            </div>
+            <div class="flow-step">
+                <span class="step-num">5</span>
+                <h4>综合型阅读</h4>
+                <p>回顾Conclusion，撰写结构化笔记，思考对本研究的启发。</p>
+                <span class="time-est">⏱️ 20-30分钟</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 各部分精读要点 -->
+    <div class="section">
+        <h2><i class="fas fa-microscope"></i> 各章节精读要点</h2>
+        
+        <div style="margin-top: 1.5rem;">
+            <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.25rem; border-left: 4px solid #ef4444;">
+                <h4 style="color: #dc2626; margin-bottom: 0.75rem;"><i class="fas fa-file-alt"></i> Introduction（最重要！）</h4>
+                <ul style="padding-left: 1.25rem; color: #475569; line-height: 1.8;">
+                    <li><strong>第一段</strong>：为什么这个问题重要？（现实意义+理论缺口）</li>
+                    <li><strong>中间段</strong>：现有研究做了什么？还缺什么？（文献定位）</li>
+                    <li><strong>倒数第二段</strong>：本文用什么数据和方法做什么检验？（研究设计预告）</li>
+                    <li><strong>最后一段</strong>：本文的核心贡献是什么？（通常3点，要牢记！）</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.25rem; border-left: 4px solid #f59e0b;">
+                <h4 style="color: #d97706; margin-bottom: 0.75rem;"><i class="fas fa-cogs"></i> Methodology & Identification</h4>
+                <ul style="padding-left: 1.25rem; color: #475569; line-height: 1.8;">
+                    <li><strong>模型设定</strong>：基准回归方程是什么？控制了哪些变量？</li>
+                    <li><strong>识别策略</strong>：如何解决内生性？DID/IV/RD/PSM？假设条件是什么？</li>
+                    <li><strong>变量度量</strong>：核心解释变量和被解释变量如何构造？数据来源？</li>
+                    <li><strong>样本选择</strong>：包含/排除了哪些样本？为什么？</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.25rem; border-left: 4px solid #10b981;">
+                <h4 style="color: #059669; margin-bottom: 0.75rem;"><i class="fas fa-table"></i> Results & Tables</h4>
+                <ul style="padding-left: 1.25rem; color: #475569; line-height: 1.8;">
+                    <li><strong>Table 1</strong>：描述性统计——变量的分布特征、是否有异常值</li>
+                    <li><strong>Table 2-3</strong>：基准回归——主效应是否存在？系数符号和大小？</li>
+                    <li><strong>后续表格</strong>：机制检验、异质性、稳健性——分别验证什么？</li>
+                    <li><strong>注意</strong>：不仅要看显著性，更要理解<strong>经济显著性</strong>（系数的实际意义）</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b5cf6;">
+                <h4 style="color: #7c3aed; margin-bottom: 0.75rem;"><i class="fas fa-lightbulb"></i> Conclusion & Discussion</h4>
+                <ul style="padding-left: 1.25rem; color: #475569; line-height: 1.8;">
+                    <li><strong>结论总结</strong>：研究发现是否回应了Introduction提出的问题？</li>
+                    <li><strong>局限性</strong>：作者承认了哪些不足？你是否能想到更多？</li>
+                    <li><strong>未来方向</strong>：作者建议了哪些可以进一步研究的方向？</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 笔记模板 -->
+    <div class="section">
+        <h2><i class="fas fa-sticky-note"></i> 结构化阅读笔记模板</h2>
+        <p style="color: #64748b; margin-bottom: 1rem;">每次精读后都应填写此模板，存入Zotero笔记中：</p>
+        <div class="note-template">
+# 📄 论文精读笔记
+
+**基本信息**
+- 标题：_________________________
+- 作者：_________________________
+- 期刊/年份：____________________
+
+**核心内容（10要素版）**
+
+1. **一句话概括**：_________________________
+
+2. **研究问题**：___________________________
+
+3. **理论框架**：____________________________
+
+4. **数据来源**：_____________________________
+
+5. **识别策略**：_____________________________
+
+6. **主要发现**：_____________________________
+
+7. **机制分析**：_____________________________
+
+8. **核心贡献**：_____________________________
+
+9. **对我的启发**：___________________________
+
+10. **待解决问题/疑问**：______________________
+
+**批判性评价**
+- ✅ 优点：___________________________________
+- ❌ 局限：___________________________________
+- 💡 可改进之处：______________________________
+        </div>
+    </div>
+
+    <!-- 高阶技巧 -->
+    <div class="highlight-box">
+        <h4><i class="fas fa-star"></i> 进阶精读技巧</h4>
+        <ul style="padding-left: 1.25rem; line-height: 2; color: #1e40af;">
+            <li><strong>对比阅读法</strong>：同时读2-3篇同一主题的文章，对比它们的方法和结论差异</li>
+            <li><strong>复现思维法</strong>：边读边想"如果我来做这个研究会怎么做"，培养独立设计能力</li>
+            <li><strong>追溯引用法</strong>：从一篇好文章出发，顺藤摸瓜找到其理论基础和方法来源</li>
+            <li><strong>AI辅助法</strong>：将论文PDF发给ChatGPT，让其先给出结构化摘要，再针对性精读</li>
+        </ul>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="A1_检索策略.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：检索策略</a>
+        <a href="A3_综述撰写.html" class="nav-btn next">下一节：综述撰写 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C3-实证结果呈现与解读 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(67,233,123,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid var(--success); }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: var(--success); }
+        .table-guide { background: var(--light-bg); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; border-left: 4px solid var(--success); }
+        .table-guide h4 { color: var(--primary); margin-bottom: 0.75rem; font-size: 1.05rem; }
+        .table-guide ul { padding-left: 1.25rem; color: #475569; line-height: 1.9; font-size: 0.93rem; }
+        .interpret-frame { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .interpret-step { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+        .step-badge { min-width: 36px; height: 36px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.95rem; flex-shrink: 0; }
+        .step-content h5 { color: var(--primary); margin-bottom: 0.3rem; }
+        .step-content p { color: #047857; font-size: 0.92rem; line-height: 1.7; }
+        .common-mistakes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+        .mistake { background: #fef2f2; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ef4444; }
+        .mistake h5 { color: #991b1b; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .mistake p { color: #7f1d1d; font-size: 0.89rem; line-height: 1.7; }
+        .fix { background: #f0fdf4; padding: 1.25rem; border-radius: 10px; border-left: 4px solid var(--success); }
+        .fix h5 { color: #166534; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .fix p { color: #15803d; font-size: 0.89rem; line-height: 1.7; }
+        .result-example { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-family: 'Consolas', monospace; font-size: 0.86rem; line-height: 1.8; margin: 1rem 0; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📊 C3: 实证结果呈现与解读规范</h1>
+        <p>从回归系数到学术叙事 — 学会如何"讲故事"而非只是报数字</p>
+    </div>
+
+    <!-- 表格组织 -->
+    <div class="section">
+        <h2><i class="fas fa-table"></i> 结果部分的表格组织逻辑</h2>
+        
+        <div class="table-guide">
+            <h4><i class="fas fa-list-ol"></i> Table 1: 描述性统计 (Descriptive Statistics)</h4>
+            <ul>
+                <li>包含所有回归中使用的主要变量</li>
+                <li>报告：观测数(N)、均值(Mean)、标准差(SD)、最小值(Min)、最大值(Max)</li>
+                <li>检查：是否有异常值？分布是否合理？缺失情况如何？</li>
+            </ul>
+        </div>
+
+        <div class="table-guide">
+            <h4><i class="fas fa-chart-line"></i> Table 2-3: 基准回归结果 (Main Results)</h4>
+            <ul>
+                <li>这是最核心的表格！展示主效应是否存在</li>
+                <li>通常包含多个模型设定：(1) 仅控制年份 (2) 加入控制变量 (3) 固定效应 (4) 聚类标准误</li>
+                <li>关键变量系数应<strong>加粗</strong>显示</li>
+                <li>显著性标记：* p&lt;0.1, ** p&lt;0.05, *** p&lt;0.01</li>
+            </ul>
+        </div>
+
+        <div class="table-guide">
+            <h4><i class="fas fa-project-diagram"></i> Table 4+: 机制检验与扩展分析</h4>
+            <ul>
+                <li><strong>机制检验</strong>：验证X是否通过M影响Y（中介效应/调节效应）</li>
+                <li><strong>异质性分析</strong>：分组回归（国企vs民企、大企业vs小企业、高vs低某特征）</li>
+                <li><strong>稳健性检验</strong>：替换变量度量、改变样本范围、排除特殊样本、替代估计方法等</li>
+            </ul>
+        </div>
+
+        <div class="table-guide">
+            <h4><i class="fas fa-shield-alt"></i> 最后：内生性处理与额外稳健性</h4>
+            <ul>
+                <li>IV两阶段回归结果</li>
+                <li>DID平行趋势检验（事件研究图）</li>
+                <li>安慰剂检验(Placebo Test)</li>
+                <li>排除竞争性解释</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 结果解读框架 -->
+    <div class="section">
+        <h2><i class="fas fa-comments"></i> 结果解读四步法</h2>
+        <div class="interpret-frame">
+            <div class="interpret-step">
+                <div class="step-badge">1</div>
+                <div class="step-content">
+                    <h5>报告统计显著性</h5>
+                    <p>"核心解释变量X的系数为0.034，在1%的水平上显著(t=3.45)"<br>
+                    说明：这不是随机波动的结果，我们有充分的统计证据支持该效应的存在。</p>
+                </div>
+            </div>
+            <div class="interpret-step">
+                <div class="step-badge">2</div>
+                <div class="step-content">
+                    <h5>解释经济显著性（最重要！）</h5>
+                    <p>"系数0.034意味着：X每增加一个标准差，Y平均增加0.034×σ(X)/σ(Y) ≈ X%"<br>
+                    <strong>关键</strong>：统计显著≠ economically important。要用实际含义解释系数大小。</p>
+                </div>
+            </div>
+            <div class="interpret-step">
+                <div class="step-badge">3</div>
+                <div class="step-content">
+                    <h5>联系理论与假设</h5>
+                    <p>"这一结果支持了H1的预测，即X对Y存在正向影响，与利益相关者理论的预期一致"<br>
+                    将实证发现回扣到理论框架中，体现研究的理论对话。</p>
+                </div>
+            </div>
+            <div class="interpret-step">
+                <div class="step-badge">4</div>
+                <div class="step-content">
+                    <h5>讨论局限性与边界条件</h5>
+                    <p>"值得注意的是，该效应主要集中在[特定群体]中，在[另一组]中不显著，这表明..."<br>
+                    诚实讨论结果的适用范围，反而增加可信度。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见错误 -->
+    <div class="section">
+        <h2><i class="fas fa-exclamation-triangle"></i> 常见错误 & 正确做法</h2>
+        <div class="common-mistakes">
+            <div class="mistake">
+                <h5>❌ 只报数字不解释</h5>
+                <p>"Table 2显示系数为0.034***"<br>
+                读者不知道这个数字意味着什么，为什么要关心它。</p>
+            </div>
+            <div class="fix">
+                <h5>✅ 数字 + 经济含义</h5>
+                <p>"系数0.034意味着ESG评级每提升一级，企业的债务融资成本平均下降约3.4个基点，
+                相当于样本均值的5.2%，这在实践中具有显著的经济意义。"</p>
+            </div>
+            
+            <div class="mistake">
+                <h5>❌ 过度解读不显著的结果</h5>
+                <p>"虽然系数不显著，但符号符合预期，说明趋势是存在的..."<br>
+                不显著就是不显著，不要强行找理由。</p>
+            </div>
+            <div class="fix">
+                <h5>✅ 诚实面对不显著</h5>
+                <p>"在异质性分析中，X对Y的影响在民营企业组显著为正(p&lt;0.05)，
+                但在国有企业组不显著(p=0.23)。这可能是因为国有企业的预算软约束削弱了市场机制的作用。"</p>
+            </div>
+
+            <div class="mistake">
+                <h5>❌ 忽略控制变量</h5>
+                <p>只讨论核心解释变量，完全不提控制变量的结果。<br>
+                这会让读者怀疑你是否真的理解自己的模型。</p>
+            </div>
+            <div class="fix">
+                <h5>✅ 全面但突出重点</h5>
+                <p>"控制变量方面，企业规模(ln_size)的系数显著为正(0.012***)，
+                表明大企业确实享有更低的融资成本，这与既有文献一致(AAA, 2020)。
+                其他控制变量的符号和显著性均符合预期。"</p>
+            </div>
+
+            <div class="mistake">
+                <h5>❌ 表格和正文重复且脱节</h5>
+                <p>正文只是把表格数字复述一遍，没有提供额外的解读。<br>
+                或者正文中讨论的内容在表格中找不到对应。</p>
+            </div>
+            <div class="fix">
+                <h5>✅ 正文补充表格无法呈现的信息</h5>
+                <p>表格展示精确数值，正文负责解释：<strong>为什么</strong>是这个结果？
+                <strong>意味着</strong>什么？<strong>与谁</strong>的发现一致或矛盾？</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 解读范例 -->
+    <div class="section" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5);">
+        <h2><i class="fas fa-quote-right"></i> 结果段落写作范例</h2>
+        <div class="result-example" style="background: white; color: var(--primary);">
+<strong>【基准回归结果解读范例】</strong>
+
+Table 3报告了企业数字化转型对ESG表现的基准回归结果。在第(1)列仅控制年份和行业固定效应的情况下，
+数字化转型指数(digital)的系数为0.142，在1%水平上显著。加入企业规模、资产负债率、盈利能力等
+控制变量后（第(2)列），系数下降至0.098但仍保持高度显著（t=4.32）。
+
+进一步控制个体固定效应后（第(3)列），核心系数稳定在0.089左右（p&lt;0.01）。
+采用双向固定效应并聚类至企业层面的稳健标准误（第(4)列），结果依然稳健（β=0.085, p&lt;0.01）。
+
+<strong>从经济显著性的角度来看</strong>，数字化转型指数每提高一个标准差（约0.65），
+企业的ESG评分平均提升约0.055分，相当于样本均值的8.3%。考虑到ESG评分的提升通常需要长期投入，
+这一效应规模在实践中是相当可观的。
+
+<strong>与现有文献的对比</strong>：我们的发现与Li et al.(2023)关于数字化与企业社会责任的研究相呼应，
+但他们未区分ESG的不同维度。我们的结果表明，数字化对ESG中的"E"(环境)维度推动最为明显，
+这可能源于数字化技术在能源管理和碳排放监测方面的直接应用。
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="C2_Introduction.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：引言写作</a>
+        <a href="C4_审稿回复.html" class="nav-btn next">下一节：审稿回复 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融学研一科研培训体系 | FinResearch Training Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --light-bg: #f7fafc;
+            --border: #e2e8f0;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo i { font-size: 2rem; }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(26, 54, 93, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i { color: var(--accent); }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+        
+        .module-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: white;
+        }
+        
+        .module-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .module-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .module-tag {
+            display: inline-block;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .quick-actions {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background: var(--light-bg);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .action-btn:hover {
+            border-color: var(--accent);
+            background: white;
+            transform: translateX(5px);
+        }
+        
+        .action-btn i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .timeline-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);
+        }
+        
+        .timeline-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+        
+        .timeline-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>FinResearch Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#modules"><i class="fas fa-th-large"></i> 学习模块</a></li>
+                <li><a href="08_AI工具学习指南/index.html"><i class="fas fa-robot"></i> AI工具</a></li>
+                <li><a href="#quick-start"><i class="fas fa-rocket"></i> 快速开始</a></li>
+                <li><a href="#timeline"><i class="fas fa-calendar"></i> 时间规划</a></li>
+                <li><a href="#tools"><i class="fas fa-toolbox"></i> 工具箱</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🎓 金融学研一科研培训体系</h1>
+            <p>系统性构建学术研究能力，从文献阅读到论文发表的完整路径指南</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">7+</span>
+                    <span class="stat-label">核心学习模块</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">金融子领域覆盖</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">实用工具模板</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">AI智能辅助</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules Section -->
+        <h2 class="section-title" id="modules">
+            <i class="fas fa-th-large"></i> 核心学习模块
+        </h2>
+        <div class="modules-grid">
+            <a href="08_AI工具学习指南/index.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>08 AI工具学习指南</h3>
+                <p>掌握AI工具提升科研效率：RAG文献工具、AI编程助手、Python统计软件，开启智能科研时代</p>
+                <span class="module-tag" style="background: #e8eaf6; color: #5e35b1;">核心技能 · 必学</span>
+            </a>
+
+            <a href="01_入学导览与自我评估/入学Checklist.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <i class="fas fa-door-open"></i>
+                </div>
+                <h3>01 入学导览与自我评估</h3>
+                <p>研一新生必读指南，包括入学清单、能力诊断、研究兴趣探索和导师匹配建议</p>
+                <span class="module-tag" style="background: #fce4ec; color: #c2185b;">起步阶段 · 必做</span>
+            </a>
+
+            <a href="02_领域知识图谱/index.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>02 领域知识图谱</h3>
+                <p>金融学10+细分领域全景图：资产定价、公司金融、行为金融、金融科技等完整知识体系</p>
+                <span class="module-tag" style="background: #e3f2fd; color: #1565c0;">知识基础 · 探索</span>
+            </a>
+
+            <a href="03_核心技能训练模块/Module_A_文献能力/A1_检索策略.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <h3>03-A 文献能力训练</h3>
+                <p>从AI辅助检索到深度综述撰写，掌握学术研究的核心信息处理能力</p>
+                <span class="module-tag" style="background: #e3f2fd; color: #1565c0;">核心技能 · 重点</span>
+            </a>
+
+            <a href="03_核心技能训练模块/Module_B_方法训练/B1_计量基础.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>03-B 方法论训练</h3>
+                <p>计量经济学基础、识别策略(DID/IV/RDD)、数据清洗、高级方法入门</p>
+                <span class="module-tag" style="background: #e8f5e9; color: #2e7d32;">硬技能 · 实操</span>
+            </a>
+
+            <a href="03_核心技能训练模块/Module_C_写作能力/C3_论文初稿写作提示词设计.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                <h3>03-C 写作能力培养</h3>
+                <p>研究计划、引言写作、实证部分呈现、AI提示词设计——学术论文全流程写作指导</p>
+                <span class="module-tag" style="background: #e8eaf6; color: #5e35b1;">输出能力 · 关键</span>
+            </a>
+
+            <a href="03_核心技能训练模块/Module_D_研究流程/D1_Idea生成.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>03-D 研究流程管理</h3>
+                <p>Idea生成、开题准备、组会汇报、投稿指南——从0到1的研究项目管理</p>
+                <span class="module-tag" style="background: #f3e5f5; color: #7b1fa2;">综合应用 · 进阶</span>
+            </a>
+
+            <a href="04_时间线与里程碑/研一全年规划.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>04 时间线与里程碑</h3>
+                <p>研一全年详细规划、月度Checklist、阶段性产出模板、进度追踪工具</p>
+                <span class="module-tag" style="background: #fff3e0; color: #e65100;">规划管理 · 节奏</span>
+            </a>
+
+            <a href="05_工具箱与资源库/Prompt模板合集/paper_summary_prompt.txt" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);">
+                    <i class="fas fa-toolbox"></i>
+                </div>
+                <h3>05 工具箱与资源库</h3>
+                <p>Prompt模板合集、代码示例库、文献管理模板、常用数据库使用指南</p>
+                <span class="module-tag" style="background: #e1f5fe; color: #0277bd;">效率工具 · 复用</span>
+            </a>
+
+            <a href="09_顶刊文献参考/index.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>09 顶刊文献参考</h3>
+                <p>经济学与金融学领域顶级期刊指南，为研究提供权威文献参考资源</p>
+                <span class="module-tag" style="background: #e8f5e9; color: #2e7d32;">权威参考 · 必备</span>
+            </a>
+
+            <a href="06_案例库与范文库/常见问题FAQ.html" class="module-card">
+                <div class="module-icon" style="background: linear-gradient(135deg, #d299c2, #fef9d7);">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>06 案例库与范文库</h3>
+                <p>优秀Proposal案例、学生论文范例、组会PPT模板、常见问题FAQ</p>
+                <span class="module-tag" style="background: #fce4ec; color: #c2185b;">参考借鉴 · 启发</span>
+            </a>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div class="quick-actions" id="quick-start">
+            <h2 class="section-title">
+                <i class="fas fa-rocket"></i> 快速开始
+            </h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                不知道从哪里开始？选择以下任一行动立即开启你的科研之旅：
+            </p>
+            <div class="action-buttons">
+                <a href="08_AI工具学习指南/index.html" class="action-btn">
+                    <i class="fas fa-robot"></i>
+                    <span>学习AI工具指南</span>
+                </a>
+                <a href="09_顶刊文献参考/index.html" class="action-btn">
+                    <i class="fas fa-award"></i>
+                    <span>浏览顶刊文献参考</span>
+                </a>
+                <a href="03_核心技能训练模块/Module_C_写作能力/C3_论文初稿写作提示词设计.html" class="action-btn">
+                    <i class="fas fa-pen-fancy"></i>
+                    <span>学习论文写作提示词</span>
+                </a>
+                <a href="01_入学导览与自我评估/入学Checklist.html" class="action-btn">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>完成入学 Checklist</span>
+                </a>
+                <a href="01_入学导览与自我评估/能力自评工具.html" class="action-btn">
+                    <i class="fas fa-user-check"></i>
+                    <span>进行能力自我评估</span>
+                </a>
+                <a href="02_领域知识图谱/index.html" class="action-btn">
+                    <i class="fas fa-compass"></i>
+                    <span>探索研究领域地图</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="timeline-section" id="timeline">
+            <h2 class="section-title">
+                <i class="fas fa-road"></i> 研一推荐学习路径
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>第1-2周：入学适应期 🎯</h4>
+                    <p>完成入学清单 → 能力自评 → 安装软件(Stata/Zotero) → 浏览领域概览</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>第3-6周：基础建设期 📚</h4>
+                    <p>精读5篇综述 → 学习计量基础 → 建立文献管理系统 → 参加组会旁听</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>第7-12周：能力提升期 🔧</h4>
+                    <p>完成第一篇文献综述 → 复现经典论文 → 学习数据清洗 → 撰写研究计划初稿</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>第13-18周：实践应用期 ✍️</h4>
+                    <p>确定研究方向 → 完成开题报告 → 开始数据处理 → 准备寒假研究计划</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>寒假：深化突破期 💡</h4>
+                    <p>深入研究计划 → 数据收集整理 → 初步实证分析 → 形成Working Paper框架</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>第二学期：成果输出期 🚀</h4>
+                    <p>完善论文初稿 → 投稿或会议汇报 → 准备PhD申请材料 → 开启独立研究</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant Preview -->
+        <div class="quick-actions" id="tools" style="background: linear-gradient(135deg, #667eea15, #764ba215); border: 2px solid #667eea30;">
+            <h2 class="section-title">
+                <i class="fas fa-robot"></i> AI智能体即将上线
+            </h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                我们正在开发<strong>"FinResearch-Buddy"</strong>科研陪伴型AI导师，将提供以下智能辅助功能：
+            </p>
+            <div class="action-buttons">
+                <div class="action-btn" style="cursor: default;">
+                    <i class="fas fa-file-alt" style="color: #667eea;"></i>
+                    <span><strong>文献助手</strong><br><small>自动解读论文·生成摘要</small></span>
+                </div>
+                <div class="action-btn" style="cursor: default;">
+                    <i class="fas fa-code-branch" style="color: #764ba2;"></i>
+                    <span><strong>方法顾问</strong><br><small>推荐识别策略·代码生成</small></span>
+                </div>
+                <div class="action-btn" style="cursor: default;">
+                    <i class="fas fa-pen-nib" style="color: #f093fb;"></i>
+                    <span><strong>写作教练</strong><br><small>润色建议·逻辑优化</small></span>
+                </div>
+                <div class="action-btn" style="cursor: default;">
+                    <i class="fas fa-lightbulb" style="color: #f5576c;"></i>
+                    <span><strong>Idea激发器</strong><br><small>创新点挖掘·可行性评估</small></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>金融学研一科研培训体系 © 2026 | 基于真实教学经验打造 | 持续更新中...</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            设计目标：让每个研一学生都能获得标准化高质量的科研训练 🎓
+        </p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能力自评工具 | 金融学研一科研培训体系</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%);
+            color: var(--primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+        }
+        
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; max-width: 700px; margin: 0 auto; }
+        
+        .assessment-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+        }
+        
+        .assessment-section h2 { font-size: 1.5rem; flex: 1; }
+        
+        .question-item {
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 12px;
+            background: var(--light-bg);
+            transition: all 0.3s;
+        }
+        
+        .question-item:hover { transform: translateX(5px); }
+        
+        .question-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        
+        .option-btn {
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .option-btn:hover {
+            border-color: var(--accent);
+            background: #ebf8ff;
+        }
+        
+        .option-btn.selected {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.25);
+        }
+        
+        .result-panel {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border: 3px solid var(--success);
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .result-header h2 {
+            color: var(--success);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .radar-chart-container {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        
+        .dimension-score {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            background: var(--light-bg);
+        }
+        
+        .dimension-name {
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .score-bar-container {
+            flex: 2;
+            margin: 0 1rem;
+        }
+        
+        .score-bar-bg {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+        
+        .score-value {
+            font-weight: 700;
+            font-size: 1.15rem;
+            width: 45px;
+            text-align: right;
+        }
+        
+        .recommendation-box {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .recommendation-box h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .recommendation-list {
+            list-style: none;
+        }
+        
+        .recommendation-list li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .recommendation-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover { color: var(--accent); transform: translateX(-5px); }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.85rem; }
+            .options-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> 返回首页
+        </a>
+
+        <div class="header">
+            <h1>🎯 科研能力自我评估</h1>
+            <p>通过5个维度诊断你的现有技能水平，获取个性化学习建议</p>
+            <p style="margin-top: 1rem; opacity: 0.9;">
+                评估时间：约5-8分钟 | 结果仅作参考
+            </p>
+        </div>
+
+        <form id="assessmentForm">
+            <!-- 维度1：理论知识 -->
+            <div class="assessment-section">
+                <div class="section-title">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h2>维度一：理论知识储备</h2>
+                </div>
+                
+                <div class="question-item" data-dimension="theory">
+                    <div class="question-text">Q1. 你对金融学核心理论（资产定价、公司金融、市场微观结构）的掌握程度？</div>
+                    <div class="options-grid" data-question="q1">
+                        <button type="button" class="option-btn" data-value="1">完全不了解</button>
+                        <button type="button" class="option-btn" data-value="2">听说过概念</button>
+                        <button type="button" class="option-btn" data-value="3">有基本了解</button>
+                        <button type="button" class="option-btn" data-value="4">较系统掌握</button>
+                        <button type="button" class="option-btn" data-value="5">非常精通</button>
+                    </div>
+                </div>
+
+                <div class="question-item" data-dimension="theory">
+                    <div class="question-text">Q2. 你对计量经济学方法（OLS、面板数据、IV、DID等）的熟悉程度？</div>
+                    <div class="options-grid" data-question="q2">
+                        <button type="button" class="option-btn" data-value="1">没学过</button>
+                        <button type="button" class="option-btn" data-value="2">本科接触过</button>
+                        <button type="button" class="option-btn" data-value="3">能做基本回归</button>
+                        <button type="button" class="option-btn" data-value="4">理解识别策略</button>
+                        <button type="button" class="option-btn" data-value="5">能独立设计实证</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 维度2：编程技能 -->
+            <div class="assessment-section">
+                <div class="section-title">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h2>维度二：编程与技术能力</h2>
+                </div>
+                
+                <div class="question-item" data-dimension="coding">
+                    <div class="question-text">Q3. 你的 Stata 使用熟练度？</div>
+                    <div class="options-grid" data-question="q3">
+                        <button type="button" class="option-btn" data-value="1">从未使用</button>
+                        <button type="button" class="option-btn" data-value="2">安装了但没用过</button>
+                        <button type="button" class="option-btn" data-value="3">能做基本操作</button>
+                        <button type="button" class="option-btn" data-value="4">能写do文件</button>
+                        <button type="button" class="option-btn" data-value="5">熟练掌握高级功能</button>
+                    </div>
+                </div>
+
+                <div class="question-item" data-dimension="coding">
+                    <div class="question-text">Q4. 你是否掌握 Python 或 R 用于数据分析？</div>
+                    <div class="options-grid" data-question="q4">
+                        <button type="button" class="option-btn" data-value="1">完全不会</button>
+                        <button type="button" class="option-btn" data-value="2">了解基础语法</button>
+                        <button type="button" class="option-btn" data-value="3">能做数据清洗</button>
+                        <button type="button" class="option-btn" data-value="4">能用ML库</button>
+                        <button type="button" class="option-btn" data-value="5">能实现复杂分析</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 维度3：文献能力 -->
+            <div class="assessment-section">
+                <div class="section-title">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2>维度三：文献检索与阅读</h2>
+                </div>
+                
+                <div class="question-item" data-dimension="literature">
+                    <div class="question-text">Q5. 你平均每周阅读几篇学术论文？</div>
+                    <div class="options-grid" data-question="q5">
+                        <button type="button" class="option-btn" data-value="1">几乎不读</button>
+                        <button type="button" class="option-btn" data-value="2">1-2篇（随便看看）</button>
+                        <button type="button" class="option-btn" data-value="3">3-5篇（有笔记）</button>
+                        <button type="button" class="option-btn" data-value="4">5-10篇（系统整理）</button>
+                        <button type="button" class="option-btn" data-value="5">10篇以上（深度精读）</button>
+                    </div>
+                </div>
+
+                <div class="question-item" data-dimension="literature">
+                    <div class="question-text">Q6. 你是否建立了系统的文献管理流程？（如Zotero分类、标签、笔记）</div>
+                    <div class="options-grid" data-question="q6">
+                        <button type="button" class="option-btn" data-value="1">没有管理</button>
+                        <button type="button" class="option-btn" data-value="2">随意保存</button>
+                        <button type="button" class="option-btn" data-value="3">简单分类</button>
+                        <button type="button" class="option-btn" data-value="4">有标签+笔记</button>
+                        <button type="button" class="option-btn" data-value="5">完整知识管理系统</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 维度4：写作能力 -->
+            <div class="assessment-section">
+                <div class="section-title">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h2>维度四：学术写作能力</h2>
+                </div>
+                
+                <div class="question-item" data-dimension="writing">
+                    <div class="question-text">Q7. 你之前是否撰写过学术论文或研究报告？</div>
+                    <div class="options-grid" data-question="q7">
+                        <button type="button" class="option-btn" data-value="1">从未写过</button>
+                        <button type="button" class="option-btn" data-value="2">写过课程论文</button>
+                        <button type="button" class="option-btn" data-value="3">写过毕业论文</button>
+                        <button type="button" class="option-btn" data-value="4">发表过期刊/会议</button>
+                        <button type="button" class="option-btn" data-value="5">有多篇发表经验</button>
+                    </div>
+                </div>
+
+                <div class="question-item" data-dimension="writing">
+                    <div class="question-text">Q8. 你对学术写作规范（引用格式、图表规范、逻辑结构）的了解程度？</div>
+                    <div class="options-grid" data-question="q8">
+                        <button type="button" class="option-btn" data-value="1">完全不了解</button>
+                        <button type="button" class="option-btn" data-value="2">略知一二</button>
+                        <button type="button" class="option-btn" data-value="3">基本掌握格式</button>
+                        <button type="button" class="option-btn" data-value="4">熟悉顶刊风格</button>
+                        <button type="button" class="option-btn" data-value="5">能指导他人</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 维度5：研究思维 -->
+            <div class="assessment-section">
+                <div class="section-title">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h2>维度五：研究思维与直觉</h2>
+                </div>
+                
+                <div class="question-item" data-dimension="thinking">
+                    <div class="question-text">Q9. 当你看到经济新闻时，能否联想到相关的研究问题？</div>
+                    <div class="options-grid" data-question="q9">
+                        <button type="button" class="option-btn" data-value="1">完全不能</button>
+                        <button type="button" class="option-btn" data-value="2">偶尔能想到</button>
+                        <button type="button" class="option-btn" data-value="3">经常能想到</button>
+                        <button type="button" class="option-btn" data-value="4">能提出可行Idea</button>
+                        <button type="button" class="option-btn" data-value="5">能评估Idea质量</button>
+                    </div>
+                </div>
+
+                <div class="question-item" data-dimension="thinking">
+                    <div class="question-text">Q10. 你是否能清晰判断一篇论文的核心贡献和创新点？</div>
+                    <div class="options-grid" data-question="q10">
+                        <button type="button" class="option-btn" data-value="1">读不懂贡献在哪</button>
+                        <button type="button" class="option-btn" data-value="2">大概知道但说不清</button>
+                        <button type="button" class="option-btn" data-value="3">能总结主要贡献</button>
+                        <button type="button" class="option-btn" data-value="4">能评价贡献大小</button>
+                        <button type="button" class="option-btn" data-value="5">能发现潜在不足</button>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="calculateResult()">
+                <i class="fas fa-chart-bar"></i> 生成我的能力雷达图
+            </button>
+        </form>
+
+        <!-- 结果展示区域 -->
+        <div class="result-panel" id="resultPanel">
+            <div class="result-header">
+                <h2><i class="fas fa-trophy"></i> 你的科研能力画像</h2>
+                <p id="overallScore" style="color: var(--text-secondary);"></p>
+            </div>
+            
+            <div id="scoresContainer">
+                <!-- 动态生成分数评分 -->
+            </div>
+
+            <div class="recommendation-box" id="recommendationBox">
+                <h4><i class="fas fa-magic"></i> 个性化提升建议</h4>
+                <ul class="recommendation-list" id="recommendationList">
+                    <!-- 动态生成建议 -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dimensionNames = {
+            theory: '理论知识',
+            coding: '编程技能',
+            literature: '文献能力',
+            writing: '写作能力',
+            thinking: '研究思维'
+        };
+
+        const dimensionColors = {
+            theory: '#667eea',
+            coding: '#f5576c',
+            literature: '#00f2fe',
+            writing: '#fee140',
+            thinking: '#38f9d7'
+        };
+
+        document.querySelectorAll('.options-grid').forEach(grid => {
+            const buttons = grid.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        });
+
+        function calculateResult() {
+            const dimensions = {};
+            let allAnswered = true;
+
+            document.querySelectorAll('.question-item').forEach(item => {
+                const dim = item.dataset.dimension;
+                const selectedBtn = item.querySelector('.option-btn.selected');
+                if (selectedBtn) {
+                    if (!dimensions[dim]) dimensions[dim] = [];
+                    dimensions[dim].push(parseInt(selectedBtn.dataset.value));
+                } else {
+                    allAnswered = false;
+                }
+            });
+
+            if (!allAnswered) {
+                alert('请完成所有问题的选择后再查看结果！');
+                return;
+            }
+
+            const scores = {};
+            for (const [dim, values] of Object.entries(dimensions)) {
+                scores[dim] = Math.round(values.reduce((a, b) => a + b, 0) / values.length * 20);
+            }
+
+            displayResults(scores);
+        }
+
+        function displayResults(scores) {
+            const panel = document.getElementById('resultPanel');
+            panel.style.display = 'block';
+            
+            const avgScore = Object.values(scores).reduce((a, b) => a + b, 0) / Object.keys(scores).length;
+            document.getElementById('overallScore').textContent = `综合得分: ${avgScore.toFixed(1)} / 100`;
+
+            const container = document.getElementById('scoresContainer');
+            container.innerHTML = '';
+
+            for (const [dim, score] of Object.entries(scores)) {
+                const div = document.createElement('div');
+                div.className = 'dimension-score';
+                div.innerHTML = `
+                    <span class="dimension-name"><i class="fas fa-circle" style="color: ${dimensionColors[dim]}; font-size: 0.6rem; margin-right: 8px;"></i>${dimensionNames[dim]}</span>
+                    <div class="score-bar-container">
+                        <div class="score-bar-bg">
+                            <div class="score-bar-fill" style="width: ${score}%; background: ${dimensionColors[dim]};"></div>
+                        </div>
+                    </div>
+                    <span class="score-value">${score}</span>
+                `;
+                container.appendChild(div);
+            }
+
+            generateRecommendations(scores);
+            panel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateRecommendations(scores) {
+            const recList = document.getElementById('recommendationList');
+            recList.innerHTML = '';
+
+            const recommendations = [];
+
+            if (scores.theory < 60) {
+                recommendations.push('<strong>【理论基础薄弱】</strong> 建议优先阅读《学术研究导航说明》，浏览各领域介绍页，建立整体认知框架');
+            } else if (scores.theory < 80) {
+                recommendations.push('<strong>【理论待加强】</strong> 建议深入阅读感兴趣领域的3-5篇综述文章，关注理论演进脉络');
+            }
+
+            if (scores.coding < 60) {
+                recommendations.push('<strong>【编程急需入门】</strong> 立即开始Stata基础教程，建议每天花1小时实操练习 → 查看Module_B方法训练');
+            } else if (scores.coding < 80) {
+                recommendations.push('<strong>【编程进阶空间】</strong> 尝试复现一篇经典论文，学习高级数据处理技巧');
+            }
+
+            if (scores.literature < 60) {
+                recommendations.push('<strong>【文献习惯待建立】</strong> 安装Zotero并学习高效使用方法，设定每周至少精读3篇文献的目标 → 查看Module_A文献能力');
+            } else if (scores.literature < 80) {
+                recommendations.push('<strong>【文献系统化】</strong> 尝试构建个人领域知识库，学习AI辅助文献整理方法');
+            }
+
+            if (scores.writing < 60) {
+                recommendations.push('<strong>【写作从零开始】</strong> 先阅读优秀Proposal案例，理解学术论文的标准结构和表达 → 查看Module_C写作能力');
+            } else if (scores.writing < 80) {
+                recommendations.push('<strong>【写作打磨期】</strong> 多模仿顶刊论文的写作风格，练习引言和研究计划撰写');
+            }
+
+            if (scores.thinking < 60) {
+                recommendations.push('<strong>【研究思维培养】</strong> 养成每日阅读财经新闻的习惯，思考现象背后的经济学逻辑 → 查看Module_D研究流程');
+            } else if (scores.thinking < 80) {
+                recommendations.push('<strong>【思维深化】</strong> 参加组会讨论，学习如何批判性评价他人研究成果');
+            }
+
+            const weakDims = Object.entries(scores).filter(([k, v]) => v < 70).map(([k]) => dimensionNames[k]);
+            if (weakDims.length === 0) {
+                recommendations.push('<strong>🎉 整体表现优秀！</strong> 建议开始挑战更高目标：尝试独立提出研究想法并撰写完整Proposal');
+            } else {
+                recommendations.push(`<strong>📌 重点突破方向：</strong>${weakDims.join('、')} 是你当前最需要加强的能力维度`);
+            }
+
+            recommendations.forEach(rec => {
+                const li = document.createElement('li');
+                li.innerHTML = rec;
+                recList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

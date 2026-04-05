@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入学Checklist | 金融学研一科研培训体系</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%);
+            color: var(--primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(26, 54, 93, 0.25);
+        }
+        
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; max-width: 700px; margin: 0 auto; }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        .section h2 { font-size: 1.5rem; flex: 1; }
+        .section-badge {
+            background: var(--light-bg);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .checklist-item:hover {
+            background: var(--light-bg);
+            border-color: var(--border);
+        }
+        
+        .checklist-item.completed {
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-top: 2px;
+            accent-color: var(--success);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .checklist-content { flex: 1; }
+        
+        .checklist-content strong {
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        
+        .checklist-content p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .checklist-content a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .checklist-content a:hover { text-decoration: underline; }
+        
+        .priority-tag {
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .priority-high { background: #fee2e2; color: #dc2626; }
+        .priority-medium { background: #fef3c7; color: #d97706; }
+        .priority-low { background: #dbeafe; color: #2563eb; }
+        
+        .tips-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 5px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .tips-box h4 {
+            color: #92400e;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tips-box ul {
+            margin-left: 1.25rem;
+            color: #78350f;
+        }
+        
+        .tips-box li { margin-bottom: 0.5rem; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover { color: var(--accent); transform: translateX(-5px); }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.85rem; }
+            .section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> 返回首页
+        </a>
+
+        <div class="header">
+            <h1>📋 研一新生入学 Checklist</h1>
+            <p>系统化完成入学准备，为科研之路打下坚实基础</p>
+            <p style="margin-top: 1rem; opacity: 0.85;">
+                建议在入学后<strong>2周内</strong>完成以下所有项目
+            </p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">已完成: <span id="completedCount">0</span> / <span id="totalCount">0</span> 项 (<span id="percentage">0</span>%)</div>
+        </div>
+
+        <!-- 第一部分：软件与环境 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h2>第一部分：软件与工具安装</h2>
+                <span class="section-badge">第1-3天完成</span>
+            </div>
+            <ul class="checklist">
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>安装 Stata (推荐SE/MP版本)</strong>
+                        <p>用于计量经济学分析和实证研究。可从学校图书馆获取正版授权或使用学生版</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>安装 Zotero 文献管理软件</strong>
+                        <p>免费开源的文献管理工具，支持浏览器插件一键保存文献，自动生成参考文献</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>安装 Python 环境 (Anaconda)</strong>
+                        <p>用于数据清洗、文本分析、机器学习等高级方法。建议安装Jupyter Notebook</p>
+                    </div>
+                    <span class="priority-tag priority-medium">推荐</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>配置 LaTeX 编辑环境 (Overleaf/TeXstudio)</strong>
+                        <p>学术论文写作标准工具，期刊投稿必备。建议先熟悉Overleaf在线版</p>
+                    </div>
+                    <span class="priority-tag priority-medium">推荐</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>申请数据库访问权限</strong>
+                        <p>CSMAR、WIND、CNRD等金融数据库的校园网访问权限，以及学校VPN设置</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>注册 Google Scholar / Web of Science 账号</strong>
+                        <p>设置文献 alerts，关注领域内重要学者的最新发表</p>
+                    </div>
+                    <span class="priority-tag priority-low">建议</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 第二部分：知识储备 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h2>第二部分：基础知识储备</h2>
+                <span class="section-badge">第1-2周完成</span>
+            </div>
+            <ul class="checklist">
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>阅读《学术研究导航说明》</strong>
+                        <p>了解金融学研究全景图、核心能力要求、时间规划路径 → <a href="../02_领域知识图谱/index.html">查看详情</a></p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>浏览金融学各子领域介绍</strong>
+                        <p>了解资产定价、公司金融、行为金融等10+细分领域的研究内容和方法特点 → <a href="../02_领域知识图谱/index.html">探索领域地图</a></p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>精读3-5篇本领域综述性论文</strong>
+                        <p>选择感兴趣的方向，阅读近3年发表的综述文章，建立领域认知框架</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>复习计量经济学基础</strong>
+                        <p>回顾OLS、假设检验、面板数据基础等内容。参考教材：《计量经济学及Stata应用》- 陈强</p>
+                    </div>
+                    <span class="priority-tag priority-medium">重要</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>了解学术期刊分级体系</strong>
+                        <p>熟悉国内(经济研究、管理世界等)和国际(JF/JFE/RFS等)顶刊的定位和偏好 → <a href="../../学习资料汇总/学术期刊分级（建议参考A以上期刊）.pdf">查看期刊列表</a></p>
+                    </div>
+                    <span class="priority-tag priority-medium">重要</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 第三部分：技能入门 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2>第三部分：核心技能入门</h2>
+                <span class="section-badge">第2-4周开始</span>
+            </div>
+            <ul class="checklist">
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>完成 Stata 入门教程</strong>
+                        <p>掌握数据导入导出、描述性统计、基本回归操作。建议跟随视频教程实操一遍</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>学习 Zotero 高效使用技巧</strong>
+                        <p>包括：浏览器插件使用、标签分类、笔记功能、Word/LaTeX集成、团队共享库</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>练习复现一篇经典论文</strong>
+                        <p>选择有公开代码和数据的简单论文（如JFE Top3），尝试完整复现其结果 → <a href="../03_核心技能训练模块/Module_B_方法训练/B1_计量基础.html">查看方法指南</a></p>
+                    </div>
+                    <span class="priority-tag priority-medium">重要</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>学习文献检索策略</strong>
+                        <p>掌握关键词组合、引文追踪、数据库筛选等高效检索方法 → <a href="../03_核心技能训练模块/Module_A_文献能力/A1_检索策略.html">查看详细指南</a></p>
+                    </div>
+                    <span class="priority-tag priority-medium">重要</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>了解 AI 辅助科研工具</strong>
+                        <p>学习如何使用 ChatGPT/Claude 等工具辅助文献解读、代码生成、写作润色 → <a href="../07_智能体集成接口/AI助手使用指南.html">查看AI指南</a></p>
+                    </div>
+                    <span class="priority-tag priority-low">建议</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 第四部分：沟通与规划 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>第四部分：人际网络与规划</h2>
+                <span class="section-badge">持续进行</span>
+            </div>
+            <ul class="checklist">
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>与导师进行首次深入交流</strong>
+                        <p>讨论研究方向兴趣、了解课题组风格、明确第一学期期望目标</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>加入/创建学术讨论小组</strong>
+                        <p>寻找同方向的同学组成2-3人学习小组，定期讨论文献和研究想法</p>
+                    </div>
+                    <span class="priority-tag priority-medium">推荐</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>参加组会并积极旁听</strong>
+                        <p>即使不汇报也要参加，了解学术报告规范、学习师兄师姐的研究思路</p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>制定个人研一时间表</strong>
+                        <p>基于全年规划模板，结合个人情况制定详细的月度和周度计划 → <a href="../04_时间线与里程碑/研一全年规划.html">查看时间规划</a></p>
+                    </div>
+                    <span class="priority-tag priority-high">必需</span>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <strong>完成能力自我评估</strong>
+                        <p>诊断现有技能水平，识别优势与短板，制定针对性提升计划 → <a href="能力自评工具.html">立即评估</a></p>
+                    </div>
+                    <span class="priority-tag priority-medium">推荐</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 温馨提示 -->
+        <div class="tips-box">
+            <h4><i class="fas fa-lightbulb"></i> 新生温馨提示</h4>
+            <ul>
+                <li><strong>不要急于求成：</strong>科研是长跑，前几个月的重点是打基础而非出成果</li>
+                <li><strong>保持好奇心：</strong>多问"为什么"，多和导师同学交流，不要害怕暴露无知</li>
+                <li><strong>建立规律作息：</strong>固定时间阅读文献、写代码、锻炼身体，形成良性循环</li>
+                <li><strong>善用AI工具：</strong>让ChatGPT成为你的24小时助教，但记住它只是辅助不能替代思考</li>
+                <li><strong>记录一切：</strong>用Notion/Obsidian记录每日学习心得、文献笔记、灵感闪念</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const total = checkboxes.length;
+            let completed = 0;
+            
+            checkboxes.forEach((cb, index) => {
+                const item = cb.closest('.checklist-item');
+                if (cb.checked) {
+                    completed++;
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+                
+                localStorage.setItem(`checklist_item_${index}`, cb.checked);
+            });
+            
+            const percentage = Math.round((completed / total) * 100);
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('percentage').textContent = percentage;
+            
+            if (percentage === 100) {
+                alert('🎉 恭喜！你已完成所有入学准备项目！\n\n接下来可以进入下一阶段：深入学习核心技能模块。');
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            checkboxes.forEach((cb, index) => {
+                const saved = localStorage.getItem(`checklist_item_${index}`);
+                if (saved === 'true') {
+                    cb.checked = true;
+                }
+            });
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

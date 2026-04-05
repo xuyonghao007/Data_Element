@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融科技 (FinTech) | 领域知识图谱</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --light-bg: #f7fafc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2.5rem; text-align: center; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--secondary); text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--accent); }
+        .section { background: white; border-radius: 16px; padding: 2.25rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .section h2 { font-size: 1.55rem; color: var(--primary); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--light-bg); padding-bottom: 0.75rem; }
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .topic-card { background: var(--light-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #43e97b; transition: all 0.3s; }
+        .topic-card:hover { transform: translateX(5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .topic-card h4 { color: var(--primary); margin-bottom: 0.6rem; font-size: 1.05rem; }
+        .topic-card p { color: #64748b; font-size: 0.9rem; line-height: 1.7; }
+        .paper-list { margin-top: 1rem; }
+        .paper-item { padding: 0.85rem 1rem; background: #f8fafc; border-radius: 8px; margin-bottom: 0.65rem; border-left: 3px solid #43e97b; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+        .paper-item span:first-child { color: var(--primary); font-weight: 500; font-size: 0.93rem; }
+        .paper-item .journal-tag { background: #dcfce7; color: #16a34a; padding: 0.2rem 0.65rem; border-radius: 10px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+        .method-box { background: linear-gradient(135deg, #dcfce7, #ecfdf5); border-radius: 12px; padding: 1.5rem; margin-top: 1.25rem; }
+        .method-box h4 { color: #16a34a; margin-bottom: 0.75rem; }
+        .method-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.75rem; }
+        .mtag { background: white; color: #16a34a; padding: 0.35rem 0.85rem; border-radius: 16px; font-size: 0.82rem; font-weight: 500; }
+        .next-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+        .next-area { text-align: center; padding: 1.25rem; background: #eff6ff; border-radius: 10px; border: 2px dashed #bfdbfe; text-decoration: none; color: var(--secondary); font-weight: 500; transition: all 0.3s; }
+        .next-area:hover { background: #dbeafe; border-color: var(--accent); color: var(--accent); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> 返回领域图谱</a>
+
+    <div class="header">
+        <h1><i class="fas fa-robot"></i> 金融科技 (FinTech)</h1>
+        <p style="opacity: 0.95;">研究技术创新对金融服务的影响与变革</p>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-book-open"></i> 核心研究主题</h2>
+        <div class="topic-grid">
+            <div class="topic-card">
+                <h4><i class="fas fa-coins"></i> 数字货币与区块链</h4>
+                <p>加密货币、稳定币、央行数字货币(CBDC)、智能合约、去中心化金融(DeFi)、区块链应用</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-brain"></i> 机器学习与风控</h4>
+                <p>信用评分、反欺诈、异常检测、算法交易、智能投顾、风险管理模型</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-mobile-alt"></i> 移动支付与普惠金融</h4>
+                <p>移动支付创新、数字钱包、跨境支付、金融包容性、农村金融科技</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-file-alt"></i> 金融文本与NLP</h4>
+                <p>金融文本挖掘、情感分析、财报分析、新闻事件检测、监管文件分析</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-cloud"></i> 开放银行与API经济</h4>
+                <p>银行API、金融数据共享、平台经济、金融生态系统、数据隐私</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-globe-asia"></i> 中国金融科技发展</h4>
+                <p>蚂蚁集团、腾讯金融、数字人民币、监管沙盒、金融科技监管政策</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-star"></i> 必读经典文献</h2>
+        <div style="background: #f0f9ff; border-radius: 12px; padding: 2rem; border: 2px dashed #3b82f6; text-align: center;">
+            <p style="font-size: 1.1rem; color: #1e40af; margin-bottom: 1rem;">具体研究内容请在对应顶刊中搜索相关主题</p>
+            <p style="color: #3b82f6; font-weight: 600; margin-bottom: 1.5rem;">前期仅参考顶级期刊文献</p>
+            <a href="../../09_顶刊文献参考/index.html" style="display: inline-flex; align-items: center; gap: 8px; background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                <i class="fas fa-award"></i> 查看顶刊文献参考
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-cogs"></i> 常用方法</h2>
+        <div class="method-box">
+            <h4>金融科技研究的核心方法论工具箱</h4>
+            <div class="method-tags">
+                <span class="mtag">🤖 机器学习算法</span>
+                <span class="mtag">📝 NLP文本分析</span>
+                <span class="mtag">🔗 区块链分析</span>
+                <span class="mtag">📊 大数据处理</span>
+                <span class="mtag">🛡️ 隐私计算</span>
+                <span class="mtag">🎯 A/B测试</span>
+                <span class="mtag">🔍 网络分析</span>
+                <span class="mtag">🧮 量化建模</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-arrow-right"></i> 相关研究领域</h2>
+        <div class="next-areas">
+            <a href="../资产定价/index.html" class="next-area"><i class="fas fa-chart-line"></i><br>资产定价</a>
+            <a href="../行为金融/index.html" class="next-area"><i class="fas fa-brain"></i><br>行为金融</a>
+            <a href="../金融中介/index.html" class="next-area"><i class="fas fa-university"></i><br>金融中介</a>
+            <a href="../法律与监管/index.html" class="next-area"><i class="fas fa-balance-scale"></i><br>法律与监管</a>
+            <a href="../家庭金融/index.html" class="next-area"><i class="fas fa-home"></i><br>家庭金融</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

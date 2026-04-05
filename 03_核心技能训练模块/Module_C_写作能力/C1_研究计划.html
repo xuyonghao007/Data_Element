@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C1-研究计划(Proposal)写作 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #fa709a, #fee140); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(250,112,154,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #fa709a; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #fa709a; }
+        .template-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px solid #f59e0b; border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .template-box h3 { color: #92400e; margin-bottom: 1.25rem; text-align: center; font-size: 1.3rem; }
+        .tmpl-section { background: white; padding: 1.25rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid #f59e0b; }
+        .tmpl-section h4 { color: #b45309; margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .tmpl-section p { color: #78350f; font-size: 0.92rem; line-height: 1.75; }
+        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+        .crit-card { background: var(--light-bg); padding: 1.5rem; border-radius: 12px; text-align: center; }
+        .crit-card .icon-circle { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-size: 1.5rem; color: white; }
+        .crit-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
+        .crit-card p { color: #64748b; font-size: 0.88rem; line-height: 1.65; }
+        .example-text { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-size: 0.88rem; line-height: 1.85; margin: 1rem 0; font-family: 'Segoe UI', sans-serif; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📋 C1: 研究计划(Proposal)标准范式</h1>
+        <p>从想法到可执行的研究蓝图，掌握Proposal的核心要素</p>
+    </div>
+
+    <!-- 为什么重要 -->
+    <div class="section">
+        <h2><i class="fas fa-question-circle"></i> 为什么Proposal如此重要？</h2>
+        <div style="margin-top: 1.5rem; line-height: 2; color: #475569;">
+            <p>研究计划（也称开题报告/Research Proposal）是你与导师沟通研究的<strong>"合同"</strong>。一份好的Proposal能够：</p>
+            <ul style="padding-left: 1.5rem; margin-top: 0.75rem;">
+                <li>✅ 强制你<strong>系统性地思考</strong>研究的每个环节，避免"想到哪写到哪"</li>
+                <li>✅ 帮助导师快速理解你的思路并给出有针对性的反馈</li>
+                <li>✅ 作为后续论文写作的<strong>路线图</strong>，大幅降低写作时的迷茫感</li>
+                <li>✅ 申请奖学金、PhD项目、基金资助时的重要材料</li>
+                <li>✅ 避免在错误的方向上浪费大量时间</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 标准模板 -->
+    <div class="section">
+        <h2><i class="fas fa-file-alt"></i> Proposal 标准六段式模板</h2>
+        <div class="template-box">
+            <h3><i class="fas fa-clipboard-list"></i> 金融学研究 Proposal 完整框架</h3>
+            
+            <div class="tmpl-section">
+                <h4><span style="background:#f59e0b;color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;margin-right:0.5rem;">Part 1</span> 研究背景与问题提出 (Background & Research Question)</h4>
+                <p><strong>内容要点：</strong></p>
+                <ul style="padding-left: 1.25rem; margin-top: 0.35rem;">
+                    <li>从现实经济现象或政策变化出发，说明为什么这个问题重要</li>
+                    <li>引用权威数据或新闻报道增强说服力（如"2023年中国ESG基金规模突破XXX亿元"）</li>
+                    <li>明确、具体地提出你的<strong>核心研究问题</strong>（不要超过3个）</li>
+                    <li>示例："企业数字化转型是否以及如何影响其ESG表现？其作用机制是什么？"</li>
+                </ul>
+            </div>
+
+            <div class="tmpl-section">
+                <h4><span style="background:#f59e0b;color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;margin-right:0.5rem;">Part 2</span> 文献综述与研究定位 (Literature & Positioning)</h4>
+                <p><strong>内容要点：</strong></p>
+                <ul style="padding-left: 1.25rem; margin-top: 0.35rem;">
+                    <li>简要梳理相关领域的主要文献脉络（不需要像正式综述那么详细）</li>
+                    <li><strong>重点：</strong>明确指出现有研究的不足和空白——这就是你研究的切入点！</li>
+                    <li>用表格或图示对比现有研究与你的研究的差异</li>
+                    <li>说明你的研究将如何填补这个空白</li>
+                </ul>
+            </div>
+
+            <div class="tmpl-section">
+                <h4><span style="background:#f59e0b;color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;margin-right:0.5rem;">Part 3</span> 理论分析与研究假说 (Theory & Hypotheses)</h4>
+                <p><strong>内容要点：</strong></p>
+                <ul style="padding-left: 1.25rem; margin-top: 0.35rem;">
+                    <li>基于什么经济学理论？（利益相关者理论、信息不对称理论、资源依赖理论...）</li>
+                    <li>构建简单的逻辑链条：X → M → Y （解释变量通过什么机制影响被解释变量）</li>
+                    <li>提出<strong>可检验的研究假说</strong>（通常3-5个），格式如下：
+                        <br>H1: 企业数字化转型对ESG表现具有正向促进作用。
+                        <br>H2: 信息透明度在其中发挥中介作用。</li>
+                    <li>每个假说都应有明确的理论依据</li>
+                </ul>
+            </div>
+
+            <div class="tmpl-section">
+                <h4><span style="background:#f59e0b;color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;margin-right:0.5rem;">Part 4</span> 研究设计 (Research Design)</h4>
+                <p><strong>这是Proposal中最关键的部分！需要详细说明：</strong></p>
+                <ul style="padding-left: 1.25rem; margin-top: 0.35rem;">
+                    <li><strong>数据来源</strong>：CSMAR哪个子库？时间范围？样本量预估？</li>
+                    <li><strong>变量定义</strong>：
+                        <br>• 被解释变量(Y)：如何度量？数据来源？参考哪篇文献的定义？
+                        <br>• 解释变量(X)：核心变量的构造方式
+                        <br>• 控制变量：列出所有控制变量及选择理由</li>
+                    <li><strong>模型设定</strong>：写出基准回归方程（数学表达式）</li>
+                    <li><strong>识别策略</strong>：用什么方法解决内生性？DID/IV/RDD？为什么这个方法合适？</li>
+                    <li><strong>稳健性检验计划</strong>：准备做哪些检验来验证结果的可靠性？</li>
+                </ul>
+            </div>
+
+            <div class="tmpl-section">
+                <h4><span style="background:#f59e0b;color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;margin-right:0.5rem;">Part 5</span> 预期贡献与创新点 (Expected Contributions)</h4>
+                <p><strong>从三个维度阐述贡献：</strong></p>
+                <ul style="padding-left: 1.25rem; margin-top: 0.35rem;">
+                    <li><strong>理论贡献</strong>：拓展了哪个理论的应用边界？提出了新的机制解释？</li>
+                    <li><strong>方法贡献</strong>：使用了新的识别策略？开发了新的度量指标？采用了新数据源？</li>
+                    <li><strong>实践/政策含义</strong>：对监管者、企业管理者、投资者有什么启示？</li>
+                </ul>
+            </div>
+
+            <div class="tmpl-section">
+                <h4><span style="background:#f59e0b;color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;margin-right:0.5rem;">Part 6</span> 研究计划与时间安排 (Timeline)</h4>
+                <p><strong>制定详细的执行计划：</strong></p>
+                <ul style="padding-left: 1.25rem; margin-top: 0.35rem;">
+                    <li>按月度或季度分解任务（数据收集→清洗→基准回归→扩展分析→初稿→修改）</li>
+                    <li>标注关键里程碑节点（如：第3个月完成数据收集）</li>
+                    <li>预留缓冲时间应对意外情况</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 评估标准 -->
+    <div class="section">
+        <h2><i class="fas fa-star"></i> 好的Proposal应该具备哪些特质？</h2>
+        <div class="criteria-grid">
+            <div class="crit-card">
+                <div class="icon-circle" style="background: linear-gradient(135deg, #ef4444, #dc2626);"><i class="fas fa-bullseye"></i></div>
+                <h4>问题清晰</h4>
+                <p>研究问题具体、明确、有价值，不是泛泛而谈</p>
+            </div>
+            <div class="crit-card">
+                <div class="icon-circle" style="background: linear-gradient(135deg, #f59e0b, #d97706);"><i class="fas fa-lightbulb"></i></div>
+                <h4>创新合理</h4>
+                <p>有明确的创新点但不过度夸大，能自圆其说</p>
+            </div>
+            <div class="crit-card">
+                <div class="icon-circle" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-cogs"></i></div>
+                <h4>设计可行</h4>
+                <p>数据可获得、方法可掌握、时间表可实现</p>
+            </div>
+            <div class="crit-card">
+                <div class="icon-circle" style="background: linear-gradient(135deg, #3b82f6, #2563eb);"><i class="fas fa-link"></i></div>
+                <h4>逻辑连贯</h4>
+                <p>各部分环环相扣，没有明显的逻辑跳跃</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 示例片段 -->
+    <div class="section" style="background: linear-gradient(135deg, #fff1f2, #ffe4e6);">
+        <h2><i class="fas fa-quote-left"></i> Proposal 写作示范片段</h2>
+        <div class="example-text" style="background: white; color: var(--primary); border: 2px solid #fda4af;">
+<strong>【研究问题示例】</strong>
+
+随着"双碳"目标的提出，企业绿色转型已成为学术界和政策界关注的焦点。
+然而，现有研究主要关注环境规制对企业绿色创新的直接影响，
+对于<strong>金融中介在这一过程中扮演的角色缺乏深入探讨</strong>。
+
+基于此，本文拟回答以下核心研究问题：
+
+<strong>RQ1:</strong> 绿色信贷政策的实施是否显著促进了重污染企业的绿色技术创新？
+<strong>RQ2:</strong> 如果存在促进效应，其内在的作用机制是什么？（资源效应 vs 创新激励效应）
+<strong>RQ3:</strong> 这种促进效果在不同产权性质、不同融资约束程度的企业中是否存在异质性？
+
+<strong>【预期贡献示例】</strong>
+
+本文可能的边际贡献体现在以下三个方面：
+
+第一，<strong>拓展了绿色金融微观效应的研究视角</strong>。不同于已有文献聚焦于绿色债券或ESG投资，
+本文从<strong>银行信贷渠道</strong>切入，丰富了绿色金融政策传导机制的讨论。
+
+第二，<strong>揭示了绿色信贷影响企业行为的黑箱机制</strong>。
+通过同时检验资源再配置效应和创新补偿效应，为理解"波特假说"
+在中国情境下的适用性提供了新的经验证据。
+
+第三，<strong>具有重要的政策启示意义</strong>。
+研究发现可为优化绿色信贷目录标准、完善差别化信贷政策提供决策参考。
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="../Module_B_方法训练/B4_高级方法.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一模块：方法训练</a>
+        <a href="C2_Introduction.html" class="nav-btn next">下一节：引言写作 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A3-文献综述撰写指南 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1;
+            --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(240, 147, 251, 0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #f5576c; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #f5576c; }
+        .framework { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .fw-part { background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.75rem; border-radius: 14px; border-top: 4px solid #f5576c; }
+        .fw-part h4 { color: #be185d; margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .fw-part ol { padding-left: 1.25rem; color: #475569; line-height: 1.9; font-size: 0.93rem; }
+        .example-box { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-size: 0.88rem; line-height: 1.8; margin: 1rem 0; font-family: 'Segoe UI', sans-serif; }
+        .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+        .do-card { background: #f0fdf4; border: 2px solid #86efac; padding: 1.5rem; border-radius: 12px; }
+        .dont-card { background: #fef2f2; border: 2px solid #fca5a5; padding: 1.5rem; border-radius: 12px; }
+        .do-card h4 { color: #166534; margin-bottom: 0.75rem; }
+        .dont-card h4 { color: #991b1b; margin-bottom: 0.75rem; }
+        .do-card ul, .dont-card ul { padding-left: 1.25rem; line-height: 1.9; font-size: 0.92rem; }
+        .process-timeline { position: relative; padding-left: 50px; margin-top: 1.5rem; }
+        .process-timeline::before { content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, #f5576c, #f093fb); border-radius: 2px; }
+        .pt-item { position: relative; margin-bottom: 2rem; padding-bottom: 1rem; }
+        .pt-item::before { content: ''; position: absolute; left: -38px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #f5576c; border: 3px solid white; box-shadow: 0 2px 8px rgba(245,87,108,0.3); }
+        .pt-item strong { color: var(--primary); }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); }
+        .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📝 A3: 结构化文献综述撰写</h1>
+        <p>从文献堆砌到逻辑严密的学术写作，掌握综述的核心方法论</p>
+    </div>
+
+    <!-- 四部分框架 -->
+    <div class="section">
+        <h2><i class="fas fa-sitemap"></i> 综述四部分核心框架</h2>
+        <div class="framework">
+            <div class="fw-part">
+                <h4><i class="fas fa-play-circle"></i> Part 1: 引言</h4>
+                <ol>
+                    <li>说明研究领域的重要性</li>
+                    <li>界定综述的范围和边界</li>
+                    <li>提出本综述要回答的核心问题</li>
+                    <li>预告全文组织结构</li>
+                </ol>
+            </div>
+            <div class="fw-part">
+                <h4><i class="fas fa-layer-group"></i> Part 2: 主体（核心！）</h4>
+                <ol>
+                    <li>按主题分组（非时间罗列）</li>
+                    <li>每组有明确的主题句</li>
+                    <li>比较不同研究的异同</li>
+                    <li>指出争议和未决问题</li>
+                </ol>
+            </div>
+            <div class="fw-part">
+                <h4><i class="fas fa-comments"></i> Part 3: 讨论</h4>
+                <ol>
+                    <li>提炼现有研究的主要分歧</li>
+                    <li>分析分歧产生的原因</li>
+                    <li>明确指出研究空白(Gap)</li>
+                    <li>为你的研究定位提供空间</li>
+                </ol>
+            </div>
+            <div class="fw-part">
+                <h4><i class="fas fa-flag-checkered"></i> Part 4: 结论</h4>
+                <ol>
+                    <li>总结核心发现与共识</li>
+                    <li>指出方法的演进趋势</li>
+                    <li>强调本综述的贡献</li>
+                    <li>展望未来研究方向</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- 段落写法规范 -->
+    <div class="section">
+        <h2><i class="fas fa-pen-nib"></i> 段落内部写作三要素</h2>
+        <div style="margin-top: 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4facfe, #00f2fe); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem; font-weight: bold;">1</div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.75rem;">主题唯一</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">每段围绕一个核心观点展开，开头用<strong>主题句(Topic Sentence)</strong>点明</p>
+                </div>
+                <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #43e97b, #38f9d7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem; font-weight: bold;">2</div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.75rem;">证据支撑</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">引用文献时简洁说明"<strong>谁+何时+做了什么</strong>"，避免大段摘抄</p>
+                </div>
+                <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #fa709a, #fee140); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem; font-weight: bold;">3</div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.75rem;">逻辑衔接</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">用过渡词串联句子，体现文献间的<strong>对比、递进、补充</strong>关系</p>
+                </div>
+            </div>
+            
+            <div class="example-box" style="margin-top: 2rem;">
+<strong>✅ 好的段落示例（关于ESG与融资成本的关系）：</strong>
+
+关于企业ESG表现对融资成本的影响，学界尚未形成一致结论。<strong>[主题句]</strong>
+早期研究如Goss & Roberts(2011)和Chava(2012)发现ESG表现较差的企业面临更高的银行贷款利率，
+这符合利益相关者理论的预测。<strong>[证据1 - 支持方]</strong>
+然而，Borghesi等(2014)和Capelle-Blancard & Petit(2019)则报告了相反的结果，
+认为市场已经充分定价了ESG风险，导致ESG溢价消失。<strong>[证据2 - 反对方]</strong>
+这一分歧可能源于<strong>样本期间差异</strong>(金融危机前后)、<strong>度量方式差异</strong>(第三方评级vs自建指标)
+以及<strong>市场制度差异</strong>(发达vs新兴市场)。<strong>[解释分歧原因]</strong>
+近期研究开始关注<strong>异质性效应</strong>，如El Ghoul等(2018)发现ESG对融资成本的影响在信息不对称程度高的企业中更为显著。
+            </div>
+        </div>
+    </div>
+
+    <!-- Do & Don't -->
+    <div class="section">
+        <h2><i class="fas fa-balance-scale"></i> ✅ 写作规范 vs ❌ 常见误区</h2>
+        <div class="do-dont">
+            <div class="do-card">
+                <h4><i class="fas fa-check-circle"></i> 应该这样做</h4>
+                <ul>
+                    <li>✅ 按<strong>主题/观点</strong>组织文献，而非简单按时间罗列</li>
+                    <li>✅ 每段有明确的<strong>主题句</strong>和论证逻辑</li>
+                    <li>✅ 包含<strong>批判性评价</strong>，不只是复述他人工作</li>
+                    <li>✅ 明确指出<strong>研究缺口(Gap)</strong>，为后续研究铺垫</li>
+                    <li>✅ 引用<strong>A-以上级别</strong>期刊的近期文献为主</li>
+                    <li>✅ 使用过渡词体现文献间逻辑关系</li>
+                </ul>
+            </div>
+            <div class="dont-card">
+                <h4><i class="fas fa-times-circle"></i> 避免这些错误</h4>
+                <ul>
+                    <li>❌ 变成"流水账"式的文献列表（张三做了...李四做了...王五做了...）</li>
+                    <li>❌ 大段直接翻译或复制Abstract</li>
+                    <li>❌ 缺乏对文献的评价和比较</li>
+                    <li>❌ 引用过时或低质量的文献</li>
+                    <li>❌ 忽视研究缺口的分析</li>
+                    <li>❌ 段落之间缺乏过渡，跳跃性强</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 撰写流程 -->
+    <div class="section">
+        <h2><i class="fas fa-tasks"></i> 从零到一的撰写流程</h2>
+        <div class="process-timeline">
+            <div class="pt-item">
+                <strong>阶段一：素材收集（约2周）</strong>
+                <p style="color: #64748b; margin-top: 0.5rem;">收集30-50篇高度相关文献，用Excel记录每篇的核心信息（题目、方法、发现、贡献），形成文献矩阵</p>
+            </div>
+            <div class="pt-item">
+                <strong>阶段二：结构搭建（约3天）</strong>
+                <p style="color: #64748b; margin-top: 0.5rem;">画思维导图确定综述的逻辑结构，决定分几个主题板块，每个板块下有哪些子论点</p>
+            </div>
+            <div class="pt-item">
+                <strong>阶段三：初稿撰写（约1周）</strong>
+                <p style="color: #64748b; margin-top: 0.5rem;">按照四部分框架填充内容，先完成主体部分（Part 2），再写引言和结论。不要追求完美，先出初稿</p>
+            </div>
+            <div class="pt-item">
+                <strong>阶段四：修订打磨（约1周）</strong>
+                <p style="color: #64748b; margin-top: 0.5rem;">放置2天后重新阅读，检查逻辑连贯性、语言表达、引用格式。请导师或同伴反馈意见后再次修改</p>
+            </div>
+            <div class="pt-item">
+                <strong>阶段五：定稿输出（约2天）</strong>
+                <p style="color: #64748b; margin-top: 0.5rem;">最终检查格式规范、参考文献完整性，生成最终版本（Word/PDF/LaTeX）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prompt提示 -->
+    <div class="section" style="background: linear-gradient(135deg, #fdf2f8, #fce7f3);">
+        <h2><i class="fas fa-robot"></i> AI辅助综述写作</h2>
+        <p style="color: #64748b; margin-bottom: 1rem;">配合以下Prompt使用效果更佳：</p>
+        <div class="example-box" style="background: #fff; color: var(--primary); border: 2px solid #f5576c;">
+<p><strong>📋 综述润色Prompt：</strong></p>
+"我正在撰写关于[主题]的文献综述，以下是我的一段初稿：
+
+[粘贴你的段落]
+
+请帮我：
+1. 检查逻辑是否清晰连贯
+2. 改进学术表达的规范性
+3. 建议更好的过渡词和连接句
+4. 指出可能遗漏的重要文献方向"
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="A2_精读方法.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：精读方法</a>
+        <a href="A4_知识库构建.html" class="nav-btn next">下一节：知识库构建 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

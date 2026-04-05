@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D1-研究Idea生成方法 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(161,140,209,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #a18cd1; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #a18cd1; }
+        .source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+        .src-card { background: var(--light-bg); padding: 1.5rem; border-radius: 12px; border-top: 4px solid #a18cd1; transition: all 0.3s; }
+        .src-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .src-card h4 { color: var(--primary); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
+        .src-card p { color: #64748b; font-size: 0.9rem; line-height: 1.7; }
+        .method-detail { background: linear-gradient(135deg, #fdf4ff, #fae8ff); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .method-step { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+        .ms-num { width: 36px; height: 36px; min-width: 36px; background: #a18cd1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .ms-content h5 { color: var(--primary); margin-bottom: 0.35rem; }
+        .ms-content p { color: #86198f; font-size: 0.92rem; line-height: 1.75; }
+        .eval-framework { background: white; border: 2px solid #c084fc; border-radius: 12px; padding: 1.75rem; margin: 1.5rem 0; }
+        .eval-framework h4 { color: #7e22ce; margin-bottom: 1rem; }
+        .eval-dim { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .eval-item { text-align: center; padding: 1rem; background: #faf5ff; border-radius: 10px; }
+        .eval-item .dim-name { font-weight: 700; color: #7e22ce; margin-bottom: 0.35rem; }
+        .eval-item .dim-desc { font-size: 0.85rem; color: #a855f7; }
+        .ai-prompt-box { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-family: 'Consolas', monospace; font-size: 0.87rem; line-height: 1.75; margin: 1rem 0; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>💡 D1: 研究Idea从0到1的生成方法</h1>
+        <p>好的研究想法从哪里来？系统化的Idea挖掘与评估框架</p>
+    </div>
+
+    <!-- Idea来源 -->
+    <div class="section">
+        <h2><i class="fas fa-lightbulb"></i> 研究Idea的六大来源</h2>
+        <div class="source-grid">
+            <div class="src-card">
+                <h4><i class="fas fa-book-open"></i> 文献阅读中的发现</h4>
+                <p>读论文时注意：<br>• "作者提到但未检验的方向"<br>• "Future research建议"<br>• 不同文献结论矛盾的地方<br>• 方法可以迁移到新情境</p>
+            </div>
+            <div class="src-card">
+                <h4><i class="fas fa-newspaper"></i> 现实经济现象/政策变化</h4>
+                <p>关注：<br>• 新出台的法规政策（自然实验机会）<br>• 财经新闻中的反常现象<br>• 行业报告揭示的新趋势<br>• 与导师讨论热点话题</p>
+            </div>
+            <div class="src-card">
+                <h4><i class="fas fa-code-branch"></i> 方法迁移与组合</h4>
+                <p>思考：<br>• A领域的方法能否用于B领域？<br>• 两种方法的结合是否产生新洞见？<br>• 新数据源（文本/图像）+ 传统问题<br>• AI/ML技术赋能经典研究问题</p>
+            </div>
+            <div class="src-card">
+                <h4><i class="fas fa-comments"></i> 学术交流与碰撞</h4>
+                <p>利用：<br>• 组会中师兄师姐的研究启发<br>• 学术会议的报告和讨论<br>• 与同门的头脑风暴<br>• 跨学科对话产生的火花</p>
+            </div>
+            <div class="src-card">
+                <h4><i class="fas fa-database"></i> 数据驱动的探索</h4>
+                <p>尝试：<br>• 拿到新数据先做描述性统计<br>• 可视化数据寻找规律<br>• 变量间的相关关系暗示因果可能<br>• CNRDS的特色数据集浏览</p>
+            </div>
+            <div class="src-card">
+                <h4><i class="fas fa-question-circle"></i> 对现有研究的质疑</h4>
+                <p>追问：<br>• 这个结论在中国成立吗？<br>• 控制变量够充分吗？<br>• 样本选择偏差？<br>• 内生性问题真的解决了吗？</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 方法论 -->
+    <div class="section">
+        <h2><i class="fas fa-magic"></i> Idea生成的系统化方法</h2>
+        
+        <div class="method-detail">
+            <h3 style="color: #7e22ce; margin-bottom: 1.5rem;"><i class="fas fa-route"></i> 方法一：文献缺口挖掘法（最推荐新手使用）</h3>
+            <div class="method-step">
+                <div class="ms-num">1</div>
+                <div class="ms-content">
+                    <h5>选定一个感兴趣的研究领域</h5>
+                    <p>如：企业ESG表现、数字化转型、绿色金融等。先读3-5篇近年的综述文章建立全局认知。</p>
+                </div>
+            </div>
+            <div class="method-step">
+                <div class="ms-num">2</div>
+                <div class="ms-content">
+                    <h5>绘制"研究地图"</h5>
+                    <p>用Excel或思维导图记录每篇论文的：研究问题、方法、数据、主要结论、不足之处。找出空白区域。</p>
+                </div>
+            </div>
+            <div class="method-step">
+                <div class="ms-num">3</div>
+                <div class="ms-content">
+                    <h5>识别三类Gap</h5>
+                    <p>① <strong>未覆盖的群体/情境</strong>：现有研究主要关注X，那Y呢？<br>
+                    ② <strong>未使用的视角</strong>：大家都用A理论，B理论的解释呢？<br>
+                    ③ <strong>未结合的因素</strong>：X对Y的影响，在Z条件下如何变化？</p>
+                </div>
+            </div>
+            <div class="method-step">
+                <div class="ms-num">4</div>
+                <div class="ms-content">
+                    <h5>将Gap转化为可检验的研究问题</h5>
+                    <p>"现有文献忽略了Z因素的作用 → 本文考察Z在X-Y关系中的调节效应"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="method-detail" style="margin-top: 2rem;">
+            <h3 style="color: #7e22ce; margin-bottom: 1.5rem;"><i class="fas fa-gavel"></i> 方法二：政策冲击追踪法（适合DID/RDD类研究）</h3>
+            <div class="method-step">
+                <div class="ms-num">1</div>
+                <div class="ms-content">
+                    <h5>建立"政策雷达"</h5>
+                    <p>定期关注：证监会/交易所新规、央行货币政策、环保法规、产业政策等。用RSS或Alerts跟踪。</p>
+                </div>
+            </div>
+            <div class="method-step">
+                <div class="ms-num">2</div>
+                <div class="ms-content">
+                    <h5>评估政策的"研究价值"</h5>
+                    <p>好政策的三特征：① 影响范围广 ② 有明确处理组和对照组 ③ 外生性强（非企业自选择）</p>
+                </div>
+            </div>
+            <div class="method-step">
+                <div class="ms-num">3</div>
+                <div class="ms-content">
+                    <h5>快速预研</h5>
+                    <p>搜索该政策是否已有大量研究。如果已有，考虑异质性角度或机制深化；如果没有，抢占先机！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 评估框架 -->
+    <div class="section">
+        <h2><i class="fas fa-check-double"></i> Idea质量快速评估框架</h2>
+        <div class="eval-framework">
+            <h4><i class="fas fa-star"></i> 好的Idea应该满足以下标准：</h4>
+            <div class="eval-dim">
+                <div class="eval-item">
+                    <div class="dim-name">⭐ 新颖性 (Novelty)</div>
+                    <div class="dim-desc">填补了明确的文献空白，不是简单重复已有工作</div>
+                </div>
+                <div class="eval-item">
+                    <div class="dim-name">⭐ 重要性 (Importance)</div>
+                    <div class="dim-desc">研究问题有充分的现实意义和/或理论价值</div>
+                </div>
+                <div class="eval-item">
+                    <div class="dim-name">⭐ 可行性 (Feasibility)</div>
+                    <div class="dim-desc">数据可获得、方法可掌握、时间表可实现</div>
+                </div>
+                <div class="eval-item">
+                    <div class="dim-name">⭐ 发表潜力 (Publishability)</div>
+                    <div class="dim-desc">目标期刊偏好此类研究，有差异化竞争优势</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI辅助 -->
+    <div class="section" style="background: linear-gradient(135deg, #ede9fe, #ddd6fe);">
+        <h2><i class="fas fa-robot"></i> AI辅助Idea激发</h2>
+        <p style="color: #5b21b6; margin-bottom: 1rem;">以下Prompt可以帮助你与AI协作产生研究想法：</p>
+        <div class="ai-prompt-box" style="background: white; color: var(--primary);">
+<p><strong>🧠 Idea头脑风暴 Prompt：</strong></p>
+"我是一名金融学研究生，研究方向是[你的方向，如公司金融]。
+我已经阅读了以下领域的文献：[列举3-5个核心主题]。
+
+请帮我：
+1. 列出这个领域中目前存在的5个研究空白(Gap)
+2. 针对每个Gap，提出一个具体可行的研究想法(Idea)
+3. 每个Idea给出：新颖性评分(1-5)、可行性评分(1-5)、推荐的数据来源和方法
+4. 如果有最近的政策变化适合做准自然实验，也请一并指出
+
+要求：
+- 想法要具体，不要泛泛而谈
+- 考虑中国市场的特殊性
+- 优先考虑可以使用CSMAR/WIND公开数据的方案"
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="../Module_C_写作能力/C4_审稿回复.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一模块：写作能力</a>
+        <a href="D2_开题报告.html" class="nav-btn next">下一节：开题报告 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

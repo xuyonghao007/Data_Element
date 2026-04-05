@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C2-Introduction引言写作技巧 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(79,172,254,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #4facfe; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #4facfe; }
+        .para-structure { position: relative; padding-left: 60px; }
+        .para-item { position: relative; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--border); }
+        .para-item:last-child { border-bottom: none; }
+        .para-num { position: absolute; left: -52px; top: 0; width: 38px; height: 38px; background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.05rem; box-shadow: 0 4px 12px rgba(79,172,254,0.3); }
+        .para-item h4 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.6rem; }
+        .para-item p { color: #475569; line-height: 1.85; font-size: 0.94rem; }
+        .para-item ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+        .para-item li { margin-bottom: 0.35rem; color: #475569; }
+        .golden-rules { background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .golden-rules h3 { color: #92400e; margin-bottom: 1.25rem; text-align: center; }
+        .rule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .rule-item { background: white; padding: 1.25rem; border-radius: 10px; border-top: 3px solid #f59e0b; }
+        .rule-item strong { color: #b45309; display: block; margin-bottom: 0.35rem; }
+        .rule-item p { color: #78350f; font-size: 0.89rem; line-height: 1.7; }
+        .bad-example { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 10px; padding: 1.25rem; margin: 1rem 0; }
+        .good-example { background: #f0fdf4; border: 2px solid #86efac; border-radius: 10px; padding: 1.25rem; margin: 1rem 0; }
+        .ex-label { font-weight: bold; font-size: 0.82rem; padding: 0.2rem 0.6rem; border-radius: 6px; display: inline-block; margin-bottom: 0.5rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>✍️ C2: 论文引言(Introduction)写作艺术</h1>
+        <p>引言决定审稿人的第一印象 — 掌握顶刊引言的黄金结构</p>
+    </div>
+
+    <!-- 为什么引言最重要 -->
+    <div class="section">
+        <h2><i class="fas fa-trophy"></i> 为什么引言是全文最重要的部分？</h2>
+        <div style="margin-top: 1.5rem; line-height: 2; color: #475569;">
+            <p>在顶级期刊中，<strong>审稿人和编辑往往只仔细阅读Introduction</strong>就决定了文章的命运。原因很简单：</p>
+            <ul style="padding-left: 1.5rem; margin-top: 0.75rem;">
+                <li>🎯 Introduction是唯一保证每个人都会认真读的部分</li>
+                <li>💡 它决定了读者是否认为你的研究<strong>"值得继续看下去"</strong></li>
+                <li>🔗 它建立了整篇文章的逻辑骨架和叙事线索</li>
+                <li>⏰ 审稿人工作量大，如果Introduction不能说服他们，后面写得再好也可能被拒</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>一个经验法则：</strong>花在Introduction上的时间应该不少于总写作时间的30%。很多资深学者甚至建议先写Introduction再写其他部分！</p>
+        </div>
+    </div>
+
+    <!-- 段落结构 -->
+    <div class="section">
+        <h2><i class="fas fa-layer-group"></i> 顶刊引言的标准五段式结构</h2>
+        <div class="para-structure">
+            <div class="para-item">
+                <div class="para-num">1</div>
+                <h4>第一段：Hook — 吸引注意力的大背景</h4>
+                <p><strong>目标</strong>：让读者立刻明白"这是一个重要且有趣的问题"</p>
+                <ul>
+                    <li>从一个引人注目的经济现象、统计数据或政策事件开始</li>
+                    <li>避免过于技术化的表述——这是给广泛学术受众看的</li>
+                    <li>建立研究的<strong>现实意义(relevance)</strong></li>
+                </ul>
+                <p style="margin-top: 0.75rem; background: #eff6ff; padding: 0.75rem; border-radius: 8px; font-size: 0.91rem; color: #1e40af;">
+                    <strong>示例开头：</strong>"截至2023年底，中国ESG主题公募基金规模已突破5000亿元，年增长率超过45%。然而，这些资金是否真正流向了可持续发展表现优秀的企业，仍然是一个开放性问题。"
+                </p>
+            </div>
+
+            <div class="para-item">
+                <div class="para-num">2</div>
+                <h4>第二段：Gap — 现有研究的不足</h4>
+                <p><strong>目标</strong>：证明"虽然前人做了很多工作，但还有重要的东西没做"</p>
+                <ul>
+                    <li>简要回顾相关领域的核心文献（<strong>不要写成完整文献综述！</strong>）</li>
+                    <li>指出1-2个关键的<strong>研究缺口(Research Gap)</strong></li>
+                    <li>Gap的类型可以是：<br>
+                        • 现象很重要但缺乏实证证据<br>
+                        • 已有结论存在争议<br>
+                        • 方法论上有改进空间<br>
+                        • 新的数据/情境使得旧问题值得重新审视</li>
+                </ul>
+            </div>
+
+            <div class="para-item">
+                <div class="para-num">3</div>
+                <h4>第三段：Question — 本文要解决什么问题</h4>
+                <p><strong>目标</strong>：清晰、具体地陈述研究问题</p>
+                <ul>
+                    <li>明确提出1-3个研究问题（Research Questions）</li>
+                    <li>每个问题都应该<strong>可回答、可检验</strong></li>
+                    <li>如果可能，暗示你打算用什么方法来回答</li>
+                </ul>
+            </div>
+
+            <div class="para-item">
+                <div class="para-num">4</div>
+                <h4>第四段：Approach — 本文怎么做</h4>
+                <p><strong>目标</strong>：简明扼要地预告研究设计和主要发现</p>
+                <ul>
+                    <li>使用什么数据？（样本量、时间跨度、来源）</li>
+                    <li>采用什么识别策略？（DID/IV/RDD等）</li>
+                    <li><strong>关键：预告主要发现</strong>（很多顶刊要求在Introduction就给出结果方向）</li>
+                    <li>这一段不宜过长，3-5句话即可</li>
+                </ul>
+            </div>
+
+            <div class="para-item">
+                <div class="para-num">5</div>
+                <h4>第五段：Contribution — 本文的贡献是什么</h4>
+                <p><strong>目标</strong>：明确、自信地声明你的学术贡献</p>
+                <ul>
+                    <li>通常列3点贡献，每点用一句话概括</li>
+                    <li>贡献类型：<strong>理论贡献 / 方法贡献 / 实证贡献 / 政策贡献</strong></li>
+                    <li>用词要有力但不夸张（避免"greatly"、"significantly"等空洞形容词）</li>
+                    <li>这是Introduction的<strong>高潮部分</strong>，务必反复打磨</li>
+                </ul>
+                <p style="margin-top: 0.75rem; background: #f0fdf4; padding: 0.75rem; border-radius: 8px; font-size: 0.91rem; color: #166534;">
+                    <strong>贡献句式模板：</strong>"First, we contribute to the literature on X by ... Second, we extend the work of A and B by showing that ... Third, our findings have important implications for ..."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 黄金法则 -->
+    <div class="golden-rules">
+        <h3><i class="fas fa-gem"></i> 引言写作的七大黄金法则</h3>
+        <div class="rule-grid">
+            <div class="rule-item">
+                <strong>1. 倒金字塔原则</strong>
+                <p>从宽泛到具体：大背景 → 具体问题 → 本文贡献。像一个漏斗一样逐步收窄</p>
+            </div>
+            <div class="rule-item">
+                <strong>2. 故事线连贯</strong>
+                <p>读完引言后，读者应该能讲出"这篇文章讲了什么故事"，而不是一堆碎片信息</p>
+            </div>
+            <div class="rule-item">
+                <strong>3. 每句话都有目的</strong>
+                <p>问自己：这句话对说服读者接受我的研究价值有帮助吗？如果没有，删掉</p>
+            </div>
+            <div class="rule-item">
+                <strong>4. 用数字说话</strong>
+                <p>"近年来增长迅速" → "2020-2023年均增长率达47%" —— 具体数据更有说服力</p>
+            </div>
+            <div class="rule-item">
+                <strong>5. 避免自我贬低</strong>
+                <p>不要说"本文存在一些局限性"。这是Conclusion的事，引言要展现自信</p>
+            </div>
+            <div class="rule-item">
+                <strong>6. 控制篇幅</strong>
+                <p>JF/JFE/RFS的引言通常4-6页（双栏）。太长会稀释焦点，太短说不清楚</p>
+            </div>
+            <div class="rule-item">
+                <strong>7. 多次修改</strong>
+                <p>好的引言至少改10遍以上。每次修改后朗读一遍，检查流畅度</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 好坏对比 -->
+    <div class="section">
+        <h2><i class="fas fa-balance-scale"></i> ✅ 好的写法 vs ❌ 差的写法</h2>
+        
+        <div class="bad-example">
+            <span class="ex-label" style="background: #fecaca; color: #991b1b;">❌ 不够好的写法</span>
+            <p style="color: #7f1d1d; line-height: 1.85; font-size: 0.93rem;">
+                "公司治理一直是学术界关注的热点话题。很多学者研究了董事会特征对公司绩效的影响。
+                本文也研究了这个问题，使用了CSMAR数据和固定效应模型。我们发现独立董事比例越高，公司绩效越好。
+                这对完善公司治理结构有一定借鉴意义。"
+            </p>
+        </div>
+
+        <div class="good-example">
+            <span class="ex-label" style="background: #bbf7d0; color: #166534;">✅ 更好的写法</span>
+            <p style="color: #166534; line-height: 1.85; font-size: 0.93rem;">
+                "独立董事制度作为公司治理的核心机制之一，其有效性始终存在争议(Hermalin & Weisbach, 2003; Adams & Ferreira, 2007)。
+                尽管大量研究表明独立董事比例与公司绩效正相关，但这些结论多基于发达市场数据，
+                且面临严重的内生性挑战——绩效好的公司更倾向于聘请更多独立董事。<strong>[Gap]</strong>
+                
+                利用中国2019年《上市公司治理准则》修订所形成的准自然实验，本文采用双重差分法(DID)
+                克服内生性问题，<strong>首次</strong>系统考察了强制独立董事比例提升的经济后果。<strong>[Approach]</strong>
+                
+                我们发现：(1) 政策实施后强制提升独立董事比例的企业，其ROA平均提升了1.2个百分点；
+                (2) 这一效应主要通过改善信息披露质量和抑制大股东掏空实现； 
+                (3) 在内部治理较弱的企业中效果更为显著。<strong>[Findings]</strong>
+                
+                本文的贡献在于：第一，利用外生政策冲击提供了独立董事有效性的<strong>因果证据</strong>；
+                第二，揭示了独立董事发挥作用的<strong>具体机制渠道</strong>；
+                第三，为新兴市场公司治理改革提供了<strong>政策参考</strong>。<strong>[Contributions]</strong>"
+            </p>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="C1_研究计划.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：研究计划</a>
+        <a href="C3_实证部分.html" class="nav-btn next">下一节：实证部分 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

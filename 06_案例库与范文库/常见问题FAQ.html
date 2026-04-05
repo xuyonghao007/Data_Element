@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>常见问题FAQ | 案例库与范文库</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2.5rem; text-align: center; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--secondary); text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; }
+        .faq-category { background: white; border-radius: 16px; padding: 2.25rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #f5576c; }
+        .faq-category h2 { font-size: 1.45rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .faq-item { background: var(--light-bg); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; }
+        .faq-item:hover { border-color: #fda4af; transform: translateX(5px); }
+        .faq-q { font-weight: 700; color: var(--primary); font-size: 1.05rem; display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; }
+        .faq-q i { color: #f5576c; font-size: 1.15rem; }
+        .faq-a { color: #475569; line-height: 1.85; font-size: 0.94rem; display: none; padding-top: 0.5rem; border-top: 1px dashed #cbd5e1; margin-top: 0.75rem; }
+        .faq-item.active .faq-a { display: block; animation: fadeIn 0.3s ease; }
+        .faq-item.active .faq-q i { transform: rotate(180deg); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        .resource-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .res-link { text-align: center; padding: 1.25rem; background: linear-gradient(135deg, #fdf2f8, #fce7f3); border-radius: 12px; text-decoration: none; color: #be185d; font-weight: 600; border: 2px solid #fbcfe8; transition: all 0.3s; }
+        .res-link:hover { background: linear-gradient(135deg, #fce7f3, #fbcfe8); transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> 返回首页</a>
+
+    <div class="header">
+        <h1><i class="fas fa-question-circle"></i> 常见问题 FAQ</h1>
+        <p>研一新生最常遇到的困惑与解答</p>
+    </div>
+
+    <!-- 入学适应 -->
+    <div class="faq-category">
+        <h2><i class="fas fa-door-open"></i> 入学与适应</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 研一第一学期应该把重心放在哪里？</div>
+            <div class="faq-a">
+                <strong>核心建议：打基础 > 出成果</strong><br><br>
+                第一个学期应该聚焦于：(1) 完成软件环境搭建(Stata/Zotero/Python)；(2) 精读5-10篇本领域的高质量论文，建立文献基础；(3) 复现1-2篇经典论文的基准结果；(4) 建立规律的阅读和写作习惯。<br><br>
+                不要急于出成果！前期的投入会在第二学期开始回报。很多同学因为急于求成导致基础不牢，后面反而走得更慢。
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 需要每天花多少时间做科研？</div>
+            <div class="faq-a">
+                建议每天保证<strong>3-5小时的高质量科研时间</strong>（不包括上课）。具体分配：<br>
+                • 上午(2-3h)：深度工作——写代码、跑回归、分析数据<br>
+                • 下午(1-2h)：阅读文献、整理笔记<br>
+                • 晚上(0.5-1h)：浏览新闻、思考Idea、轻量学习<br><br>
+                关键是<strong>持续性</strong>而非单次时长。每天3小时 > 周末突击15小时。
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 如何选择导师和研究方向？</div>
+            <div class="faq-a">
+                <strong>选方向：</strong>先广泛浏览各领域介绍 → 精读每个感兴趣方向的2-3篇综述 → 问自己"我对哪个问题最好奇？" → 初步确定1-2个候选方向。<br><br>
+                <strong>选导师：</strong>了解各位老师的研究方向是否匹配你的兴趣；考虑指导风格（放养型vs细致型）；咨询同门学长学姐的实际体验。记住：<strong>方向匹配比名气更重要</strong>。
+            </div>
+        </div>
+    </div>
+
+    <!-- 文献与方法 -->
+    <div class="faq-category">
+        <h2><i class="fas fa-book-reader"></i> 文献与方法</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 一周应该读几篇论文？</div>
+            <div class="faq-a">
+                分层次：<br>
+                • <strong>浏览式阅读</strong>(Abstract+Introduction)：每周10-15篇，建立广度认知<br>
+                • <strong>精读</strong>(全文+笔记)：每周2-3篇，深入理解方法和贡献<br>
+                • <strong>复现型阅读</strong>(跑代码)：每月1篇，动手能力训练<br><br>
+                质量永远大于数量。精读5篇顶刊论文的价值远超泛读50篇普通文章。
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 读不懂顶级期刊论文怎么办？</div>
+            <div class="faq-a">
+                这非常正常！即使是博士生也经常遇到。建议：<br>
+                ① 先跳过数学公式，只读文字部分理解故事线<br>
+                ② 用ChatGPT/Claude帮你解释不懂的方法论部分<br>
+                ③ 找该方法的入门教材或博客文章补充背景知识<br>
+                ④ 请教师兄师姐或导师——<strong>提问是学习的一部分</strong><br><br>
+                记住：第一遍读不懂很正常，第二遍会好一些，第三遍基本就通了。
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> Stata还是Python？两个都要学吗？</div>
+            <div class="faq-a">
+                <strong>短期(研一上)</strong>：优先掌握Stata。金融实证研究90%的工作Stata都能完成，且上手快、社区资源丰富。<br><br>
+                <strong>中期(研一下-研二上)</strong>：开始学习Python。主要用于：(1)数据清洗和文本分析；(2)机器学习方法；(3)自动化重复性任务。<br><br>
+                <strong>建议路径</strong>：Stata入门(1个月) → 能独立完成面板回归 → 开始学Python基础 → 两者配合使用。
+            </div>
+        </div>
+    </div>
+
+    <!-- 写作与发表 -->
+    <div class="faq-category">
+        <h2><i class="fas fa-pen-fancy"></i> 写作与发表</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 研一能发论文吗？什么时候开始写？</div>
+            <div class="faq-a">
+                <strong>完全可以！</strong>很多优秀的学生在研一结束时就完成了第一篇Working Paper。<br><br>
+                <strong>时间线参考：</strong><br>
+                • 第1-3月：文献积累 + 数据收集 + 跑通基准回归<br>
+                • 第4-6月：完成初稿(Introduction + 方法 + 主要结果)<br>
+                • 寒假：深化分析 + 完善全文<br>
+                • 第二学期初：投稿或会议汇报<br><br>
+                即使最终没有发表，这个完整的流程经历本身就是最大的收获。
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 英文写作不好怎么办？</div>
+            <div class="faq-a">
+                <strong>好消息：学术英语是可以快速提升的技能。</strong><br><br>
+                实用策略：<br>
+                ① 大量输入：精读时注意积累好的表达方式，建立自己的phrase bank<br>
+                ② 使用工具：Grammarly检查语法错误 / DeepL辅助翻译 / ChatGPT润色<br>
+                ③ 模仿练习：找一篇写得好的论文，模仿其段落结构和表达方式<br>
+                ④ 写作小组：和同学互相修改，效率最高<br><br>
+                <strong>关键提醒</strong>：AI可以辅助润色但不能代写。学术诚信是底线。
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 第一篇论文投什么期刊合适？</div>
+            <div class="faq-a">
+                取决于你的论文质量和时间安排：<br><br>
+                • <strong>如果质量较高且时间充裕</strong>：可以尝试国内B级以上期刊或国际C级期刊(JBF/JBE级别)<br>
+                • <strong>如果想先积累经验</strong>：选择CSSCI核心期刊作为练手<br>
+                • <strong>绝对不要</strong>：一开始就瞄准JF/JFE/RFS —— 接受率极低，容易严重打击信心<br><br>
+                建议：先投一个中等目标期刊，根据反馈修改后再冲击更高层级。
+            </div>
+        </div>
+    </div>
+
+    <!-- 心理与健康 -->
+    <div class="faq-category">
+        <h2><i class="fas fa-heart"></i> 心理与生活</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 感到科研焦虑、自我怀疑怎么办？</div>
+            <div class="faq-a">
+                <strong>你绝对不是一个人！</strong>几乎每个研究生都经历过这种阶段。<br><br>
+                应对策略：<br>
+                ① <strong>接受它</strong>：焦虑说明你在乎，在乎说明你有追求<br>
+                ② <strong>小步快跑</strong>：设定每日小目标（今天读完1篇论文），完成后给自己正向反馈<br>
+                ③ <strong>找人倾诉</strong>：和同学交流，你会发现大家都有类似的困扰<br>
+                ④ <strong>保持运动</strong>：每周至少3次30分钟以上的运动，对缓解焦虑非常有效<br>
+                ⑤ <strong>必要时求助</strong>：如果焦虑严重影响睡眠和生活，请务必寻求专业心理咨询
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q"><i class="fas fa-chevron-down"></i> 如何平衡科研、课程和其他事务？</div>
+            <div class="faq-a">
+                <strong>优先级原则：科研 > 课程 > 其他</strong><br><br>
+                具体建议：<br>
+                • 课程只要及格即可（除非你要申请奖学金需要高GPA），不要追求完美<br>
+                • 把课程作业尽量与研究方向结合（一举两得）<br>
+                • 学会说"不"：拒绝不必要的社交和学生工作<br>
+                • 固定每天的"科研时间块"，这段时间雷打不动<br>
+                • 利用碎片时间处理杂事，整块时间留给深度思考
+            </div>
+        </div>
+    </div>
+
+    <!-- 快速导航 -->
+    <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); border-radius: 14px; padding: 2rem; margin-top: 2rem;">
+        <h2 style="color: #be185d; margin-bottom: 1.25rem; text-align: center;"><i class="fas fa-link"></i> 相关资源快速入口</h2>
+        <div class="resource-links">
+            <a href="../01_入学导览与自我评估/入学Checklist.html" class="res-link"><i class="fas fa-clipboard-check"></i><br>入学Checklist</a>
+            <a href="../01_入学导览与自我评估/能力自评工具.html" class="res-link"><i class="fas fa-user-check"></i><br>能力自评</a>
+            <a href="../03_核心技能训练模块/Module_A_文献能力/A1_检索策略.html" class="res-link"><i class="fas fa-search"></i><br>文献检索</a>
+            <a href="../03_核心技能训练模块/Module_B_方法训练/B1_计量基础.html" class="res-link"><i class="fas fa-chart-line"></i><br>计量基础</a>
+            <a href="../03_核心技能训练模块/Module_C_写作能力/C1_研究计划.html" class="res-link"><i class="fas fa-file-alt"></i><br>研究计划</a>
+            <a href="../04_时间线与里程碑/研一全年规划.html" class="res-link"><i class="fas fa-calendar"></i><br>时间规划</a>
+            <a href="../07_智能体集成接口/智能体对话场景设计.md" class="res-link"><i class="fas fa-robot"></i><br>AI助手</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

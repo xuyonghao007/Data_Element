@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1-文献检索策略 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1;
+            --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(79, 172, 254, 0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid var(--accent); }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: var(--accent); }
+        .step-list { counter-reset: step-counter; list-style: none; }
+        .step-item { counter-increment: step-counter; position: relative; padding-left: 60px; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .step-item:last-child { border-bottom: none; }
+        .step-item::before { content: counter(step-counter); position: absolute; left: 0; top: 0; width: 42px; height: 42px; background: linear-gradient(135deg, var(--accent), #00f2fe); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.15rem; }
+        .step-title { font-weight: 700; font-size: 1.2rem; color: var(--primary); margin-bottom: 0.75rem; }
+        .step-content { color: #475569; line-height: 1.75; }
+        .step-content ul { margin: 0.75rem 0 0.75rem 1.25rem; }
+        .step-content li { margin-bottom: 0.5rem; }
+        .tip-box { background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 5px solid var(--warning); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; }
+        .tip-box h4 { color: #92400e; margin-bottom: 0.75rem; }
+        .code-block { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-family: 'Consolas', monospace; overflow-x: auto; margin: 1rem 0; font-size: 0.9rem; line-height: 1.6; }
+        .db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .db-card { background: var(--light-bg); padding: 1.5rem; border-radius: 12px; border-top: 4px solid var(--accent); transition: all 0.3s; }
+        .db-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .db-card h4 { color: var(--primary); margin-bottom: 0.75rem; }
+        .db-card p { color: #64748b; font-size: 0.9rem; line-height: 1.6; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, var(--accent), #00f2fe); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); }
+        .nav-btn.next:hover { transform: translateX(5px); }
+        @media (max-width: 768px) { .header h1 { font-size: 1.85rem; } .step-item { padding-left: 50px; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 A1: AI辅助文献检索策略</h1>
+        <p>掌握高效的文献检索方法，快速定位领域内重要研究</p>
+    </div>
+
+    <!-- 核心检索流程 -->
+    <div class="section">
+        <h2><i class="fas fa-search"></i> 六步文献检索流程</h2>
+        <ol class="step-list">
+            <li class="step-item">
+                <div class="step-title">第一步：明确检索目标</div>
+                <div class="step-content">
+                    <p><strong>在开始检索前，先问自己：</strong></p>
+                    <ul>
+                        <li>我想了解哪个具体的研究问题？</li>
+                        <li>这是为了写综述、找Idea、还是学习某个方法？</li>
+                        <li>需要的是最新研究还是经典文献？</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><strong>示例：</strong>"我想找关于企业ESG表现对融资成本影响的最新实证研究"</p>
+                </div>
+            </li>
+
+            <li class="step-item">
+                <div class="step-title">第二步：构建关键词组合</div>
+                <div class="step-content">
+                    <p><strong>关键词构建技巧：</strong></p>
+                    <ul>
+                        <li><strong>核心词</strong>：ESG, environmental social governance, corporate sustainability</li>
+                        <li><strong>结果变量</strong>：cost of capital, loan spread, bond yield, financing cost</li>
+                        <li><strong>方法限定</strong>：empirical, regression, difference-in-differences</li>
+                        <li><strong>同义词扩展</strong>：CSR (corporate social responsibility) = ESG 的早期表述</li>
+                    </ul>
+                    <div class="code-block">
+检索式示例：(ESG OR "environmental social" OR CSR OR "corporate responsibility")
+AND ("cost of capital" OR "loan spread" OR "bond yield")
+AND (China OR Chinese)
+                    </div>
+                </div>
+            </li>
+
+            <li class="step-item">
+                <div class="step-title">第三步：选择合适的数据库</div>
+                <div class="step-content">
+                    <div class="db-grid">
+                        <div class="db-card">
+                            <h4><i class="fas fa-database"></i> Web of Science</h4>
+                            <p>覆盖最全面的学术数据库，支持引文分析。适合查找高质量英文文献和追踪引用关系。</p>
+                        </div>
+                        <div class="db-card">
+                            <h4><i class="fas fa-book"></i> Google Scholar</h4>
+                            <p>免费且覆盖面广，适合初步探索和发现相关文献。可设置Alerts跟踪新发表。</p>
+                        </div>
+                        <div class="db-card">
+                            <h4><i class="fas fa-university"></i> CNKI / 万方</h4>
+                            <p>中文文献首选数据库。CNKI适合经济管理类，万方覆盖更广。</p>
+                        </div>
+                        <div class="db-card">
+                            <h4><i class="fas fa-file-alt"></i> SSRN / NBER</h4>
+                            <p>工作论文(Working Paper)的重要来源。SSRN偏金融会计，NBER偏经济学。</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="step-item">
+                <div class="step-title">第四步：执行检索与筛选</div>
+                <div class="step-content">
+                    <p><strong>筛选标准建议：</strong></p>
+                    <ul>
+                        <li><strong>期刊级别</strong>：优先选择FT50/UTD24/A级以上期刊（初期只看A-以上）</li>
+                        <li><strong>时间范围</strong>：近3-5年为主（2021年后），经典文献不限时间</li>
+                        <li><strong>文献类型</strong>：优先Article，Working Paper作为补充</li>
+                        <li><strong>引用次数</strong>：高被引文献通常质量较高</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><strong>操作技巧：</strong></p>
+                    <ul>
+                        <li>先按相关性排序，再按被引量二次筛选</li>
+                        <li>保存检索式以便后续更新</li>
+                        <li>使用数据库的"相关文献"功能发现遗漏</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="step-item">
+                <div class="step-title">第五步：AI辅助深度挖掘</div>
+                <div class="step-content">
+                    <p><strong>利用ChatGPT/Claude增强检索效率：</strong></p>
+                    <ul>
+                        <li><strong>关键词优化</strong>：让AI帮你扩展同义词和相关术语</li>
+                        <li><strong>摘要预判</strong>：将标题发给AI，判断是否值得精读</li>
+                        <li><strong>关联发现</strong>：让AI根据已有文献推荐可能遗漏的重要文章</li>
+                        <li><strong>分类整理</strong>：用AI帮助对检索结果进行主题聚类</li>
+                    </ul>
+                    <div class="tip-box">
+                        <h4><i class="fas fa-robot"></i> AI辅助检索Prompt模板</h4>
+                        <p style="font-family: monospace; font-size: 0.9rem;">
+                            "我是金融学研究生，正在研究[你的主题]。请帮我：<br>
+                            1. 列出这个领域的5个核心关键词及其同义词<br>
+                            2. 推荐近3年该领域最重要的5篇论文<br>
+                            3. 指出可能的检索盲区"
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+            <li class="step-item">
+                <div class="step-title">第六步：建立文献管理系统</div>
+                <div class="step-content">
+                    <p><strong>推荐工具：Zotero + ZotFile插件</strong></p>
+                    <ul>
+                        <li><strong>自动抓取</strong>：浏览器插件一键保存文献元数据</li>
+                        <li><strong>标签体系</strong>：建立多维度标签（领域/方法/状态/重要性）</li>
+                        <li><strong>笔记联动</strong>：每篇文献附带结构化阅读笔记</li>
+                        <li><strong>团队共享</strong>：创建组库与导师/同学协作</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><strong>标签建议格式：</strong></p>
+                    <div class="code-block">
+#领域：公司金融/资产定价/行为金融/...
+#方法：DID/IV/RDD/文本分析/ML/...
+#状态：待读/已读/精读/已总结/引用过
+#重要性：⭐⭐⭐⭐⭐ (必读) 到 ⭐ (可选)
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <!-- 常见问题 -->
+    <div class="section">
+        <h2><i class="fas fa-question-circle"></i> 常见问题FAQ</h2>
+        <div style="margin-top: 1.5rem;">
+            <div style="margin-bottom: 1.5rem; padding: 1.25rem; background: var(--light-bg); border-radius: 10px;">
+                <strong>Q: 检索结果太多怎么办？</strong>
+                <p style="margin-top: 0.5rem; color: #64748b;">逐步缩小范围：①限定顶级期刊 ②缩小时间窗口 ③增加精确短语匹配 ④排除不相关的子领域</p>
+            </div>
+            <div style="margin-bottom: 1.5rem; padding: 1.25rem; background: var(--light-bg); border-radius: 10px;">
+                <strong>Q: 找不到足够的相关文献怎么办？</strong>
+                <p style="margin-top: 0.5rem; color: #64748b;">①扩大关键词范围 ②查看高被引文献的参考文献列表 ③尝试跨学科数据库 ④咨询导师或学长</p>
+            </div>
+            <div style="padding: 1.25rem; background: var(--light-bg); border-radius: 10px;">
+                <strong>Q: 如何判断一篇文献是否值得精读？</strong>
+                <p style="margin-top: 0.5rem; color: #64748b;">三步法：①读Title和Abstract（是否相关）②看Introduction最后一段（贡献是什么）③扫Method部分（方法是否可靠）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="../index.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 返回模块首页</a>
+        <a href="A2_精读方法.html" class="nav-btn next">下一节：精读方法 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

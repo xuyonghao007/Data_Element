@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研一全年规划 | 时间线与里程碑</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --light-bg: #f7fafc;
+            --border: #e2e8f0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%);
+            color: var(--primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        
+        .container { max-width: 1100px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(56, 161, 105, 0.25);
+        }
+        
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .header p { font-size: 1.15rem; opacity: 0.95; max-width: 750px; margin: 0 auto; }
+        
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent), var(--success));
+            border-radius: 2px;
+        }
+        
+        .phase-block {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 80px;
+        }
+        
+        .phase-marker {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+            z-index: 10;
+        }
+        
+        .phase-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .phase-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .phase-time {
+            background: var(--light-bg);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .phase-goal {
+            background: linear-gradient(135deg, #ebf8ff, #dbeafe);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .task-list { list-style: none; }
+        
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 0.85rem;
+            margin-bottom: 0.75rem;
+            border-radius: 10px;
+            background: var(--light-bg);
+            transition: all 0.3s;
+        }
+        
+        .task-item:hover {
+            background: #e2e8f0;
+            transform: translateX(5px);
+        }
+        
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--success);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .task-text { flex: 1; font-size: 0.95rem; color: #334155; }
+        
+        .task-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 5px;
+        }
+        
+        .task-link:hover { text-decoration: underline; }
+        
+        .milestone-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 5px solid var(--warning);
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-top: 1.25rem;
+        }
+        
+        .milestone-box strong { color: #92400e; }
+        
+        .milestone-list {
+            list-style: none;
+            margin-top: 0.75rem;
+            padding-left: 0.5rem;
+        }
+        
+        .milestone-list li {
+            padding: 0.4rem 0;
+            color: #78350f;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .milestone-list li::before {
+            content: '🎯';
+            position: absolute;
+            left: 0;
+        }
+        
+        .tips-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tip-card {
+            padding: 1.25rem;
+            border-radius: 12px;
+            background: var(--light-bg);
+            border-top: 3px solid var(--accent);
+        }
+        
+        .tip-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tip-card p { font-size: 0.9rem; color: #64748b; line-height: 1.65; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover { color: var(--accent); transform: translateX(-5px); }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.85rem; }
+            .phase-block { padding-left: 60px; }
+            .timeline-line { left: 18px; }
+            .phase-marker { left: 0; width: 34px; height: 34px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> 返回首页
+        </a>
+
+        <div class="header">
+            <h1>📅 研一全年科研规划时间线</h1>
+            <p>从入学到独立研究的完整路径规划，帮助你把握节奏、稳步前进</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <!-- Phase 1 -->
+            <div class="phase-block">
+                <div class="phase-marker">1</div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <h3 class="phase-title">入学适应期</h3>
+                        <span class="phase-time">第1-2周</span>
+                    </div>
+                    <div class="phase-goal">
+                        <i class="fas fa-flag-checkered"></i> 目标：完成环境搭建，建立基础认知
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">安装Stata、Zotero、Python等必备软件 <a href="../01_入学导览与自我评估/入学Checklist.html" class="task-link">[查看详情]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">申请数据库(CSMAR/WIND)访问权限</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">完成能力自我评估，了解自身起点 <a href="../01_入学导览与自我评估/能力自评工具.html" class="task-link">[立即评估]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">浏览金融学各领域介绍，初步探索兴趣方向 <a href="../02_领域知识图谱/index.html" class="task-link">[探索领域]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">与导师进行首次深入交流，明确期望目标</span>
+                        </li>
+                    </ul>
+                    <div class="milestone-box">
+                        <strong><i class="fas fa-star"></i> 阶段性产出：</strong>
+                        <ul class="milestone-list">
+                            <li>✅ 所有软件安装完毕并可运行</li>
+                            <li>✅ 完成入学Checklist所有项目</li>
+                            <li>✅ 确定2-3个可能感兴趣的研究方向</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="phase-block">
+                <div class="phase-marker">2</div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <h3 class="phase-title">基础建设期</h3>
+                        <span class="phase-time">第3-6周</span>
+                    </div>
+                    <div class="phase-goal">
+                        <i class="fas fa-book-reader"></i> 目标：建立文献体系，掌握基础工具
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">精读3-5篇本领域的综述性论文（近3年）</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">学习Stata入门：数据导入、描述性统计、基本回归 <a href="../03_核心技能训练模块/Module_B_方法训练/B1_计量基础.html" class="task-link">[查看教程]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">掌握Zotero高效使用：分类、标签、笔记、Word集成</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">复习计量经济学基础（OLS、面板数据、假设检验）</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">开始参加组会旁听，了解学术报告规范</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">学习AI辅助工具的基本用法（ChatGPT/Claude）<a href="../07_智能体集成接口/智能体对话场景设计.md" class="task-link">[AI指南]</a></span>
+                        </li>
+                    </ul>
+                    <div class="milestone-box">
+                        <strong><i class="fas fa-star"></i> 阶段性产出：</strong>
+                        <ul class="milestone-list">
+                            <li>📝 完成5篇精读论文的读书笔记（用Zotero管理）</li>
+                            <li>💻 能独立完成Stata数据清洗和基本回归分析</li>
+                            <li>🗺️ 绘制个人研究领域思维导图初稿</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="phase-block">
+                <div class="phase-marker">3</div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <h3 class="phase-title">能力提升期</h3>
+                        <span class="phase-time">第7-12周</span>
+                    </div>
+                    <div class="phase-goal">
+                        <i class="fas fa-chart-line"></i> 目标：完成首个文献综述，尝试复现经典论文
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">系统学习文献检索策略（关键词组合、引文追踪）<a href="../03_核心技能训练模块/Module_A_文献能力/A1_检索策略.html" class="task-link">[详细指南]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">收集并整理30篇左右高度相关文献，建立个人知识库</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">撰写第一篇结构化文献综述（3000-5000字）<a href="../03_核心技能训练模块/Module_A_文献能力/A3_综述撰写.html" class="task-link">[写作指南]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">选择一篇有公开代码的经典论文进行完整复现</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">学习识别策略（DID/IV/RDD）的原理和应用场景 <a href="../03_核心技能训练模块/Module_B_方法训练/B2_识别策略.html" class="task-link">[方法指南]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">撰写研究计划(Proposal)初稿，明确研究问题和方法 <a href="../03_核心技能训练模块/Module_C_写作能力/C1_研究计划.html" class="task-link">[Proposal模板]</a></span>
+                        </li>
+                    </ul>
+                    <div class="milestone-box">
+                        <strong><i class="fas fa-star"></i> 阶段性产出：</strong>
+                        <ul class="milestone-list">
+                            <li>📄 完成第一篇文献综述（可请导师或学长反馈）</li>
+                            <li>✅ 成功复现至少1篇经典论文的主要结果</li>
+                            <li>📋 提交Proposal初稿并获得反馈意见</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="phase-block">
+                <div class="phase-marker">4</div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <h3 class="phase-title">实践应用期</h3>
+                        <span class="phase-time">第13-18周（学期末）</span>
+                    </div>
+                    <div class="phase-goal">
+                        <i class="fas fa-flask"></i> 目标：确定研究方向，完成开题准备
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">基于文献综述和导师反馈，最终确定研究方向</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">开始收集研究所需的数据（CSMAR/WIND/CNRDS等）<a href="../03_核心技能训练模块/Module_B_方法训练/B3_数据清洗.html" class="task-link">[数据处理]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">完成开题报告的撰写和PPT制作 <a href="../03_核心技能训练模块/Module_D_研究流程/D2_开题报告.html" class="task-link">[开题指南]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">进行初步的数据描述性统计和预处理</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">准备寒假研究计划（详细的月度任务安排）</span>
+                        </li>
+                    </ul>
+                    <div class="milestone-box">
+                        <strong><i class="fas fa-star"></i> 阶段性产出：</strong>
+                        <ul class="milestone-list">
+                            <li>🎯 确定最终研究方向并通过导师确认</li>
+                            <li>📊 完成数据的初步收集和清洗</li>
+                            <li>📝 通过开题报告答辩</li>
+                            <li>❄️ 制定寒假详细研究计划</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="phase-block">
+                <div class="phase-marker">5</div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <h3 class="phase-title">深化突破期（寒假）</h3>
+                        <span class="phase-time">约4-6周</span>
+                    </div>
+                    <div class="phase-goal">
+                        <i class="fas fa-fire"></i> 目标：深入研究，形成Working Paper框架
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">深入完善研究计划，细化实证设计（变量构建、模型设定）</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">完成主要实证分析（基准回归 + 机制检验 + 稳健性检验）</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">撰写论文初稿（引言 + 文献综述 + 实证部分）<a href="../03_核心技能训练模块/Module_C_写作能力/" class="task-link">[写作指导]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">如果可能，参加学术会议或研讨会汇报进展</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">开始考虑PhD申请或博导联系事宜（如适用）</span>
+                        </li>
+                    </ul>
+                    <div class="milestone-box">
+                        <strong><i class="fas fa-trophy"></i> 阶段性产出：</strong>
+                        <ul class="milestone-list">
+                            <li>🏆 形成完整的Working Paper框架（含初步结果）</li>
+                            <li>📑 论文初稿完成（至少包含前3个章节）</li>
+                            <li>🎤 至少完成1次正式的学术汇报（组会/会议）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 6 -->
+            <div class="phase-block">
+                <div class="phase-marker">6</div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <h3 class="phase-title">成果输出期（第二学期）</h3>
+                        <span class="phase-time">持续进行</span>
+                    </div>
+                    <div class="phase-goal">
+                        <i class="fas fa-rocket"></i> 目标：完善论文，投稿或准备毕业
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">根据导师和同行反馈修改完善论文</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">选择目标期刊，了解其偏好和格式要求 <a href="../../学习资料汇总/学术期刊分级（建议参考A以上期刊）.pdf" class="task-link">[期刊列表]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">准备投稿材料（Cover Letter、Response Letter等）<a href="../03_核心技能训练模块/Module_C_写作能力/C4_审稿回复.html" class="task-link">[回复技巧]</a></span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">开始构思第二篇论文（拓展研究方向或深入当前主题）</span>
+                        </li>
+                        <li class="task-item">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-text">如果计划读博，准备PhD申请材料和研究计划</span>
+                        </li>
+                    </ul>
+                    <div class="milestone-box">
+                        <strong><i class="fas fa-medal"></i> 最终目标：</strong>
+                        <ul class="milestone-list">
+                            <li>📄 完成至少1篇可投稿的完整论文</li>
+                            <li>🎓 建立独立的科研能力和学术判断力</li>
+                            <li>🤝 形成稳定的学术合作网络</li>
+                            <li>🚀 为后续PhD申请或就业做好充分准备</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-section">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 1rem; font-size: 1.75rem;">
+                <i class="fas fa-lightbulb"></i> 时间管理建议
+            </h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4><i class="fas fa-clock"></i> 每日节奏建议</h4>
+                    <p><strong>上午 (3h)</strong>: 深度工作——写代码、跑回归、分析结果<br>
+                    <strong>下午 (2h)</strong>: 阅读文献、整理笔记<br>
+                    <strong>晚上 (1h)</strong>: 轻量学习——浏览新闻、思考Idea<br>
+                    <strong>关键</strong>: 保持每天有一定量的输出，哪怕只是500字</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4><i class="fas fa-calendar-week"></i> 每周节奏建议</h4>
+                    <p><strong>周一至周三</strong>: 专注深度工作（数据处理、实证分析）<br>
+                    <strong>周四</strong>: 文献阅读日（精读2-3篇新论文）<br>
+                    <strong>周五</strong>: 写作日（推进论文某一部分）<br>
+                    <strong>周末</strong>: 参加组会、整理本周收获、适当休息</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 常见陷阱预警</h4>
+                    <p>⚠️ <strong>完美主义陷阱</strong>: 不要等"完全准备好"才开始写，先出初稿再迭代<br>
+                    ⚠️ <strong>比较焦虑陷阱</strong>: 每个人的节奏不同，关注自己的进步而非他人<br>
+                    ⚠️ <strong>工具沉迷陷阱</strong>: 工具是手段不是目的，不要花太多时间折腾环境<br>
+                    ⚠️ <strong>孤立奋斗陷阱</strong>: 定期与同学导师交流，获取反馈很重要</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4><i class="fas fa-heart"></i> 保持动力的小习惯</h4>
+                    <p>💪 记录每一个小成就（学会一个Stata命令也值得庆祝）<br>
+                    📖 建立"灵感笔记本"，随时记录有趣的想法或观察<br>
+                    🤝 找到1-2个学习伙伴，互相监督鼓励<br>
+                    🎯 将大目标拆解为每周可执行的小任务，完成即打勾</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.task-checkbox').forEach((cb, index) => {
+            const saved = localStorage.getItem(`timeline_task_${index}`);
+            if (saved === 'true') cb.checked = true;
+            
+            cb.addEventListener('change', () => {
+                localStorage.setItem(`timeline_task_${index}`, cb.checked);
+                const item = cb.closest('.task-item');
+                if (cb.checked) {
+                    item.style.background = '#f0fdf4';
+                    item.style.textDecoration = 'line-through';
+                    item.style.opacity = '0.7';
+                } else {
+                    item.style.background = '';
+                    item.style.textDecoration = '';
+                    item.style.opacity = '';
+                }
+            });
+            
+            if (cb.checked) {
+                const item = cb.closest('.task-item');
+                item.style.background = '#f0fdf4';
+                item.style.opacity = '0.7';
+            }
+        });
+    </script>
+</body>
+</html>

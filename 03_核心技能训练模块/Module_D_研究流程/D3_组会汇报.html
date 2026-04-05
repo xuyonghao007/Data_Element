@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3-组会汇报规范 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(67,233,123,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid var(--success); }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: var(--success); }
+        .role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .role-card { background: var(--light-bg); padding: 1.75rem; border-radius: 14px; border-top: 4px solid var(--success); }
+        .role-card h4 { color: var(--primary); margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .role-card ul { padding-left: 1.25rem; color: #64748b; line-height: 1.9; font-size: 0.92rem; }
+        .template-structure { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; }
+        .tmpl-part { background: white; padding: 1.25rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid var(--success); }
+        .tmpl-part h5 { color: #166534; margin-bottom: 0.5rem; font-size: 1.02rem; }
+        .tmpl-part p { color: #15803d; font-size: 0.9rem; line-height: 1.75; }
+        .stage-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+        .stage-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .stage-header { padding: 1rem 1.25rem; color: white; font-weight: 600; }
+        .stage-body { padding: 1.25rem; }
+        .stage-body h5 { color: var(--primary); margin-bottom: 0.5rem; }
+        .stage-body p { color: #64748b; font-size: 0.88rem; line-height: 1.65; }
+        .stage-body ul { padding-left: 1.1rem; color: #64748b; font-size: 0.88rem; line-height: 1.7; }
+        .tips-box { background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 5px solid var(--warning); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0; }
+        .tips-box h4 { color: #92400e; margin-bottom: 0.75rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📢 D3: 组会(Research Seminar)汇报规范</h1>
+        <p>高效利用组会资源 — 从听众到汇报者的角色转换</p>
+    </div>
+
+    <!-- 组会价值 -->
+    <div class="section">
+        <h2><i class="fas fa-users"></i> 为什么组会如此重要？</h2>
+        <div class="role-grid">
+            <div class="role-card">
+                <h4><i class="fas fa-user-graduate"></i> 作为汇报者</h4>
+                <ul>
+                    <li>强迫自己定期整理思路和进度</li>
+                    <li>获得导师和同伴的即时反馈</li>
+                    <li>锻炼学术表达能力</li>
+                    <li>发现被自己忽略的问题</li>
+                    <li>建立学术自信和节奏感</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <h4><i class="fas fa-eye"></i> 作为旁听者</h4>
+                <ul>
+                    <li>学习他人的研究方法和思路</li>
+                    <li>了解课题组的研究方向分布</li>
+                    <li>积累选题灵感和方法论知识</li>
+                    <li>观察导师如何评价和指导研究</li>
+                    <li>建立学术人脉网络</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <h4><i class="fas fa-chart-line"></i> 组会的长期价值</h4>
+                <ul>
+                    <li>形成规律的科研节奏（每周固定输出）</li>
+                    <li>避免"闭门造车"导致的严重方向错误</li>
+                    <li>培养批判性思维——评价他人研究的能力</li>
+                    <li>为未来的学术会议汇报打基础</li>
+                    <li>很多重要合作都是在组会上萌发的</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PPT模板 -->
+    <div class="section">
+        <h2><i class="fas fa-file-powerpoint"></i> 组会PPT标准模板（10-15页，15-20分钟）</h2>
+        <div class="template-structure">
+            <div class="tmpl-part">
+                <h5><span style="background:#166534;color:white;padding:0.15rem 0.55rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">Part 1</span> 进度回顾（1页）</h5>
+                <p>"上次组会后的进展"：完成了什么？遇到了什么困难？本次要讨论的核心问题是什么？</p>
+            </div>
+            <div class="tmpl-part">
+                <h5><span style="background:#166534;color:white;padding:0.15rem 0.55rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">Part 2</span> 本周工作内容（2-3页）</h5>
+                <p>具体展示了什么：新读的文献摘要、跑出的回归结果、写出的章节草稿、遇到的技术难题等。<strong>用图表和数据说话</strong></p>
+            </div>
+            <div class="tmpl-part">
+                <h5><span style="background:#166534;color:white;padding:0.15rem 0.55rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">Part 3</span> 发现与讨论（3-5页，重点！）</h5>
+                <p>这是最有价值的部分。展示：<br>
+                • 有趣的发现（预期内/外的结果）<br>
+                • 遇到的困难和你的初步解决方案<br>
+                • 需要大家帮助决策的选择点（A方案 vs B方案）<br>
+                • 引发的新问题或新想法</p>
+            </div>
+            <div class="tmpl-part">
+                <h5><span style="background:#166534;color:white;padding:0.15rem 0.55rem;border-radius:5px;font-size:0.78rem;margin-right:0.4rem;">Part 4</span> 下周计划（1页）</h5>
+                <p>清晰的下一步行动项。让大家知道你在持续推进，也给下次汇报埋下伏笔。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 不同阶段 -->
+    <div class="section">
+        <h2><i class="fas fa-road"></i> 不同阶段的组会汇报重点</h2>
+        <div class="stage-cards">
+            <div class="stage-card">
+                <div class="stage-header" style="background: linear-gradient(135deg, #93c5fd, #3b82f6);">阶段一：文献阅读期</div>
+                <div class="stage-body">
+                    <h5>汇报内容</h5>
+                    <ul>
+                        <li>本周精读了哪几篇论文</li>
+                        <li>每篇的核心发现（1-2句话）</li>
+                        <li>论文之间的关联和对比</li>
+                        <li>对你研究方向的启发</li>
+                    </ul>
+                    <p><strong>时长</strong>: 10分钟 | <strong>频率</strong>: 每周</p>
+                </div>
+            </div>
+            <div class="stage-card">
+                <div class="stage-header" style="background: linear-gradient(135deg, #a78bfa, #6366f1);">阶段二：数据处理期</div>
+                <div class="stage-body">
+                    <h5>汇报内容</h5>
+                    <ul>
+                        <li>数据收集进展（已获取哪些库）</li>
+                        <li>描述性统计结果（Table 1）</li>
+                        <li>遇到的清洗难题及解决方案</li>
+                        <li>变量的构造方式和合理性论证</li>
+                    </ul>
+                    <p><strong>时长</strong>: 12-15分钟 | <strong>频率</strong>: 每2周</p>
+                </div>
+            </div>
+            <div class="stage-card">
+                <div class="stage-header" style="background: linear-gradient(135deg, #c084fc, #8b5cf6);">阶段三：实证分析期</div>
+                <div class="stage-body">
+                    <h5>汇报内容</h5>
+                    <ul>
+                        <li>基准回归结果（核心表格）</li>
+                        <li>结果的解读（统计+经济显著性）</li>
+                        <li>稳健性检验进展</li>
+                        <li>与预期的差异及原因分析</li>
+                    </ul>
+                    <p><strong>时长</strong>: 15-20分钟 | <strong>频率</strong>: 每2-3周</p>
+                </div>
+            </div>
+            <div class="stage-card">
+                <div class="stage-header" style="background: linear-gradient(135deg, #fda4af, #f43f5e);">阶段四：写作投稿期</div>
+                <div class="stage-body">
+                    <h5>汇报内容</h5>
+                    <ul>
+                        <li>论文当前版本的结构和完成度</li>
+                        <li>需要讨论的具体段落或表达</li>
+                        <li>目标期刊的选择和理由</li>
+                        <li>投稿前的最后检查清单</li>
+                    </ul>
+                    <p><strong>时长</strong>: 15-20分钟 | <strong>频率</strong>: 按需</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实用技巧 -->
+    <div class="section" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5);">
+        <h2><i class="fas fa-gem"></i> 高效组会的实用技巧</h2>
+        <div class="tips-box">
+            <h4><i class="fas fa-lightbulb"></i> 汇报者必读</h4>
+            <ul style="padding-left: 1.25rem; color: #78350f; line-height: 1.95; font-size: 0.94rem;">
+                <li><strong>提前发送材料</strong>：至少前一天把PPT和相关文件发给参会者，让大家有时间预习</li>
+                <li><strong>明确求助点</strong>：不要只展示成果，更要展示困惑。"我在A和B之间犹豫不决，大家觉得哪个更合理？"</li>
+                <li><strong>记录反馈</strong>：带笔记本，详细记录每个人的意见。会后整理成to-do list</li>
+                <li><strong>跟进闭环</strong>：下次组会开头简要反馈上次的意见落实情况</li>
+                <li><strong>控制时间</strong>：设置手机闹钟，超时主动加快节奏。尊重所有人的时间</li>
+            </ul>
+        </div>
+        <div style="background: #eff6ff; border-left: 5px solid var(--accent); padding: 1.5rem; border-radius: 10px; margin-top: 1.25rem;">
+            <h4 style="color: #1e40af;"><i class="fas fa-head-side-mask"></i> 旁听者必读</h4>
+            <ul style="padding-left: 1.25rem; color: #1e40af; line-height: 1.95; font-size: 0.94rem;">
+                <li><strong>积极提问</strong>：即使是很基础的问题也要问。你的困惑可能也是别人的困惑</li>
+                <li><strong>做好笔记</strong>：不仅记汇报内容，更要记导师的点评风格和关注点</li>
+                <li><strong>会后交流</strong>：如果你对某个话题特别感兴趣，会后找汇报者深入讨论</li>
+                <li><strong>轮流汇报</strong>：争取尽早开始自己的第一次汇报——越早开始越早受益</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="D2_开题报告.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：开题报告</a>
+        <a href="D4_投稿指南.html" class="nav-btn next">下一节：投稿指南 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

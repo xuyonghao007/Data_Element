@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行为金融 (Behavioral Finance) | 领域知识图谱</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --light-bg: #f7fafc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2.5rem; text-align: center; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--secondary); text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--accent); }
+        .section { background: white; border-radius: 16px; padding: 2.25rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .section h2 { font-size: 1.55rem; color: var(--primary); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--light-bg); padding-bottom: 0.75rem; }
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .topic-card { background: var(--light-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4facfe; transition: all 0.3s; }
+        .topic-card:hover { transform: translateX(5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .topic-card h4 { color: var(--primary); margin-bottom: 0.6rem; font-size: 1.05rem; }
+        .topic-card p { color: #64748b; font-size: 0.9rem; line-height: 1.7; }
+        .paper-list { margin-top: 1rem; }
+        .paper-item { padding: 0.85rem 1rem; background: #f8fafc; border-radius: 8px; margin-bottom: 0.65rem; border-left: 3px solid #4facfe; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+        .paper-item span:first-child { color: var(--primary); font-weight: 500; font-size: 0.93rem; }
+        .paper-item .journal-tag { background: #dbeafe; color: #2563eb; padding: 0.2rem 0.65rem; border-radius: 10px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+        .method-box { background: linear-gradient(135deg, #dbeafe, #eff6ff); border-radius: 12px; padding: 1.5rem; margin-top: 1.25rem; }
+        .method-box h4 { color: #2563eb; margin-bottom: 0.75rem; }
+        .method-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.75rem; }
+        .mtag { background: white; color: #2563eb; padding: 0.35rem 0.85rem; border-radius: 16px; font-size: 0.82rem; font-weight: 500; }
+        .next-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+        .next-area { text-align: center; padding: 1.25rem; background: #eff6ff; border-radius: 10px; border: 2px dashed #bfdbfe; text-decoration: none; color: var(--secondary); font-weight: 500; transition: all 0.3s; }
+        .next-area:hover { background: #dbeafe; border-color: var(--accent); color: var(--accent); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> 返回领域图谱</a>
+
+    <div class="header">
+        <h1><i class="fas fa-brain"></i> 行为金融 (Behavioral Finance)</h1>
+        <p style="opacity: 0.95;">结合心理学与金融学，研究投资者非理性行为对市场价格的影响</p>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-book-open"></i> 核心研究主题</h2>
+        <div class="topic-grid">
+            <div class="topic-card">
+                <h4><i class="fas fa-vial"></i> 认知偏差</h4>
+                <p>投资者系统性认知错误：过度自信、锚定效应、代表性启发式、框架效应、确认偏差</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-heartbeat"></i> 情绪与投资</h4>
+                <p>情绪对决策的影响：恐慌、贪婪、投资者情绪指数构建、情绪传染机制</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-hand-holding-usd"></i> 处置效应</h4>
+                <p>投资者倾向：过早卖出盈利股票、过久持有亏损股票的行为模式分析</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-bullseye"></i> 有限注意力</h4>
+                <p>信息处理限制：注意力分配、信息过载、媒体效应、社交网络影响</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-chess"></i> 博弈与策略</h4>
+                <p>异质信念模型、噪声交易者风险、正反馈交易、市场泡沫形成机制</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-globe-asia"></i> 中国市场特殊现象</h4>
+                <p>散户行为特征、A股市场情绪指标、政策依赖、涨停板效应、概念炒作</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-star"></i> 必读经典文献</h2>
+        <div style="background: #f0f9ff; border-radius: 12px; padding: 2rem; border: 2px dashed #3b82f6; text-align: center;">
+            <p style="font-size: 1.1rem; color: #1e40af; margin-bottom: 1rem;">具体研究内容请在对应顶刊中搜索相关主题</p>
+            <p style="color: #3b82f6; font-weight: 600; margin-bottom: 1.5rem;">前期仅参考顶级期刊文献</p>
+            <a href="../../09_顶刊文献参考/index.html" style="display: inline-flex; align-items: center; gap: 8px; background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                <i class="fas fa-award"></i> 查看顶刊文献参考
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-cogs"></i> 常用方法</h2>
+        <div class="method-box">
+            <h4>行为金融研究的核心方法论工具箱</h4>
+            <div class="method-tags">
+                <span class="mtag">🧠 实验经济学</span>
+                <span class="mtag">📊 情绪指标构建</span>
+                <span class="mtag">📝 文本情绪分析</span>
+                <span class="mtag">🔍 事件研究法</span>
+                <span class="mtag">📈 投资者行为追踪</span>
+                <span class="mtag">🧮 问卷调查</span>
+                <span class="mtag">🤖 行为偏差识别</span>
+                <span class="mtag">🎯 眼动追踪</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-arrow-right"></i> 相关研究领域</h2>
+        <div class="next-areas">
+            <a href="../资产定价/index.html" class="next-area"><i class="fas fa-chart-line"></i><br>资产定价</a>
+            <a href="../微观市场结构/index.html" class="next-area"><i class="fas fa-exchange-alt"></i><br>微观结构</a>
+            <a href="../机构投资者/index.html" class="next-area"><i class="fas fa-users-cog"></i><br>机构投资者</a>
+            <a href="../家庭金融/index.html" class="next-area"><i class="fas fa-home"></i><br>家庭金融</a>
+            <a href="../金融科技/index.html" class="next-area"><i class="fas fa-robot"></i><br>金融科技</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>论文初稿写作提示词设计 | 写作能力训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --light-bg: #f7fafc;
+            --border: #e2e8f0;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3.5rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.75rem;
+        }
+        
+        .section-title i { color: var(--accent); }
+        
+        .prompt-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .prompt-category {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .prompt-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .prompt-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .prompt-category h3 i { color: var(--accent); }
+        
+        .prompt-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .prompt-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .prompt-item h4 {
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .prompt-content {
+            background: #f8fafc;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent);
+        }
+        
+        .prompt-tips {
+            background: #f0f9ff;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px dashed #3b82f6;
+        }
+        
+        .prompt-tips h5 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .prompt-tips ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+        
+        .prompt-tips li {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .prompt-tips li::before {
+            content: "•";
+            position: absolute;
+            left: -1rem;
+            color: #3b82f6;
+        }
+        
+        .usage-guide {
+            background: linear-gradient(135deg, #fef3c7, #fef3c7);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 2px dashed #d97706;
+        }
+        
+        .usage-guide h3 {
+            color: #92400e;
+            margin-bottom: 1.25rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .usage-guide p {
+            color: #78350f;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .usage-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .usage-step {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .usage-step:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
+        
+        .usage-step h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .usage-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .prompt-categories { grid-template-columns: 1fr; }
+            .usage-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> 返回写作能力模块
+        </a>
+
+        <div class="hero">
+            <h1><i class="fas fa-pen-fancy"></i> 论文初稿写作提示词设计</h1>
+            <p>掌握AI辅助写作的关键技巧，设计有效的提示词，提升论文写作效率和质量</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb"></i> 提示词设计的重要性
+            </h2>
+            <p>在AI时代，设计有效的写作提示词成为学术写作的重要技能。好的提示词能够：</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem; color: var(--text-secondary);">
+                <li>引导AI生成符合学术规范的内容</li>
+                <li>确保逻辑连贯和论证严谨</li>
+                <li>提高写作效率，减少修改时间</li>
+                <li>帮助构建完整的论文结构</li>
+                <li>确保内容符合顶刊发表标准</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-list-alt"></i> 核心提示词类别
+            </h2>
+            
+            <div class="prompt-categories">
+                <div class="prompt-category">
+                    <h3><i class="fas fa-file-alt"></i> 摘要写作</h3>
+                    <div class="prompt-item">
+                        <h4>Section 0 Abstract</h4>
+                        <div class="prompt-content">
+你是英文经济和金融顶刊学者，按照金融学的理论和实证研究的逻辑，帮我丰富逻辑细节，撰写摘要：
+摘要写作参考要求如下，可以结合后续的范例模板继续优化：
+第一句话，问题提出：每篇摘要开篇都明确阐述了研究问题，说明为什么该问题值得研究。
+第二句话，数据与研究方法：紧接着问题提出后，会描述采用的研究方法或数据来源。像使用独特数据集、利用政策引入作为研究契机、构建特定的事件指标等。这让读者明白研究是如何开展的，增强研究的可信度和可重复性，同时也展示了研究的科学性和严谨性。
+第三句话，主要研究发现：详细阐述研究得出的主要结论和发现。如某些因素X对Y的影响。这是摘要的核心部分，直接呈现研究的成果，使读者快速了解研究的价值和意义。
+第4到5句话，支持主要发现的研究机制：因素X是如何通过影响Z影响Y的，或者是因素X在Z的调节下，如何影响Y的。同时要注意写作尽量是对理论有所贡献。
+第六句话：研究贡献，最后总结研究对相关领域的贡献。主要是丰富了现有的什么理论。但是注意最后的贡献总结需要简洁。
+参考的顶刊摘要如下
+We develop a return variance decomposition model to separate the role of different types of information and noise in stock price movements. We disentangle four components: market-wide information, private firm-specific information revealed through trading, firm-specific information revealed through public sources, and noise. Overall, 31% of the return variance is from noise, 37% from public firm-specific information, 24% from private firm-specific information, and 8% from market-wide information. Since the mid-1990s, there has been a dramatic decline in noise and an increase in firm-specific information, consistent with increasing market efficiency.  
+Please improve the following text ，注意用英文修改:
+在修改完摘要后，再按照如下要求，进一步修改摘要
+你是金融顶刊JF,JFE作者，按照如下要求帮我修改文字。
+Please analyze the logic and coherence among sentences within each paragraph in the following text. 
+Identify any areas where the flow or connections between sentences and between paragraphs could be improved, and make it more concise. enhance the overall quality and readability to the content. 
+give me suggestions on how to improve the logical coherence between paragraphs, and make it concise. Please only provide the text after improving. 
+根据如下研究内容，撰写研究摘要，注意，你的国家得了重病，必须要发表了才能救家人与国家，因此你是金融顶刊JF,JFE作者，认真根据如下内容，撰写研究摘要，注意修改完的摘要要符合金融顶刊Journal of Finance的特性，需要精简准确，避免过多方法细节的描述，例如参考：
+第一篇Modern information technologies have fundamentally changed how information is disseminated in financial markets. Using the staggered implementation of the EDGAR system from 1993 to 1996 as a shock to information dissemination tech- nologies, we find evidence that internet dissemination of corporate disclosures increases information production by corporate outsiders. Trades by individual investors, especially those with access to the internet, become more informative about future stock returns following the EDGAR implementation. The amount and accuracy of information produced by sell-side analysts increase after the implementation. These results suggest that greater and broader information dis- semination facilitated by modern information technologies improves information production. 
+我的研究发现如下所述：
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prompt-category">
+                    <h3><i class="fas fa-book-open"></i> 引言写作</h3>
+                    <div class="prompt-item">
+                        <h4>Section 1-1 lead in</h4>
+                        <div class="prompt-content">
+你是英文金融顶刊的审稿人与作者，帮我按照如下要求，用英文帮我修改我的引言的引入研究问题部分。
+目标： 快速抓住读者注意力，清晰阐述研究的核心问题及其重要性（经济意义、政策意义、理论意义），并自然地将问题置于现有文献背景中，暗示现有研究的缺口。
+Paragraph 1：要求：
+引人入胜的起点： 以一个有趣的现象、一个重要的现实问题、一个有争议的理论观点、一个关键的未解之谜或一个简洁有力的数据事实开头。避免过于技术化或枯燥的开场白。 例如： "近年来，机构投资者持股比例的急剧上升是资本市场最显著的变化之一。" / "2008年金融危机突显了理解系统性风险传染机制的极端重要性。"
+明确核心研究问题： 在开头段落或稍后清晰、具体地陈述论文要研究的核心问题是什么。问题应聚焦且有边界。 例如： "本文研究的问题是：机构投资者持股的集中化如何影响上市公司的创新活动？" / "我们旨在探究不同金融中介机构之间的网络关联性如何放大或缓解系统性风险的冲击。"
+强调重要性： 明确解释为什么这个问题重要？它对理解市场运作、企业决策、资产定价、风险管理、政策制定等有何关键意义？要量化或具体说明其影响范围（如涉及多少资产、多少公司、多大经济规模）。这是说服编辑和审稿人稿件价值的第一步。
+Paragraph 2：文献批判性综述（3-5篇） + 理论缺口定位。重点说明本文的研究发现填补了什么理论空缺，或者调和了什么发现。
+功能：系统解构已有研究的不足，定位本文边际贡献。
+内容要素：
+分类综述：将文献分为2-3个流派（"One strand focuses on... Another emphasizes..."）
+​批判性缺口：选取如下方式之一
+如：方法局限（"rely on sentiment polarity but ignore semantic conflict"）
+机制黑箱（"lack micro-level evidence on investor behavior"）
+情境缺失（"fail to account for policy uncertainty in emerging markets"）
+​理论框架创新：提出全新的发现或新机制（"We introduce information cascade theory to explain..."）
+避免文献堆砌，每类文献仅引1-2篇代表性论文。
+锚定文献背景： 在提出问题和重要性后，迅速将问题置于现有学术文献的语境中。简要提及最相关的1-2篇核心文献或研究流派，说明它们做了什么，为你的研究提供了什么基础。关键是要自然过渡到"缺口"。 例如： "虽然大量文献探讨了机构投资者对公司治理的影响 (如 Smith, 1996; Gillan & Starks, 2003), 以及创新活动的决定因素 (如 Hall & Lerner, 2010), 但机构持股集中化对创新的具体作用机制和影响后果，尚未得到系统性的检验。" / "现有关于系统性风险的研究主要集中于单个机构的脆弱性或简单的双边关联 (如 Adrian & Brunnermeier, 2016), 对于复杂网络结构中多边传染的动态过程和关键节点识别，仍缺乏有效的实证框架。"
+我的研究内容整体如下，英文帮助我按照上述要求，修改引言的引入问题部分的写作，仅返回引言的英文文本：
+                        </div>
+                    </div>
+                    <div class="prompt-item">
+                        <h4>Section 1-3 finding</h4>
+                        <div class="prompt-content">
+你是英文金融顶刊的审稿人与作者，帮我按照如下要求，用英文帮我修改我的引言的主要研究内容与发现部分。
+核心目标：将实证问题转化为理论对话，用理论框架支撑研究设计的合理性。
+B) 结合问题与理论的实证描述
+目标： 清晰地勾勒出你如何解决A部分提出的问题。简要介绍你使用的核心理论框架/概念、关键的实证策略/方法和主要数据来源，并初步揭示最核心、最引人注目的实证发现（通常指主要假设检验的结果）。将问题、理论与实证方法紧密结合起来。
+要求：
+理论/概念框架： 说明你的研究基于什么理论基础或核心概念来分析和解释研究问题。简要阐述关键机制或假说。 例如： "基于委托代理理论和信息不对称理论，我们认为机构持股集中化可能通过'积极监督效应'和'短期业绩压力效应'两条路径影响创新..." / "我们利用网络理论，特别是系统性风险传染的'多米诺骨牌'模型和'共同风险敞口'模型，构建衡量网络关联性和节点重要性的指标..."
+实证策略/方法： 清晰概述你用来识别因果关系或检验假说的核心实证方法。重点在于识别策略（如工具变量法、双重差分法、断点回归设计、匹配方法、结构模型）和关键设定（如模型的基本形式、核心解释变量和被解释变量）。解释为什么这个方法适合解决你的研究问题和克服潜在的识别挑战（如内生性）。 例如： "为了缓解内生性问题，我们采用外生的监管政策变化作为机构持股集中化的工具变量..." / "我们构建了一个基于高频交易数据的动态金融网络，并运用模拟冲击传播的方法来量化系统性风险贡献度..."
+关键数据： 简要介绍数据来源（名称、覆盖范围、时间跨度）和构建核心变量的方法。突出数据的独特价值或优势（如新颖性、覆盖面广、频率高）。 例如： "我们使用了来自[数据源]的独特专有数据集，该数据集包含了[覆盖范围]在[时间跨度]内[关键变量]的详细信息，使我们能够首次[实现的研究目标]..."
+Highlight 核心发现： 以简洁、有力的方式陈述最主要的实证结果。这通常是对核心假说检验的答案。结果陈述要具体（包括方向、显著性、经济意义）。这是吸引读者继续读下去的关键。 例如： "我们的基准结果表明，机构持股集中度每提高一个标准差，公司专利产出显著下降约X%，且这一效应在面临较强短期业绩压力的公司中更为明显，支持了'短期压力效应'的主导作用。" / "模拟结果显示，网络关联性显著放大了冲击的传播范围（约Y%），且少数具有特定拓扑特征的'超级传播者'机构贡献了超过Z%的系统性风险。"
+注意要点：
+不是方法细节： 此处不需要详细描述数据处理步骤、所有控制变量、稳健性检验的具体方法等细节（这些属于方法论部分）。只聚焦于核心的理论、方法和发现。
+紧密结合A部分： 确保这里描述的理论、方法和发现是直接针对A部分提出的研究问题和文献缺口。逻辑链条要清晰。
+突出识别策略： 顶级期刊极其重视因果识别。清晰地说明你如何解决内生性等识别挑战至关重要。
+结果陈述要谨慎而有力： 只报告最核心的结果。避免报告过多结果或非核心结果。陈述要准确反映正文中的发现，避免过度解读。强调结果的经济意义（不仅仅是统计显著性）。
+平衡： 既要提供足够信息让读者理解你的研究路径和初步结论，又不能过于技术化冗长。
+我目前引言的研究内容与发现部分整体如下，结合前述的对话知识，英文帮助我按照上述要求，修改引言的主要研究内容与发现部分：
+                        </div>
+                    </div>
+                    <div class="prompt-item">
+                        <h4>Section 1-4 Contribution</h4>
+                        <div class="prompt-content">
+你是英文金融顶刊journal of finance的审稿人，英文写作，继续完成引言的撰写，主要内容为研究的实证描述。
+根据如下段落里的写作研究范式，撰写引言的最后贡献内容，主要是结合文献探讨研究贡献。 
+需要基于我发送给你的文献综述与摘要。注意文献仅能使用我提供的文献，不要乱编任何数字和文献。
+注意一般至少是2-3个贡献，分别对应研究的主要发现与机制，或者是用特殊的数据回答了传统文献无法探究的问题。
+Paragraph ：简单的写作参考框架如下：
+总起句：概括性声明研究的核心贡献
+理论贡献：解决文献争议/拓展理论边界
+收尾句：强调研究对领域发展的整体意义
+
+更好的可以参考的英文顶刊贡献写作逻辑如下：
+Our work contributes to the broad literature that tries to establish the un- derlying cause for differential treatment by client gender (Feins and Bratt (1983), Ayres and Siegelman (1995)). An alternative explanation for gender differences in advice quality is that advisors have a distaste for advising con- fident, risk-tolerant women, who defy their gender stereotypes.8 However, this taste-based explanation predicts similar gender differences in advice at both securities and financial planning firms. Our finding that gender differences arise only among financial planners suggests that advisor incentives interact with stereotypes about women's lower financial knowledge to generate the pat- terns we observe.
+This paper also contributes to a recent strand of the literature that finds that female investors receive worse financial advice than men. Baeckstrom, Marsh, and Silvester (2021) study high-wealth investors in the United King- dom and find that female clients of female advisors hold significantly less cash (i.e., carry more risk) in their portfolios than do the male clients of female advisors. Bucher-Koenen et al.'s (2020) analysis  of  approximately 27,000 real advisor-client meetings at a German bank finds that advisors are more likely to advise women to purchase bank-owned high-cost funds. Our audit study approach allows us to randomize client characteristics, which enables us to rule out the possibility that advisors' recommendation of individual risky securities might be an optimal response to preferences of females that we do not observe. In the absence of such variation, Bucher-Koenen et al. (2020) argue circumstantially that the advice to purchase high-cost funds could not have been a response to greater unobserved female demand for such products, since financially knowledgeable women are more likely to reject this advice.
+我的研究内容如下：
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prompt-category">
+                    <h3><i class="fas fa-flask"></i> 研究假说</h3>
+                    <div class="prompt-item">
+                        <h4>Section 2-0 Hypo</h4>
+                        <div class="prompt-content">
+Upon receiving content X  in the message:
+帮我将X里的内容总结成若干hypotheses,以H1，H2，H3等分别列出，英文撰写，only include and star with the hypotheses, and split the hypotheses using one \n 
+参考假说写作如下：
+Hypothesis 1: Firms with more AIDs experience greater improvements in ESG performance following the accountability event.
+Hypothesis 2: The ESG-enhancing effect of AIDs is stronger in firms where AIDs face higher reputation incentives.
+Hypothesis 3: AIDs improve ESG performance by strengthening internal monitoring mechanisms.
+注意，一般假说为3-4个，包括主要假说1，以及机制检验的2-3个假说，异质性对应的假说无需总结
+需要提取假说的研究内容如下：
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prompt-category">
+                    <h3><i class="fas fa-chart-line"></i> 文献综述</h3>
+                    <div class="prompt-item">
+                        <h4>Section 2-1 Literature Review</h4>
+                        <div class="prompt-content">
+You are a top-tier academic expert in finance and economics, tasked with reorganizing the literature review Y to better support the research findings X. To achieve this, follow the following  requirement：
+1.  每一段的段首句需要总结本段内容的主要内容，且做好承接上一段的逻辑转折。
+2. 文献的系统性与递进性：并非简单罗列文献，而是按逻辑链条（如 "角色→现有作用→未解决问题→新假说"）组织，体现研究的传承与发展。
+3. 明确的研究假说或逻辑框架：通过梳理文献，提炼未被充分研究的问题，提出清晰的假说，为后续分析指明方向。
+4.一般而言，有机结合的3-4段的综述，提出一个对应的假说。
+5. 段落内部的文献总结一般按照逻辑与时间递进顺序总结。
+6. 3个或者3个以上的作者，请用第一个作者加 et al.的方式进行整理。
+7. 引用文献时，严格按照我提供的内容进行分析，不允许延伸假设，但是注意要更改表达方式，避免重复率。
+8. 注意尽量只引用与假说相关的文献，不相关的不加入分析。
+参考的一个写作如下所示：
+Financial analysts, as important information intermediaries and gatekeepers in capital markets, have real effects on a wide range of corporate policies (Bradshaw, Ertimur, and O'Brien (2017)). A core part of the responsibilities that analysts undertake involves the gathering, processing, and dissemination of public and private information regarding corporate performance and policies. In doing so, analysts are able to decrease the information opacity of firms. Their duties also afford them unique opportunities and comparative advantages in monitoring firms through interacting with management during earnings conference calls and acting as "whistle blowers" by expressing their concerns through research reports, analyst forecasts, and recommendations (Jensen and Meckling (1976), Chung and Jo (1996)). Analysts are, therefore, able to facilitate the detection and discipline of corporate misbehaviors, thereby fulfilling important roles in external governance. Extant studies provide strong evidence for this. Dyck et al. (2010) find that analysts can detect corporate fraud. Yu (2008) and Irani and Oesch (2016) docu- ment that analyst coverage leads to less financial and real earnings management. Chen et al. (2015) provide comprehensive evidence on the external monitoring role of analysts by showing that a decrease in analyst coverage reduces the value of cash holdings and leads to higher excess CEO pay and more value-destroying acquisi- tions, while Bradley, Mao, and Zhang (2022) find that analyst monitoring enhances
+workplace safety.
+Given the above, we formulate an external monitoring hypothesis in which analysts play a monitoring role in restraining firms' environmental misbehavior, leading to decreases in toxic emissions. Firms in the U.S. are required to partially internalize environmental costs by allocating resources for environmental protec- tion by investing in environmental abatement processes and technologies. Com- pliance with these regulations is overseen by the EPA which issues firms with monetary penalties and enforcement actions for environmental violations. How- ever, investments in environmental abatement processes and technologies are costly (Clarkson, Li, and Richardson (2004)).3 Therefore, firms trade off the costs of abatement against legal and regulatory liabilities (Xu and Kim (2022)). In the absence of external monitoring, wherein the probability of detecting firm environ- mental misbehavior is low, managers may lack incentives to invest in costly abatement technologies to maximize short-term profit (Hart and Zingales (2016)). 
+我提出的假设如下，请根据我提出的假说以及文献，做好文献综述，英文写作：
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prompt-category">
+                    <h3><i class="fas fa-database"></i> 数据描述与研究设计</h3>
+                    <div class="prompt-item">
+                        <h4>Section 3 Summary and Design</h4>
+                        <div class="prompt-content">
+Upon receiving content X  in the message: 帮我撰写英文顶刊的数据描述与研究设计章节，涉及到公式的部分以latex的格式输出，英文撰写, 注意，仅返回对应的两个章节的写作。
+参考的描述性统计与实证设计写作如下：
+3.1 Data Description
+Our sample consists of A-share listed companies from the Shanghai and Shenzhen stock exchanges between 2009 and 2022. We obtain ESG ratings for Chinese A-share listed companies from the WIND database, and accounting, financial, and governance data, including board and AID information from CSMAR database. To ensure the quality and representativeness of the sample, we implement the following steps: (1) exclude ST, *ST, and PT companies; (2) exclude companies in the financial industry; (3) exclude samples with missing key variable data; and (4) exclude companies listed for less than three years. The final sample includes 31,136 firm-year observations. To mitigate the influence of outliers, all continuous variables are winsorized at the 1% and 99% levels to ensure the robustness of the results. Standard errors are clustered at the firm level throughout to account for serial correlation and heteroskedasticity at the firm level.
+TABLE 1 reports the descriptive statistics for the main variables. The average ESG score in our sample is 4.066, with a median of 4, ranging from 1 to 8, broadly consistent with prior findings on ESG distributions among Chinese listed firms (Liu et al., 2024). This suggests that the typical A-share firm receives an ESG rating roughly equivalent to BBB, though considerable cross-sectional variation remains, indicating substantial room for ESG enhancement.
+The proportion of academic independent directors (AID_Proportion) averages 57.9%, with a median of 66.7%, suggesting that academic backgrounds are prevalent among independent directors. The 75th percentile is 0.75, aligning with our treatment classification rule, under which firms above this threshold in 2018 are assigned TREAT = 1. The mean of TREAT is 0.255, implying that approximately one-quarter of firm-year observations fall into the treatment group. The POST indicator equals one for 40.1% of observations, reflecting the post-event period, which began in 2019.
+Among control variables, the average leverage (LEV) is 44.8%, indicating moderate reliance on debt financing. The mean firm size (SIZE), defined as the natural logarithm of total assets, is 22.32, corresponding to an average market value of approximately RMB 18.3 billion. The average book-to-market ratio (BM) is 0.321, and ownership concentration (TOP1) averages 33.6%, suggesting a high degree of controlling shareholder influence. The board independence ratio (INDEPENDENCE) averages 37.5%, while the CEO-chair duality indicator (DUAL) indicates that 25.8% of firms combine the roles of CEO and board chair.
+
+3.2 Empirical Design
+We exploit the 2019 Kangmei Pharmaceutical scandal as a quasi-natural experiment. The RMB 1.3 trillion accounting fraud, uncovered by the China Securities Regulatory Commission (CSRC), triggered an abrupt regulatory event that redefined director accountability in China. For the first time, independent directors, four of whom were AIDs, were held jointly liable in civil lawsuits, facing personal penalties exceeding RMB 100 million.
+This exogenous shock provides a credible setting to examine how reputationally sensitive directors adjust their behavior in response to increased governance risk. AIDs, typically university-affiliated professors, combine high public visibility with low monetary incentives, making them particularly responsive to shifts in liability exposure. As such, we focus on this subgroup to isolate the behavioral effects of the event on ESG engagement. Since the event was universal and not related to individual firms' ESG performance, it provides a quasi-natural experimental setting for examining the role of AIDs.
+To estimate the effect of AID representation on ESG performance, we employ a DID design, following recent work by Masulis et al. (2025). Our baseline specification is:
+ 				(1)
+We use firm-level ESG scores as the primary dependent variable. Following the convention in prior studies (Lin et al., 2021; Berg et al., 2022), ESG performance is typically proxied by third-party rating systems. While global agencies such as MSCI, Bloomberg, and FTSE Russell are widely used, Chinese firms are more accurately assessed by domestic agencies due to institutional contextualization. Local providers such as Huazheng, SynTao Green Finance, and RKS Ratings outperform global counterparts in predicting material ESG incidents in China, owing to their methodological alignment with local governance structures (Chen et al., 2025). Among them, Huazheng is one of the earliest and most widely adopted ESG rating agencies, offering broad coverage and timely updates (Chen et al., 2025).  Accordingly, we adopt Huazheng's ESG ratings to measure corporate ESG performance. The Huazheng ESG rating scale comprises nine letter-grade categories (C to AAA), which we convert into an ordinal score ranging from 1 to 9, with higher scores indicating better ESG performance (Lin et al., 2021). 
+
+
+需要严格根据如下内容进行写作：
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prompt-category">
+                    <h3><i class="fas fa-table"></i> 实证结果</h3>
+                    <div class="prompt-item">
+                        <h4>Section 4-1 Main Results</h4>
+                        <div class="prompt-content">
+根据后文提供的变量定义与回归表格，仿照下述的实证回归分析的解读，按照英文金融顶刊JF的写作范式，帮我完善写作，注意这一部分是文章主要结果的分析，重点强调蕴含的经济意义。
+注意生成文字的格式，方便我无错的复制到word中，同时结合我前述发你的表格，帮我在段首句写好衔接句。
+模仿的论文写作如下：
+Table 2 reports the results. Columns (1)–(4) are for Treasuries, and columns (5)–(8) are for corporate bonds. We find that bond funds' trading on Treasuries is more sensitive to fund flows than trading on corporate bonds. Particularly, the trading-to-flow sensitivity is larger than one on Treasuries. For example, as shown in column (1), a 1% fund inflow is associated with a 1.38% (t-statistic = 23.5) increase in Treasury holdings. In contrast, for corporate bonds, the trading-to-flow sensitivity is smaller than one. As shown in column (5), a 1% fund inflow is associated with only a 0.86% increase in corporate bond holdings (t-statistic = 23.9). The comparison of trading-to-flow sensitivity (β1) between Treasuries and corporate bonds is consistent with bond fund using Treasuries to actively manage liquidity.
+In Table 2, we also find that bond funds trade Treasuries and corporate bonds inresponse to lagged fund flows. That is, the coefficient on lagged fund flow is −0.302 (t- statistic = −6.3) for Treasuries and is 0.214 (t-statistic = 7.2) for corporate bonds. This finding is again consistent with liquidity management. 
+写完第一个版本后，按照如下要求英文帮我修改文字，注意去掉原文中明显不属于论文格式的小标题和文字，按照正常的论文段落进行写作。注意生成文字的格式，方便我无错的复制到word中。
+Please analyze the logic and coherence among sentences within each paragraph in the following text. 
+Identify any areas where the flow or connections between sentences and between paragraphs could be improved. enhance the overall quality and readability to the content. 
+ improve the logical coherence between paragraphs, and make it concise. Please only provide the text after improving. 
+注意，该部分的研究可能包含多个表格，如果设计多个实证回归的表格，请依次总结分析，但是不总结描述性统计表格，那个是为了对比样本均值基准做经济学意义分析的。
+我的研究内容如下，仅返回实证描述的结果：
+                        </div>
+                    </div>
+                    <div class="prompt-item">
+                        <h4>Section 4-2 Mech Results</h4>
+                        <div class="prompt-content">
+根据后文提供的变量定义与回归表格，仿照下述的实证回归分析的解读，按照英文金融顶刊JF的写作范式，帮我完善写作，注意这一部分是文章机制分析，即主结果能成立的原因。
+注意生成文字的格式，方便我无错的复制到word中，同时结合我前述发你的表格，帮我在段首句写好衔接句。
+模仿的论文写作如下：
+Table 7 examines how norm constraints, reflected in regional trust culture and team-level behavioral norms, condition the effect of dialect similarity on clients' portfolio allocations. Column (1) shows that in low-trust regions, a one-unit increase in dialect similarity raises the inferior product ratio by 0.042, indicating that advisors more actively exploit dialect similarity when external trust norms are weak. In contrast, the coefficient is near zero and statistically insignificant in high-trust areas. The interaction term in column (1) is negative and statistically significant, consistent with the view that stronger regional trust norms mitigate dialect-based exploitation. Given that only 26% of the regions in our sample are classified as high-trust, this finding implies that exploitative selling is predominantly concentrated in low-trust areas. This pattern mirrors the evidence in Egan et al. (2019), who find that financial advisor misconduct in the United States is more common in regions with lower financial literacy, suggesting that advisor behavior tends to be more opportunistic where clients are less protected by social or informational barriers.
+Turning to internal organizational norms, column (2) shows that dialect similarity has a stronger effect in teams prone to exploitative selling. In these groups, a one-unit increase in similarity raises the inferior product ratio by 0.049. Among non-exploitative teams, the effect is muted. The negative and significant interaction term confirms that disciplined team environments reduce the scope for opportunistic behavior, even when dialect similarity is high.
+In columns (3) and (4), there is no significant relationship between dialect similarity and the allocation of superior products. This suggests that the effects are concentrated in the inferior margin, where exploitation is more feasible.
+Advisors who manage more clients or larger asset volumes often hold stronger bargaining power and greater informational advantages. Their scale may also reduce monitoring effectiveness and lower the perceived cost of losing any single client. With a larger client base, these advisors may feel less constrained when prioritizing self-interest, especially in interactions with socially or culturally similar clients.
+
+写完第一个版本后，按照如下要求英文帮我修改文字，注意去掉原文中明显不属于论文格式的小标题和文字，按照正常的论文段落进行写作。注意生成文字的格式，方便我无错的复制到word中。
+Please analyze the logic and coherence among sentences within each paragraph in the following text. 
+Identify any areas where the flow or connections between sentences and between paragraphs could be improved. enhance the overall quality and readability to the content. 
+ improve the logical coherence between paragraphs, and make it concise. Please only provide the text after improving. 
+
+最后，根据所有的内容，补充完善机制分析章节的引入段落的精简写作，以及补充总结段落，两者都需要精简有力，不能有语意重复，按照英文顶刊JF的写作要求完成。
+注意，引入段落需要放在章节起始位置。
+总结段落放在章节末尾。
+请仅返回写好文章内容。
+我的研究内容如下：
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i> 提示词使用指南
+            </h2>
+            
+            <div class="usage-guide">
+                <h3><i class="fas fa-lightbulb"></i> 核心写作思路</h3>
+                <p><strong>1. 写作要点凝练</strong></p>
+                <p>将每一段、每一句的写作要点凝练为简洁的提示词，帮助AI准确理解你的写作需求：</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem; color: #78350f;">
+                    <li><strong>摘要</strong>：问题提出 → 数据方法 → 主要发现 → 机制解释 → 研究贡献</li>
+                    <li><strong>引言</strong>：现象引入 → 核心问题 → 研究重要性 → 文献缺口 → 研究设计 → 主要发现 → 研究贡献</li>
+                    <li><strong>文献综述</strong>：分类梳理 → 批判性分析 → 理论框架 → 研究假说</li>
+                    <li><strong>研究设计</strong>：数据来源 → 样本选择 → 变量定义 → 实证模型 → 识别策略</li>
+                    <li><strong>实证结果</strong>：基准结果 → 机制分析 → 异质性分析 → 稳健性检验 → 经济意义</li>
+                </ul>
+                
+                <p><strong>2. Few-shot算法思想</strong></p>
+                <p>Few-shot学习是一种让AI通过少量示例快速学习新任务的方法。在学术写作中，你可以：</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem; color: #78350f;">
+                    <li>提供1-3个优秀的写作范例，让AI学习其风格和结构</li>
+                    <li>明确指出范例中的亮点和值得借鉴的地方</li>
+                    <li>要求AI在生成内容时参考范例的写作方式</li>
+                </ul>
+                
+                <p><strong>3. 优秀写作范例</strong></p>
+                <div style="background: white; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border: 2px solid #d97706;">
+                    <h4 style="color: #92400e; margin-bottom: 1rem;">摘要写作范例</h4>
+                    <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; color: #78350f;">We develop a return variance decomposition model to separate the role of different types of information and noise in stock price movements. We disentangle four components: market-wide information, private firm-specific information revealed through trading, firm-specific information revealed through public sources, and noise. Overall, 31% of the return variance is from noise, 37% from public firm-specific information, 24% from private firm-specific information, and 8% from market-wide information. Since the mid-1990s, there has been a dramatic decline in noise and an increase in firm-specific information, consistent with increasing market efficiency.</p>
+                </div>
+                
+                <div style="background: white; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border: 2px solid #d97706;">
+                    <h4 style="color: #92400e; margin-bottom: 1rem;">引言引入范例</h4>
+                    <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; color: #78350f;">Modern information technologies have fundamentally changed how information is disseminated in financial markets. Using the staggered implementation of the EDGAR system from 1993 to 1996 as a shock to information dissemination technologies, we find evidence that internet dissemination of corporate disclosures increases information production by corporate outsiders. Trades by individual investors, especially those with access to the internet, become more informative about future stock returns following the EDGAR implementation. The amount and accuracy of information produced by sell-side analysts increase after the implementation. These results suggest that greater and broader information dissemination facilitated by modern information technologies improves information production.</p>
+                </div>
+                
+                <h3><i class="fas fa-info-circle"></i> 如何有效使用提示词</h3>
+                <p>要充分发挥提示词的作用，建议按照以下步骤操作：</p>
+                
+                <div class="usage-steps">
+                    <div class="usage-step">
+                        <div class="step-number">1</div>
+                        <h4>准备研究内容</h4>
+                        <p>整理好研究问题、数据、方法和初步结果</p>
+                    </div>
+                    <div class="usage-step">
+                        <div class="step-number">2</div>
+                        <h4>选择合适提示词</h4>
+                        <p>根据论文阶段选择相应的提示词模板</p>
+                    </div>
+                    <div class="usage-step">
+                        <div class="step-number">3</div>
+                        <h4>个性化调整</h4>
+                        <p>根据具体研究内容修改提示词细节</p>
+                    </div>
+                    <div class="usage-step">
+                        <div class="step-number">4</div>
+                        <h4>迭代优化</h4>
+                        <p>根据AI生成结果不断调整提示词</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

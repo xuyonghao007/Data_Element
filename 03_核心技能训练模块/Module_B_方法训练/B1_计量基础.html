@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1-计量经济学基础 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(67,233,123,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid var(--success); }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: var(--success); }
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .topic-card { background: var(--light-bg); padding: 1.75rem; border-radius: 14px; border-top: 4px solid var(--success); transition: all 0.3s; }
+        .topic-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .topic-card h4 { color: var(--primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
+        .topic-card p { color: #64748b; font-size: 0.93rem; line-height: 1.75; }
+        .stata-code { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 10px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.88rem; line-height: 1.7; overflow-x: auto; margin: 1rem 0; }
+        .stata-code .comment { color: #64748b; } .stata-code .cmd { color: #4ade80; } .stata-code .var { color: #60a5fa; }
+        .learning-path { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+        .lp-item { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 12px; border-left: 4px solid var(--success); }
+        .lp-num { width: 42px; height: 42px; min-width: 42px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; }
+        .lp-content h5 { color: var(--primary); margin-bottom: 0.35rem; }
+        .lp-content p { color: #047857; font-size: 0.92rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📊 B1: 计量经济学基础与Stata入门</h1>
+        <p>从OLS到面板数据，掌握金融实证研究的核心工具</p>
+    </div>
+
+    <!-- 核心知识点 -->
+    <div class="section">
+        <h2><i class="fas fa-graduation-cap"></i> 必须掌握的核心概念</h2>
+        <div class="topic-grid">
+            <div class="topic-card">
+                <h4><i class="fas fa-square-root-alt"></i> OLS回归基础</h4>
+                <p><strong>最小二乘法</strong>是所有计量方法的基石。需要理解：<br>
+                • 古典假设（线性性、无完全共线性、条件零均值、同方差、无自相关、正态性）<br>
+                • 系数解释（边际效应）、R²含义、t检验和F检验<br>
+                • 违背假设时的后果及初步诊断方法</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-table"></i> 面板数据模型</h4>
+                <p><strong>面板数据</strong>是金融研究中最常用的数据结构。<br>
+                • 固定效应(FE) vs 随机效应(RE)：Hausman检验选择<br>
+                • 双向固定效应：控制个体异质性和时间趋势<br>
+                • 聚类标准误(Clustered SE)：处理组内相关性</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-exclamation-triangle"></i> 内生性问题</h4>
+                <p><strong>内生性</strong>是实证研究的核心挑战。<br>
+                • 三大来源：遗漏变量偏差(OVB)、双向因果、测量误差<br>
+                • 后果：OLS估计量不一致且有偏<br>
+                • 解决思路：寻找合适的<strong>识别策略</strong>(详见B2)</p>
+            </div>
+            <div class="topic-card">
+                <h4><i class="fas fa-chart-bar"></i> 假设检验与推断</h4>
+                <p>正确理解统计显著性。<br>
+                • p值 ≠ 重要性！区分统计显著 vs 经济显著<br>
+                • 多重比较问题(Bonferroni校正)<br>
+                • 置信区间的正确解读和应用</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stata代码示例 -->
+    <div class="section">
+        <h2><i class="fas fa-terminal"></i> Stata核心操作速查</h2>
+        
+        <div style="margin-top: 1.5rem;">
+            <h4 style="color: var(--primary); margin-bottom: 0.75rem;"><i class="fas fa-file-import"></i> 数据导入与基本操作</h4>
+            <div class="stata-code">
+<span class="comment">* 导入数据（支持Excel/CSV/Stata格式）</span>
+<span class="cmd">import excel</span> <span class="var">"data.xlsx"</span>, <span class="cmd">firstrow clear</span>
+<span class="cmd">use</span> <span class="var">"data.dta"</span>, <span class="cmd">clear</span>
+
+<span class="comment">* 查看数据概览</span>
+<span class="cmd">describe</span>          <span class="comment">// 变量信息</span>
+<span class="cmd">summarize</span>         <span class="comment">// 描述性统计</span>
+<span class="cmd">tabulate</span> industry  <span class="comment">// 分类变量频数</span>
+<span class="cmd">browse</span>             <span class="comment">// 浏览数据</span>
+
+<span class="comment">* 数据处理</span>
+<span class="cmd">gen</span> ln_assets = <span class="cmd">log</span>(total_assets)     <span class="comment">// 生成新变量</span>
+<span class="cmd">replace</span> missing = 0 <span class="cmd">if</span> missing(missing)  <span class="comment">// 替换缺失值</span>
+<span class="cmd">drop if</span> year < 2010                       <span class="comment">// 删除观测</span>
+<span class="cmd">keep</span> id year roa leverage esg              <span class="comment">// 保留指定变量</span>
+
+<span class="comment">* 数据合并（面板数据常用）</span>
+<span class="cmd">merge 1:1</span> id year using <span class="var">"control_vars.dta"</span>
+            </div>
+
+            <h4 style="color: var(--primary); margin: 1.5rem 0 0.75rem;"><i class="fas fa-calculator"></i> 回归分析核心命令</h4>
+            <div class="stata-code">
+<span class="comment">* 基准OLS回归</span>
+<span class="cmd">regress</span> y x1 x2 x3 controls, <span class="cmd">robust</span>
+
+<span class="comment">* 固定效应面板回归（最常用！）</span>
+<span class="cmd">xtset</span> id year                    <span class="comment">// 声明面板结构</span>
+<span class="cmd">xtreg</span> y x1 x2 x3 controls i.year, fe <span class="cmd">cluster</span>(id)
+
+<span class="comment">* 双向固定效应（个体+时间）</span>
+<span class="cmd">reghdfe</span> y x1 x2 x3 controls, absorb(id year) vce(cluster id)
+<span class="comment">// 注：reghdfe是外部命令，需先安装：ssc install reghdfe</span>
+
+<span class="comment">* 分组回归（异质性分析）</span>
+<span class="cmd">bysort</span> group: <span class="cmd">regress</span> y x1 x2 controls
+<span class="comment">// 或使用esttab批量输出结果</span>
+
+<span class="comment">* 输出回归表格（推荐estout系列命令）</span>
+<span class="cmd">eststo</span>: <span class="cmd">xtreg</span> y x1 controls, fe
+<span class="cmd">eststo</span>: <span class="cmd">xtreg</span> y x1 x2 controls, fe
+<span class="cmd">esttab</span> <span class="cmd">est1 est2</span>, keep(x1 x2) stats(N r2) star(* 0.1 ** 0.05 *** 0.01)
+            </div>
+
+            <h4 style="color: var(--primary); margin: 1.5rem 0 0.75rem;"><i class="fas fa-vial"></i> 诊断检验</h4>
+            <div class="stata-code">
+<span class="comment">* 多重共线性检验</span>
+<span class="cmd">vif</span>           <span class="comment">// VIF > 10 表示严重多重共线性</span>
+
+<span class="comment">* 异方差检验</span>
+<span class="cmd">hettest</span>       <span class="comment">// Breusch-Pagan检验</span>
+
+<span class="comment">* Hausman检验（FE vs RE选择）</span>
+<span class="quietly xtreg y x controls, re: estimates store re
+xtreg y x controls, fe: estimates store fe
+hausman fe re</span>
+
+<span class="comment">* 描述性统计表输出</span>
+<span class="cmd">asdoc sum y x1 x2 controls, save(mytable.doc) replace</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学习路径 -->
+    <div class="section">
+        <h2><i class="fas fa-road"></i> 推荐学习路径</h2>
+        <div class="learning-path">
+            <div class="lp-item">
+                <div class="lp-num">1</div>
+                <div class="lp-content">
+                    <h5>第1周：环境搭建 + 数据导入导出</h5>
+                    <p>安装Stata SE/MP，熟悉界面操作，练习导入不同格式的数据集，掌握describe/summarize/tabulate等基本命令</p>
+                </div>
+            </div>
+            <div class="lp-item">
+                <div class="lp-num">2</div>
+                <div class="lp-content">
+                    <h5>第2周：OLS回归完整流程</h5>
+                    <p>从数据清理到运行回归再到输出结果表。重点理解系数含义、标准误、t统计量、p值、R²等核心概念</p>
+                </div>
+            </div>
+            <div class="lp-item">
+                <div class="lp-num">3</div>
+                <div class="lp-content">
+                    <h5>第3-4周：面板数据深入</h5>
+                    <p>学习xtset/xtreg命令，理解FE vs RE的区别和Hausman检验，掌握聚类标准误的重要性</p>
+                </div>
+            </div>
+            <div class="lp-item">
+                <div class="lp-num">4</div>
+                <div class="lp-content">
+                    <h5>第5-6周：复现经典论文</h5>
+                    <p>找一篇有公开数据和代码的简单论文（如JFE Top3），尝试完整复现其基准回归结果。这是最好的学习方法！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 资源推荐 -->
+    <div class="section" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5);">
+        <h2><i class="fas fa-book"></i> 推荐学习资源</h2>
+        <div style="margin-top: 1.5rem; line-height: 2; color: #047857;">
+            <p><strong>📚 教材：</strong></p>
+            <ul style="padding-left: 1.5rem;">
+                <li>《计量经济学及Stata应用》- 陈强（国内最经典的中文教材）</li>
+                <li>《 Mostly Harmless Econometrics》- Angrist & Pischke（英文经典，侧重因果推断）</li>
+                <li>《Introductory Econometrics》- Wooldridge（适合打基础）</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>💻 在线资源：</strong></p>
+            <ul style="padding-left: 1.5rem;">
+                <li>Stata官方文档（help 命令名）：最权威的参考资料</li>
+                <li>B站搜索"Stata入门教程"：有大量免费视频课程</li>
+                <li>GitHub上的开源代码库：搜索领域+stata可找到大量复现代码</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="../Module_A_文献能力/A4_知识库构建.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一模块：文献能力</a>
+        <a href="B2_识别策略.html" class="nav-btn next">下一节：识别策略 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

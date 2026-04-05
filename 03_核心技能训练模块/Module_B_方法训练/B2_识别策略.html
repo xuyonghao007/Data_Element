@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2-因果识别策略 | 核心技能训练</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #4299e1; --success: #38a169; --warning: #d69e2e; --light-bg: #f7fafc; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%); color: var(--primary); line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { background: linear-gradient(135deg, #fa709a, #fee140); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(250,112,154,0.25); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 1rem; } .header p { font-size: 1.15rem; opacity: 0.95; }
+        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 5px solid #fa709a; }
+        .section h2 { font-size: 1.65rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: #fa709a; }
+        .method-card { background: var(--light-bg); border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem; border-left: 5px solid #fa709a; transition: all 0.3s; }
+        .method-card:hover { transform: translateX(8px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .method-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem; }
+        .method-header h3 { color: var(--primary); font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .method-tag { background: linear-gradient(135deg, #fa709a, #fee140); color: white; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 600; }
+        .method-body { color: #475569; line-height: 1.85; }
+        .method-body strong { color: var(--primary); }
+        .method-body ul { padding-left: 1.25rem; margin: 0.5rem 0; }
+        .method-body li { margin-bottom: 0.4rem; }
+        .assumption-box { background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 10px; padding: 1.25rem; margin: 1rem 0; }
+        .assumption-box h5 { color: #92400e; margin-bottom: 0.5rem; }
+        .decision-tree { background: linear-gradient(135deg, #fce7f3, #fbcfe8); padding: 2rem; border-radius: 14px; margin: 1.5rem 0; text-align: center; }
+        .decision-tree h3 { color: #be185d; margin-bottom: 1.5rem; }
+        .dt-node { display: inline-block; background: white; padding: 1rem 1.5rem; border-radius: 10px; margin: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-weight: 600; color: var(--primary); }
+        .dt-arrow { font-size: 1.5rem; color: #db2777; margin: 0 0.5rem; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-btn.prev { background: var(--light-bg); color: var(--secondary); }
+        .nav-btn.next { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
+        .nav-btn:hover { transform: translateX(-5px); } .nav-btn.next:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🎯 B2: 因果识别策略详解</h1>
+        <p>DID / IV / RDD / PSM — 金融实证研究的四大法宝</p>
+    </div>
+
+    <!-- 决策树 -->
+    <div class="section">
+        <h2><i class="fas fa-sitemap"></i> 方法选择决策树</h2>
+        <div class="decision-tree">
+            <h3>面对一个研究问题，如何选择识别策略？</h3>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">
+                <div class="dt-node">有外生政策冲击？</div>
+                <div class="dt-arrow">→</div>
+                <div class="dt-node" style="border-color: #ef4444; border-width: 2px;">DID / 合成控制法</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.75rem;">
+                <div class="dt-node">有阈值规则变化？</div>
+                <div class="dt-arrow">→</div>
+                <div class="dt-node" style="border-color: #3b82f6; border-width: 2px;">RDD 断点回归</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.75rem;">
+                <div class="dt-node">能找到有效工具变量？</div>
+                <div class="dt-arrow">→</div>
+                <div class="dt-node" style="border-color: #10b981; border-width: 2px;">IV 工具变量法</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.75rem;">
+                <div class="dt-node">只有观察数据？</div>
+                <div class="dt-arrow">→</div>
+                <div class="dt-node" style="border-color: #f59e0b; border-width: 2px;">PSM + DID / 固定效应</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DID -->
+    <div class="method-card">
+        <div class="method-header">
+            <h3><i class="fas fa-exchange-alt"></i> 双重差分法 (DID)</h3>
+            <span class="method-tag">⭐ 最常用 · 政策评估首选</span>
+        </div>
+        <div class="method-body">
+            <p><strong>核心思想：</strong>通过对比"处理组"和"对照组"在政策实施前后的差异变化，来识别政策的因果效应。</p>
+            
+            <div class="assumption-box">
+                <h5><i class="fas fa-shield-alt"></i> 关键假设：平行趋势假设 (Parallel Trends)</h5>
+                <p style="font-size: 0.92rem; color: #78350f;">如果没有政策干预，处理组和对照组的变化趋势应该是一致的。</p>
+            </div>
+
+            <p><strong>适用场景：</strong></p>
+            <ul>
+                <li>某项法规/政策只在部分地区或部分企业实施（准自然实验）</li>
+                <li>可以明确区分处理组和对照组</li>
+                <li>有政策实施前后的多期数据</li>
+            </ul>
+            <p><strong>典型应用：</strong></p>
+            <ul>
+                <li>注册制改革对IPO定价效率的影响</li>
+                <li>碳交易市场对企业碳排放的影响</li>
+                <li>沪港通开通对A股市场的影响</li>
+            </ul>
+            <p><strong>Stata实现要点：</strong></p>
+            <ul>
+                <li>平行趋势检验（事件研究法 Event Study）</li>
+                <li>多期DID (Staggered DID) 注意处理TWFE偏差</li>
+                <li>安慰剂检验 (Placebo Test)、排除其他解释</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- IV -->
+    <div class="method-card">
+        <div class="method-header">
+            <h3><i class="fas fa-key"></i> 工具变量法 (IV)</h3>
+            <span class="method-tag">解决内生性的经典方法</span>
+        </div>
+        <div class="method-body">
+            <p><strong>核心思想：</strong>找到一个与内生解释变量相关但与误差项无关的工具变量(Z)，用Z的变异来识别X对Y的因果效应。</p>
+            
+            <div class="assumption-box">
+                <h5><i class="fas fa-check-double"></i> IV的两个核心条件</h5>
+                <p style="font-size: 0.92rem; color: #78350f;">
+                    ① <strong>相关性 (Relevance)</strong>：Cov(Z,X) ≠ 0 → 工具变量必须与内生解释变量强相关<br>
+                    ② <strong>外生性 (Exclusion)</strong>：Cov(Z,ε) = 0 → 工具变量只能通过X影响Y，不能直接影响Y
+                </p>
+            </div>
+
+            <p><strong>常见IV来源：</strong></p>
+            <ul>
+                <li><strong>法律/制度作为IV</strong>：如反收购条款指数(CFC)、投资者保护法律</li>
+                <li><strong>地理/历史因素</strong>：如到沿海距离、历史上的移民比例</li>
+                <li><strong>行业均值/滞后值</strong>：需谨慎论证外生性</li>
+                <li><strong>Bartik/shift-share IV</strong>：近年热门构造方式</li>
+            </ul>
+            <p><strong>检验步骤：</strong></p>
+            <ul>
+                <li>第一阶段F统计量 > 10（弱工具变量检验）</li>
+                <li>过度识别检验（Sargan/Hansen J检验，多IV时）</li>
+                <li>Durbin-Wu-Hausman检验（内生性检验）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RDD -->
+    <div class="method-card">
+        <div class="method-header">
+            <h3><i class="fas fa-cut"></i> 断点回归 (RDD)</h3>
+            <span class="method-tag">局部随机实验 · 高可信度</span>
+        </div>
+        <div class="method-body">
+            <p><strong>核心思想：</strong>当某个连续变量存在临界值(cutoff)，且个体在该临界值两侧的分配近似随机时，可以利用断点附近的样本进行因果推断。</p>
+            
+            <div class="assumption-box">
+                <h5><i class="fas fa-balance-scale"></i> 核心假设：连续性假设</h5>
+                <p style="font-size: 0.92rem; color: #78350f;">除了处理变量在断点处跳跃外，其他所有变量在断点处都是连续平滑的。</p>
+            </div>
+
+            <p><strong>类型：</strong></p>
+            <ul>
+                <li><strong>Sharp RDD</strong>：处理概率从0跳到1（如：高考分数线以上录取）</li>
+                <li><strong>Fuzzy RDD</strong>：处理概率在断点处跳跃但非0→1（如：达到年龄可申请但非强制）</li>
+            </ul>
+            <p><strong>典型应用：</strong></p>
+            <ul>
+                <li>融资融券标的是否纳入对股价效率的影响（以某个指标阈值为断点）</li>
+                <li>信用评级门槛对企业融资成本的影响</li>
+                <li>税收优惠政策起征点的效果评估</li>
+            </ul>
+            <p><strong>关键操作：</strong></p>
+            <ul>
+                <li>带宽(bandwidth)选择：最优带宽 vs 不同带宽稳健性检验</li>
+                <li>操纵检验 (Manipulation Test)：检查个体是否操纵驱动变量</li>
+                <li>协变量平衡检验：断点两侧协变量应无系统性差异</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PSM -->
+    <div class="method-card">
+        <div class="method-header">
+            <h3><i class="fas fa-balance-scale-right"></i> 倾向得分匹配 (PSM)</h3>
+            <span class="method-tag">构建反事实对照组</span>
+        </div>
+        <div class="method-body">
+            <p><strong>核心思想：</strong>基于可观测特征计算每个个体的"倾向得分"(即被处理的概率)，然后为处理组的每个个体匹配得分相近的对照组成员，从而构建反事实(counterfactual)。</p>
+            
+            <p><strong>匹配方法：</strong></p>
+            <ul>
+                <li><strong>最近邻匹配</strong> (Nearest Neighbor)：1:1 或 1:k 匹配</li>
+                <li><strong>核匹配</strong> (Kernel Matching)：利用所有对照组加权</li>
+                <li><strong>半径匹配</strong> (Radius Matching)：设定得分容忍范围</li>
+            </ul>
+            <p><strong>注意事项：</strong></p>
+            <ul>
+                <li>PSM只能解决<strong>基于可观测变量</strong>的选择偏差，无法处理不可观测的内生性</li>
+                <li>常与DID结合使用：PSM-DID（先匹配再双重差分）</li>
+                <li>必须进行平衡性检验：匹配后处理组和对照组特征应无显著差异</li>
+            </ul>
+            <p><strong>局限性与替代方案：</strong></p>
+            <ul>
+                <li>如果怀疑不可观测因素影响选择，考虑用IV或RDD</li>
+                <li>近年来<strong>合成控制法(Synthetic Control Method)</strong>在政策评估中越来越流行</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 方法对比总结 -->
+    <div class="section" style="background: linear-gradient(135deg, #fffbeb, #fef3c7);">
+        <h2><i class="fas fa-table"></i> 四种方法对比速查表</h2>
+        <div style="margin-top: 1.5rem; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr style="background: #f59e0b; color: white;">
+                        <th style="padding: 0.75rem; text-align: left;">方法</th>
+                        <th style="padding: 0.75rem; text-align: left;">核心优势</th>
+                        <th style="padding: 0.75rem; text-align: left;">关键假设</th>
+                        <th style="padding: 0.75rem; text-align: left;">主要风险</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: white; border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 0.75rem;"><strong>DID</strong></td>
+                        <td style="padding: 0.75rem;">直观易懂，政策评估首选</td>
+                        <td style="padding: 0.75rem;">平行趋势</td>
+                        <td style="padding: 0.75rem;">趋势不平行则失效</td>
+                    </tr>
+                    <tr style="background: #fefce8; border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 0.75rem;"><strong>IV</strong></td>
+                        <td style="padding: 0.75rem;">适用范围广，灵活性强</td>
+                        <td style="padding: 0.75rem;">工具变量有效性</td>
+                        <td style="padding: 0.75rem;">弱工具变量导致偏误</td>
+                    </tr>
+                    <tr style="background: white; border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 0.75rem;"><strong>RDD</strong></td>
+                        <td style="padding: 0.75rem;">局部随机化，可信度高</td>
+                        <td style="padding: 0.75rem;">连续性 + 无操纵</td>
+                        <td style="padding: 0.75rem;">样本量损失大</td>
+                    </tr>
+                    <tr style="background: #fefce8;">
+                        <td style="padding: 0.75rem;"><strong>PSM</strong></td>
+                        <td style="padding: 0.75rem;">缓解选择偏差</td>
+                        <td style="padding: 0.75rem;">条件独立性(只基于可观测)</td>
+                        <td style="padding: 0.75rem;">无法处理不可观测内生性</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-links">
+        <a href="B1_计量基础.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> 上一节：计量基础</a>
+        <a href="B3_数据清洗.html" class="nav-btn next">下一节：数据清洗 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+</body>
+</html>

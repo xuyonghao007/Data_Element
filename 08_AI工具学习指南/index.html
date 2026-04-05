@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI工具学习指南 | 金融学研一科研培训体系</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --light-bg: #f7fafc;
+            --border: #e2e8f0;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f6fafd 0%, #edf2f7 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3.5rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .importance-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.75rem;
+        }
+        
+        .section-title i { color: var(--accent); }
+        
+        .importance-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .importance-card {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 1.75rem;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .importance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .importance-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .importance-card h4 i { color: var(--accent); }
+        
+        .importance-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .tools-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .tool-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .tool-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tool-card {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .tool-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .tool-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tool-tag {
+            background: #e2e8f0;
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .recommended-tools {
+            background: linear-gradient(135deg, #fef3c7, #fef3c7);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 2px dashed #d97706;
+        }
+        
+        .recommended-tools h3 {
+            color: #92400e;
+            margin-bottom: 1.25rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .recommended-tools p {
+            color: #78350f;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .learning-path {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .path-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .path-step {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .path-step:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
+        
+        .path-step h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .path-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .importance-cards { grid-template-columns: 1fr; }
+            .path-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> 返回首页
+        </a>
+
+        <div class="hero">
+            <h1><i class="fas fa-robot"></i> AI工具学习指南</h1>
+            <p>掌握AI工具，开启科研效率革命——成为新时代的金融研究者</p>
+        </div>
+
+        <div class="importance-section">
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb"></i> 学习AI工具的重要性
+            </h2>
+            
+            <div class="importance-cards">
+                <div class="importance-card">
+                    <h4><i class="fas fa-bolt"></i> 提升研究效率</h4>
+                    <p>AI工具可以帮助你快速处理大量文献、数据和代码，将研究时间从数周缩短到数天，让你专注于创造性思考。</p>
+                </div>
+                <div class="importance-card">
+                    <h4><i class="fas fa-brain"></i> 拓展研究视野</h4>
+                    <p>AI可以帮助你发现文献中的隐藏模式，生成新的研究假设，甚至预测研究趋势，为你的研究提供全新视角。</p>
+                </div>
+                <div class="importance-card">
+                    <h4><i class="fas fa-code"></i> 增强技术能力</h4>
+                    <p>掌握AI辅助编程工具，大幅提高代码质量和开发速度，让你在数据处理和模型构建方面拥有竞争优势。</p>
+                </div>
+                <div class="importance-card">
+                    <h4><i class="fas fa-chart-line"></i> 加速成果产出</h4>
+                    <p>从文献综述到实证分析，从论文写作到投稿准备，AI工具贯穿科研全流程，帮助你更快地产出高质量研究成果。</p>
+                </div>
+                <div class="importance-card">
+                    <h4><i class="fas fa-graduation-cap"></i> 适应学术趋势</h4>
+                    <p>AI辅助研究已成为学术界的新趋势，掌握这些工具将使你在未来的学术竞争中占据有利位置。</p>
+                </div>
+                <div class="importance-card">
+                    <h4><i class="fas fa-globe"></i> 全球学术接轨</h4>
+                    <p>国际顶尖学者已经广泛使用AI工具，学习这些工具将帮助你与全球学术前沿保持同步。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-section">
+            <h2 class="section-title">
+                <i class="fas fa-tools"></i> 工具层必须学会的
+            </h2>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-book"></i> 1. 公共AI阅读文献工具</h3>
+                <div class="tool-card">
+                    <h4>知识库RAG算法 + AI基座模型</h4>
+                    <p>利用检索增强生成(RAG)技术，结合大语言模型，实现对学术文献的智能理解和分析。</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">推荐：腾讯IMA</span>
+                        <span class="tool-tag">文献摘要</span>
+                        <span class="tool-tag">知识关联</span>
+                        <span class="tool-tag">智能问答</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-code"></i> 2. AI编程辅助工具</h3>
+                <div class="tool-card">
+                    <h4>国内：Trae, Qoder</h4>
+                    <p>专为中文用户设计的AI编程助手，支持代码生成、错误修复、文档生成等功能。</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">代码生成</span>
+                        <span class="tool-tag">智能补全</span>
+                        <span class="tool-tag">错误修复</span>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <h4>国外：Claude Code, Codex</h4>
+                    <p>国际领先的AI编程工具，支持多种编程语言，提供专业级代码建议和优化方案。</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">多语言支持</span>
+                        <span class="tool-tag">专业代码</span>
+                        <span class="tool-tag">算法优化</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-laptop-code"></i> 3. 编程语言</h3>
+                <div class="tool-card">
+                    <h4>Python</h4>
+                    <p>金融研究的通用编程语言，强大的数据处理、统计分析和机器学习能力。</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">数据处理</span>
+                        <span class="tool-tag">机器学习</span>
+                        <span class="tool-tag">可视化</span>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <h4>统计软件（二选一）</h4>
+                    <p>Stata：金融实证研究的标准工具，操作简单，结果可靠。<br> R：开源统计软件，拥有丰富的金融分析包。</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Stata</span>
+                        <span class="tool-tag">R</span>
+                        <span class="tool-tag">统计分析</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommended-tools">
+                <h3><i class="fas fa-star"></i> 推荐的学习工具</h3>
+                <p><strong>Notebooklm（AI学习软件）</strong> - 谷歌推出的AI辅助学习工具，专为学术研究设计，支持文献组织、知识关联和智能笔记功能。</p>
+                <div class="tool-tags">
+                    <span class="tool-tag">知识组织</span>
+                    <span class="tool-tag">智能笔记</span>
+                    <span class="tool-tag">文献关联</span>
+                    <span class="tool-tag">学习助手</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="learning-path">
+            <h2 class="section-title">
+                <i class="fas fa-road"></i> AI工具学习路径
+            </h2>
+            <div class="path-steps">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <h4>基础入门</h4>
+                    <p>学习Python基础语法，掌握Stata或R的基本操作，了解AI工具的基本概念。</p>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <h4>工具熟悉</h4>
+                    <p>安装并熟悉腾讯IMA、Trae等工具，学习基本的Prompt编写技巧。</p>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <h4>实践应用</h4>
+                    <p>使用AI工具辅助文献阅读和代码编写，解决实际研究中的具体问题。</p>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <h4>进阶优化</h4>
+                    <p>学习高级Prompt技巧，探索AI工具的深度应用，开发个性化工作流。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
